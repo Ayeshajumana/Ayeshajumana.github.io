@@ -12,19 +12,20 @@
             color: #f8fafc;
         }
         .glow-card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1), inset 0 0 20px rgba(0, 229, 255, 0.05);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
         .glow-card:hover {
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.3), inset 0 0 30px rgba(0, 229, 255, 0.1);
-            border-color: rgba(0, 229, 255, 0.5);
+            box-shadow: 0 0 30px rgba(255, 69, 0, 0.3), inset 0 0 30px rgba(255, 69, 0, 0.1);
+            border-color: rgba(255, 69, 0, 0.5);
         }
-        .text-electric {
-            color: #00e5ff;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        .text-accent {
+            color: #ff4500;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
         }
         @keyframes blob {
             0% { transform: translate(0px, 0px) scale(1); }
@@ -43,18 +44,18 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-white">
+<body class="antialiased selection:bg-orange-500 selection:text-white">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 glow-card border-b-0 py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-electric">Ayesha.</a>
+            <a href="#" class="text-2xl font-bold text-accent">Ayesha.</a>
             <div class="space-x-6 hidden md:flex">
-                <a href="#about" class="hover:text-[#00e5ff] transition">About</a>
-                <a href="#experience" class="hover:text-[#00e5ff] transition">Experience</a>
-                <a href="#projects" class="hover:text-[#00e5ff] transition">Projects</a>
-                <a href="#contact" class="hover:text-[#00e5ff] transition">Contact</a>
-                <a href="resume.html" target="_blank" class="px-4 py-2 rounded border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-slate-900 transition shadow-[0_0_15px_rgba(0,229,255,0.3)]">Resume</a>
+                <a href="#about" class="hover:text-[#ff4500] transition">About</a>
+                <a href="#experience" class="hover:text-[#ff4500] transition">Experience</a>
+                <a href="#projects" class="hover:text-[#ff4500] transition">Projects</a>
+                <a href="#contact" class="hover:text-[#ff4500] transition">Contact</a>
+                <a href="resume.html" target="_blank" class="px-4 py-2 rounded border border-[#ff4500] text-[#ff4500] hover:bg-[#ff4500] hover:text-white transition shadow-[0_0_15px_rgba(255,69,0,0.3)]">Resume</a>
             </div>
         </div>
     </nav>
@@ -62,29 +63,30 @@
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden" id="home">
         <!-- Glowing Gradient Blobs -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob"></div>
-        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-4000"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-red-600 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-yellow-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-4000"></div>
 
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
             <div class="md:w-1/2" data-aos="fade-right">
                 <p class="text-xl mb-2 text-gray-400">Hello, I'm</p>
-                <h1 class="text-5xl md:text-7xl font-bold mb-4">Ayesha <span class="text-electric">Jumana</span> S</h1>
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">Ayesha <span class="text-accent">Jumana</span> S</h1>
                 <h2 class="text-2xl md:text-3xl text-gray-300 mb-6 h-10"><span id="typed"></span></h2>
                 <p class="text-gray-400 mb-8 max-w-lg">
                     Pre-Final Year EEE student at Kumaraguru College of Technology. Passionate about Embedded Systems, Industrial Automation, AI & IoT. <br><br>
-                    <span class="text-electric font-semibold">🏆 2x Mahatma Gandhi Scholar | Infosys STEM Scholar</span>
+                    <span class="text-accent font-semibold">🏆 2x Mahatma Gandhi Scholar | Infosys STEM Scholar</span>
                 </p>
-                <div class="flex gap-4">
-                    <a href="#projects" class="px-6 py-3 rounded bg-[#00e5ff] text-slate-900 font-bold hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] transition">View Projects</a>
-                    <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="px-6 py-3 rounded border border-gray-600 hover:border-[#00e5ff] hover:text-electric transition">LinkedIn</a>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <a href="#projects" class="px-6 py-3 rounded bg-[#ff4500] text-white font-bold hover:shadow-[0_0_20px_rgba(255,69,0,0.6)] transition">View Projects</a>
+                    <a href="proof.pdf" target="_blank" class="px-6 py-3 rounded border border-[#ff4500] text-[#ff4500] hover:bg-[#ff4500] hover:text-white transition shadow-[0_0_15px_rgba(255,69,0,0.3)]">View Proof / Certificates</a>
+                    <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="px-6 py-3 rounded border border-gray-600 hover:border-[#ff4500] hover:text-accent transition">LinkedIn</a>
                 </div>
             </div>
             
             <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
                 <!-- 3D Floating Card Hero -->
                 <div class="glow-card rounded-2xl p-4 transform-gpu cursor-pointer" data-tilt data-tilt-glare data-tilt-max-glare="0.5" data-tilt-scale="1.05">
-                    <img src="https://ui-avatars.com/api/?name=Ayesha+Jumana+S&background=00e5ff&color=0f172a&size=256&bold=true" alt="Profile" class="w-64 h-64 object-cover rounded-xl shadow-2xl">
+                    <img src="https://ui-avatars.com/api/?name=Ayesha+Jumana+S&background=ff4500&color=ffffff&size=256&bold=true" alt="Profile" class="w-64 h-64 object-cover rounded-xl shadow-2xl">
                 </div>
             </div>
         </div>
@@ -93,11 +95,11 @@
     <!-- Experience Section -->
     <section class="py-20 bg-slate-800/50" id="experience">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Experience & <span class="text-electric">Leadership</span></h2>
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Experience & <span class="text-accent">Leadership</span></h2>
             
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-2xl font-bold text-electric mb-2">Innovation Engineer Trainee</h3>
+                    <h3 class="text-2xl font-bold text-accent mb-2">Innovation Engineer Trainee</h3>
                     <h4 class="text-xl mb-4 text-gray-300">Industry Immersion Program</h4>
                     <ul class="list-disc list-inside text-gray-400 space-y-2">
                         <li>Undergoing a comprehensive 20-week industry immersion program.</li>
@@ -106,7 +108,7 @@
                 </div>
 
                 <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-bold text-electric mb-2">Intern</h3>
+                    <h3 class="text-2xl font-bold text-accent mb-2">Intern</h3>
                     <h4 class="text-xl mb-4 text-gray-300">Roots Industries India Pvt. Ltd.</h4>
                     <p class="text-gray-400 mb-2 italic">"My launchpad into the industry."</p>
                     <ul class="list-disc list-inside text-gray-400 space-y-2">
@@ -116,7 +118,7 @@
                 </div>
 
                 <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-2xl font-bold text-electric mb-2">Industrial Intern</h3>
+                    <h3 class="text-2xl font-bold text-accent mb-2">Industrial Intern</h3>
                     <h4 class="text-xl mb-4 text-gray-300">Scanner Electro Lab</h4>
                     <ul class="list-disc list-inside text-gray-400 space-y-2">
                         <li>Hands-on with PLC, VFD drives, IGBT-based systems and HMI in industrial automation.</li>
@@ -126,7 +128,7 @@
                 </div>
                 
                 <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-bold text-electric mb-2">Data Analytics Intern</h3>
+                    <h3 class="text-2xl font-bold text-accent mb-2">Data Analytics Intern</h3>
                     <h4 class="text-xl mb-4 text-gray-300">Goldfish Garments</h4>
                     <ul class="list-disc list-inside text-gray-400 space-y-2">
                         <li>Operational data analysis and reporting using Advanced Excel.</li>
@@ -136,7 +138,7 @@
                 </div>
 
                 <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-2xl font-bold text-electric mb-2">Industry Relations Lead</h3>
+                    <h3 class="text-2xl font-bold text-accent mb-2">Industry Relations Lead</h3>
                     <h4 class="text-xl mb-4 text-gray-300">IEEE</h4>
                     <ul class="list-disc list-inside text-gray-400 space-y-2">
                         <li>Strengthened connections between academia and industry.</li>
@@ -145,7 +147,7 @@
                 </div>
                 
                 <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-2xl font-bold text-electric mb-2">Team Manager</h3>
+                    <h3 class="text-2xl font-bold text-accent mb-2">Team Manager</h3>
                     <h4 class="text-xl mb-4 text-gray-300">eMoto KCT (FMAE)</h4>
                     <ul class="list-disc list-inside text-gray-400 space-y-2">
                         <li>Managed an electric vehicle competition team.</li>
@@ -159,15 +161,15 @@
     <!-- Projects Section -->
     <section class="py-20" id="projects">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Research & <span class="text-electric">Projects</span></h2>
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Research & <span class="text-accent">Projects</span></h2>
             
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glow-card p-8 rounded-xl" data-aos="zoom-in" data-aos-delay="100">
                     <h3 class="text-2xl font-bold mb-3 text-white">Wearable Electronics for Stroke Rehabilitation</h3>
                     <p class="text-gray-400 mb-4">Explored the integration of electronics, sensing and wearable technology for healthcare applications focusing on stroke patients.</p>
                     <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Wearable Tech</span>
-                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Healthcare</span>
+                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Wearable Tech</span>
+                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Healthcare</span>
                     </div>
                 </div>
                 
@@ -175,8 +177,8 @@
                     <h3 class="text-2xl font-bold mb-3 text-white">Microplastic Detection System</h3>
                     <p class="text-gray-400 mb-4">Proposed a continuous monitoring system integrating an acoustic pre-concentrator, optical photodiode detection and impedance sensing.</p>
                     <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Signal Processing</span>
-                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Sensors</span>
+                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Signal Processing</span>
+                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Sensors</span>
                     </div>
                 </div>
             </div>
@@ -186,20 +188,20 @@
     <!-- Connect With Me Section -->
     <section class="py-20 bg-slate-800/30" id="contact">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8" data-aos="fade-up">Connect With <span class="text-electric">Me</span></h2>
+            <h2 class="text-4xl font-bold mb-8" data-aos="fade-up">Connect With <span class="text-accent">Me</span></h2>
             <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
             </p>
             <div class="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="200">
-                <a href="https://github.com/AyeshaJumanaS" target="_blank" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-electric transition">
+                <a href="https://github.com/AyeshaJumanaS" target="_blank" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-accent transition">
                     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     <span>GitHub</span>
                 </a>
-                <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-electric transition">
+                <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-accent transition">
                     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     <span>LinkedIn</span>
                 </a>
-                <a href="mailto:ayeshajumana313@gmail.com" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-electric transition">
+                <a href="mailto:ayeshajumana313@gmail.com" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-accent transition">
                     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
                     <span>Email</span>
                 </a>
@@ -209,7 +211,7 @@
 
     <!-- Footer -->
     <footer class="py-8 bg-slate-900 border-t border-slate-800 text-center text-gray-500">
-        <p>&copy; 2026 Ayesha Jumana S. Crafted with <span class="text-electric">Electric Blue</span> and Ember Glow.</p>
+        <p>&copy; 2026 Ayesha Jumana S. Crafted with <span class="text-accent">Orange Red</span> and Ember Glow.</p>
     </footer>
 
     <!-- Scripts -->
@@ -234,3 +236,4 @@
     </script>
 </body>
 </html>
+
