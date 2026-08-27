@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Ayesha Jumana S - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc;
+        }
+        .glow-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1), inset 0 0 20px rgba(0, 229, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.3), inset 0 0 30px rgba(0, 229, 255, 0.1);
+            border-color: rgba(0, 229, 255, 0.5);
+        }
+        .text-electric {
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 glow-card border-b-0 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-electric">Ayesha.</a>
+            <div class="space-x-6 hidden md:flex">
+                <a href="#about" class="hover:text-[#00e5ff] transition">About</a>
+                <a href="#experience" class="hover:text-[#00e5ff] transition">Experience</a>
+                <a href="#projects" class="hover:text-[#00e5ff] transition">Projects</a>
+                <a href="resume.html" target="_blank" class="px-4 py-2 rounded border border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-slate-900 transition shadow-[0_0_15px_rgba(0,229,255,0.3)]">Resume</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20" id="home">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2" data-aos="fade-right">
+                <p class="text-xl mb-2 text-gray-400">Hello, I'm</p>
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">Ayesha <span class="text-electric">Jumana</span> S</h1>
+                <h2 class="text-2xl md:text-3xl text-gray-300 mb-6 h-10"><span id="typed"></span></h2>
+                <p class="text-gray-400 mb-8 max-w-lg">
+                    Pre-Final Year EEE student at Kumaraguru College of Technology. Passionate about Embedded Systems, Industrial Automation, AI & IoT.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#projects" class="px-6 py-3 rounded bg-[#00e5ff] text-slate-900 font-bold hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] transition">View Projects</a>
+                    <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="px-6 py-3 rounded border border-gray-600 hover:border-[#00e5ff] hover:text-electric transition">LinkedIn</a>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                <!-- 3D Floating Card Hero -->
+                <div class="glow-card rounded-2xl p-4 transform-gpu cursor-pointer" data-tilt data-tilt-glare data-tilt-max-glare="0.5" data-tilt-scale="1.05">
+                    <img src="https://ui-avatars.com/api/?name=Ayesha+Jumana+S&background=00e5ff&color=0f172a&size=256&bold=true" alt="Profile" class="w-64 h-64 object-cover rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-20 bg-slate-800/50" id="experience">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Experience & <span class="text-electric">Leadership</span></h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-electric mb-2">Industrial Intern</h3>
+                    <h4 class="text-xl mb-4 text-gray-300">Scanner Electro Lab</h4>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Hands-on with PLC, VFD drives, IGBT-based systems and HMI in industrial automation.</li>
+                        <li>Programmed Delta PLCs using Ladder Logic & Structured Text.</li>
+                        <li>Troubleshooted IGBTs, relays, and contactors.</li>
+                    </ul>
+                </div>
+                
+                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold text-electric mb-2">Data Analytics Intern</h3>
+                    <h4 class="text-xl mb-4 text-gray-300">Goldfish Garments</h4>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Operational data analysis and reporting using Advanced Excel.</li>
+                        <li>Database management with SQL queries.</li>
+                        <li>Data visualization using Power BI for business decisions.</li>
+                    </ul>
+                </div>
+
+                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold text-electric mb-2">Industry Relations Lead</h3>
+                    <h4 class="text-xl mb-4 text-gray-300">IEEE</h4>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Strengthened connections between academia and industry.</li>
+                        <li>Organized industry-oriented sessions and alumni engagements.</li>
+                    </ul>
+                </div>
+                
+                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-2xl font-bold text-electric mb-2">Team Manager</h3>
+                    <h4 class="text-xl mb-4 text-gray-300">eMoto KCT (FMAE)</h4>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Managed an electric vehicle competition team.</li>
+                        <li>Received a Letter of Appreciation for team coordination and project execution.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-20" id="projects">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Research & <span class="text-electric">Projects</span></h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glow-card p-8 rounded-xl" data-aos="zoom-in" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold mb-3 text-white">Wearable Electronics for Stroke Rehabilitation</h3>
+                    <p class="text-gray-400 mb-4">Explored the integration of electronics, sensing and wearable technology for healthcare applications focusing on stroke patients.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Wearable Tech</span>
+                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Healthcare</span>
+                    </div>
+                </div>
+                
+                <div class="glow-card p-8 rounded-xl" data-aos="zoom-in" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold mb-3 text-white">Microplastic Detection System</h3>
+                    <p class="text-gray-400 mb-4">Proposed a continuous monitoring system integrating an acoustic pre-concentrator, optical photodiode detection and impedance sensing.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Signal Processing</span>
+                        <span class="px-3 py-1 bg-[#00e5ff]/10 text-electric rounded-full text-sm">Sensors</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-900 border-t border-slate-800 text-center text-gray-500">
+        <p>&copy; 2026 Ayesha Jumana S. Crafted with <span class="text-electric">Electric Blue</span> and Ember Glow.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Initialize Typed.js
+        var typed = new Typed('#typed', {
+            strings: ['Electrical & Electronics Engineer', 'Research Enthusiast', 'Tech Innovator'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+    </script>
+</body>
+</html>
