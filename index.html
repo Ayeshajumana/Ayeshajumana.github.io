@@ -1,239 +1,3828 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <title>Ayesha Jumana S - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayesha Jumana - Portfolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;600&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
     <style>
-        body {
-            background-color: #0f172a; /* Slate 900 */
-            color: #f8fafc;
+        /* ========================================== */
+        /* EDIT DESIGN SETTINGS HERE                  */
+        /* ========================================== */
+        :root {
+            /* Colors matching the reference image closely */
+            --bg-color: #1a0e1c;
+            /* Very dark purple/black background */
+            --bg-panel: #4a154b;
+            /* Rich purple center panel */
+            --color-purple-bright: #9824d6;
+            /* Bright purple for badges/accents */
+            --color-text-main: #f0ead6;
+            /* Cream / off-white for main text */
+            --color-text-secondary: #a69da9;
+            /* Muted text for description/links */
+            --color-purple-dark: #37103a;
+            /* Darker purple for CTA bg */
+
+            /* Typography */
+            /* Using Anton as it's a bold condensed font very similar to the reference */
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-handwritten: 'Caveat', cursive;
+            --color-parchment: #f4ecd8;
+
+            /* Animations & Sizing */
+            --ticker-speed: 25s;
+            --animation-speed: 0.8s;
         }
-        .glow-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--color-text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-main);
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-purple-bright);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-purple-bright);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Emphasize 'CONTACT ME' */
+        .nav-links li:last-child a {
+            color: var(--color-text-main);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Wrapper */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 60px);
+            /* Leave room for ticker */
+            min-height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 1. Purple Background Panel */
+        .hero-panel {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32%;
+            /* Matches the reference vertical pillar width */
+            background-color: var(--bg-panel);
+            z-index: 1;
+        }
+
+        /* 2. Huge Typography (Left Side) */
+        .hero-typography {
+            position: absolute;
+            top: 55%;
+            left: 5%;
+            transform: translateY(-50%);
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 2;
+            /* Beside portrait, left side */
+            margin-top: 1rem;
+        }
+
+        .huge-text {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5.5vw, 6rem);
+            /* Adjusted to fit left side area */
+            line-height: 0.9;
+            color: var(--color-text-main);
+            text-transform: uppercase;
+            letter-spacing: 0px;
+            text-align: left;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        /* 3. Portrait Image */
+        .hero-portrait {
+            position: absolute;
+            bottom: 0;
+            /* Aligned to bottom of hero */
+            left: 50%;
+            transform: translateX(-50%);
+            height: 90%;
+            /* Scale to fit */
+            max-height: 900px;
+            z-index: 3;
+            pointer-events: none;
+            filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.5));
+        }
+
+        /* 4. Foreground UI Layer */
+        .hero-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+            /* Let clicks pass through empty space */
+        }
+
+        .hero-ui>* {
+            pointer-events: auto;
+            /* Re-enable clicks on the elements */
+            position: absolute;
+        }
+
+        /* Greeting - Top Left */
+        .greeting {
+            top: 20%;
+            left: 7%;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.6;
+        }
+
+        .greeting .purple-text {
+            color: var(--color-purple-bright);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        /* Circular CTA - Bottom Left */
+        .circular-cta {
+            bottom: 12%;
+            left: 9%;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background-color: var(--color-purple-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-text-main);
+            transition: transform 0.3s ease;
+        }
+
+        .circular-cta:hover {
+            transform: scale(1.05);
+            background-color: var(--color-purple-bright);
+        }
+
+        .circular-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: rotateText 15s linear infinite;
+        }
+
+        .circular-text svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .circular-text path {
+            fill: transparent;
+        }
+
+        .circular-text text {
+            fill: var(--color-text-main);
+            font-size: 13.5px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .circular-arrow {
+            font-size: 2rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .circular-cta:hover .circular-arrow {
+            transform: rotate(45deg);
+        }
+
+        /* Decorative Badge - Top Right */
+        .badge {
+            top: 15%;
+            right: 25%;
+            /* Pushed in slightly to overlap purple panel in reference */
+            width: 110px;
+            height: 110px;
+            background-color: var(--color-purple-bright);
+            /* Starburst shape using clip-path */
+            clip-path: polygon(50% 0%, 61% 15%, 79% 9%, 85% 26%, 100% 35%, 91% 50%, 100% 65%, 85% 74%, 79% 91%, 61% 85%, 50% 100%, 39% 85%, 21% 91%, 15% 74%, 0% 65%, 9% 50%, 0% 35%, 15% 26%, 21% 9%, 39% 15%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            line-height: 1;
+            transform: rotate(15deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .badge span {
+            transform: rotate(-15deg);
+        }
+
+        /* Description - Middle Right */
+        .description {
+            top: 42%;
+            right: 7%;
+            width: 260px;
+            font-size: 0.9rem;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        /* Ticker - Bottom Bar */
+        .ticker-container {
+            width: 100%;
+            height: 60px;
+            background-color: var(--color-purple-bright);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 20;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: ticker var(--ticker-speed) linear infinite;
+        }
+
+        .ticker-container:hover .ticker-track {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-text-main);
+            padding: 0 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .ticker-star {
+            color: #d896ff;
+            font-size: 1.2rem;
+            font-family: var(--font-body);
+            /* For the star symbol */
+        }
+
+        /* Animations */
+        @keyframes rotateText {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(15deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(12deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(15deg);
+            }
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .huge-text {
+                font-size: 20vw;
+            }
+
+            .hero-panel {
+                width: 45%;
+            }
+
+            .badge {
+                right: 15%;
+                top: 18%;
+            }
+
+            .description {
+                right: 4%;
+                width: 220px;
+            }
+
+            .greeting {
+                left: 4%;
+            }
+
+            .circular-cta {
+                left: 4%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            header {
+                padding: 1.5rem 5%;
+            }
+
+            .hero-panel {
+                width: 70%;
+            }
+
+            .huge-text {
+                font-size: 28vw;
+                line-height: 0.9;
+            }
+
+            /* Stack UI on mobile */
+            .hero-ui {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 5%;
+                gap: 2rem;
+            }
+
+            .hero-ui>* {
+                position: relative;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+            }
+
+            .hero {
+                flex-direction: column;
+                height: auto;
+                min-height: 0;
+            }
+
+            .hero-portrait {
+                position: relative;
+                height: 400px;
+                order: 2;
+                transform: translateX(0);
+                left: auto;
+                margin: 2rem 0;
+            }
+
+            .hero-typography {
+                position: relative;
+                transform: none;
+                top: auto;
+                left: auto;
+                order: 1;
+                margin-top: 5rem;
+            }
+
+            .hero-panel {
+                top: 30%;
+            }
+
+            .greeting,
+            .description {
+                text-align: center;
+                width: 100%;
+            }
+
+            .badge {
+                position: absolute;
+                top: 25%;
+                right: 5%;
+            }
+        }
+
+        /* ========================================== */
+        /* EXPERIENCE SECTION STYLES                  */
+        /* ========================================== */
+
+        .experience-section {
+            background-color: #160C1C;
+            color: var(--color-text-main);
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-main);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: #B9A9C4;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .experience-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+            position: relative;
+        }
+
+        /* Timeline (Left Column) */
+        .timeline-col {
+            flex: 1;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 5px;
+            width: 2px;
+            background-color: #64158A;
+            opacity: 0.5;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-        .glow-card:hover {
-            box-shadow: 0 0 30px rgba(255, 69, 0, 0.3), inset 0 0 30px rgba(255, 69, 0, 0.1);
-            border-color: rgba(255, 69, 0, 0.5);
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
-        .text-accent {
-            color: #ff4500;
-            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+
+        .timeline-node {
+            position: absolute;
+            left: -23px;
+            /* centers over line */
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #64158A;
+            border: 2px solid #160C1C;
+            transition: all 0.3s ease;
+            z-index: 2;
         }
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
+
+        .timeline-item:hover .timeline-node {
+            background-color: #8A22B5;
+            box-shadow: 0 0 10px #8A22B5;
         }
-        .animate-blob {
-            animation: blob 7s infinite;
+
+        .timeline-item.active .timeline-node {
+            background-color: #A62DD0;
+            box-shadow: 0 0 15px #A62DD0;
         }
-        .animation-delay-2000 {
-            animation-delay: 2s;
+
+        .timeline-date {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: #B9A9C4;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
         }
-        .animation-delay-4000 {
-            animation-delay: 4s;
+
+        .timeline-position {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--color-text-main);
+            transition: color 0.3s ease;
+            line-height: 1.2;
+        }
+
+        .timeline-item:hover .timeline-position {
+            color: #A62DD0;
+        }
+
+        .timeline-item.active .timeline-position {
+            color: #A62DD0;
+        }
+
+        .timeline-item.active .timeline-date {
+            color: #8A22B5;
+        }
+
+        /* Details Card (Right Column) */
+        .details-col {
+            flex: 1;
+            position: relative;
+        }
+
+        .experience-card {
+            background-color: rgba(36, 16, 45, 0.7);
+            border: 1px solid rgba(138, 34, 181, 0.2);
+            border-radius: 8px;
+            padding: 3rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .experience-card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            position: relative;
+            /* Take up space */
+        }
+
+        /* Default empty state for right column */
+        .details-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 300px;
+            color: rgba(185, 169, 196, 0.5);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .details-placeholder.hidden {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .card-org {
+            color: #A62DD0;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .card-program {
+            color: #B9A9C4;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-desc {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #F4EEE2;
+            margin-bottom: 2rem;
+        }
+
+        .card-desc ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-desc li {
+            margin-bottom: 0.8rem;
+        }
+
+        .card-status {
+            font-style: italic;
+            color: #8A22B5;
+            margin-top: 1rem;
+        }
+
+        .card-skills-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #B9A9C4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .card-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background-color: rgba(100, 21, 138, 0.2);
+            border: 1px solid rgba(138, 34, 181, 0.3);
+            color: #F4EEE2;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile Card Details (Inline) */
+        .mobile-card-container {
+            display: none;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .experience-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .details-col {
+                display: none;
+                /* Hide desktop cards */
+            }
+
+            .mobile-card-container {
+                display: block;
+                /* Show inline cards */
+            }
+
+            .mobile-card-container .experience-card {
+                position: relative;
+                transform: none;
+                margin-top: 1rem;
+                padding: 2rem 1.5rem;
+                display: none;
+            }
+
+            .mobile-card-container .experience-card.active {
+                display: block;
+            }
+
+            .section-header h2 {
+                font-size: 3rem;
+            }
+        }
+
+        /* ========================================== */
+        /* RESEARCH & PROJECTS SECTION                */
+        /* ========================================== */
+        .research-section {
+            background: linear-gradient(to bottom, #100A14, #1A0D23);
+            color: var(--color-text-main);
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .research-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            z-index: 2;
+        }
+
+        .research-header h2 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .research-header p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: #B9A9C4;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .radial-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 700px;
+            /* Base height for the radial layout */
+            margin: 0 auto;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Center Anchor */
+        .radial-center {
+            position: absolute;
+            z-index: 5;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        .radial-center img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Radial Cards */
+        .radial-card {
+            position: absolute;
+            width: 260px;
+            background: rgba(36, 16, 45, 0.7);
+            border: 1px solid rgba(138, 34, 181, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        .radial-card:hover {
+            transform: scale(1.05);
+            border-color: #A62DD0;
+            box-shadow: 0 0 20px rgba(166, 45, 208, 0.3);
+        }
+
+        /* Connecting Lines */
+        .radial-connector {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 50%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(166, 45, 208, 0.8), transparent);
+            z-index: 2;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .radial-card:hover+.radial-connector {
+            opacity: 1;
+            box-shadow: 0 0 8px rgba(166, 45, 208, 0.8);
+        }
+
+        /* Specific Positions (Desktop) */
+        /* Top Left */
+        .pos-1 {
+            top: 5%;
+            left: 10%;
+        }
+
+        /* Top Right */
+        .pos-2 {
+            top: 5%;
+            right: 10%;
+        }
+
+        /* Lower Left */
+        .pos-3 {
+            top: 55%;
+            left: 5%;
+        }
+
+        /* Lower Right */
+        .pos-4 {
+            top: 55%;
+            right: 5%;
+        }
+
+        /* Bottom Center */
+        .pos-5 {
+            bottom: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .radial-card.pos-5:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #A62DD0;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--color-text-main);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            color: #B9A9C4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .explore-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(166, 45, 208, 0.2);
+            color: #A62DD0;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .radial-card:hover .explore-btn {
+            background: #A62DD0;
+            color: #FFF;
+        }
+
+        /* Modal / Overlay */
+        .project-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 5, 14, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .project-modal {
+            background: rgba(36, 16, 45, 0.95);
+            border: 1px solid rgba(138, 34, 181, 0.2);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-modal-overlay.active .project-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            color: #B9A9C4;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #A62DD0;
+        }
+
+        .modal-category {
+            color: #A62DD0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--color-text-main);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .modal-label {
+            display: inline-block;
+            background: rgba(100, 21, 138, 0.3);
+            color: #E2D1EE;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .modal-content {
+            color: #E2D1EE;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .modal-content ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 900px) {
+            .radial-container {
+                flex-direction: column;
+                height: auto;
+                gap: 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .radial-center {
+                position: relative;
+                width: 100%;
+                max-width: 300px;
+                height: 350px;
+                margin-bottom: 2rem;
+                animation: none;
+            }
+
+            .radial-card {
+                position: relative;
+                width: 100%;
+                max-width: 400px;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+            }
+
+            .radial-card:hover {
+                transform: translateY(-5px) !important;
+            }
+
+            .radial-connector {
+                display: none;
+            }
+        }
+
+        /* ========================================== */
+        /* CONTACT SECTION STYLES                     */
+        /* ========================================== */
+        .contact-section {
+            background-color: var(--bg-color);
+            color: var(--color-text-main);
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+        }
+
+        /* Large Purple Background Panel */
+        .contact-panel {
+            position: absolute;
+            top: 0;
+            right: 15%;
+            width: 25%;
+            height: 100%;
+            background-color: var(--bg-panel);
+            z-index: -1;
+        }
+
+        .contact-left {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-micro-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-purple-bright);
+            margin-bottom: 2rem;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .contact-heading {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 7vw, 7.5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--color-text-main);
+            margin-bottom: 3rem;
+            position: relative;
+            letter-spacing: 0px;
+        }
+
+        .contact-heading span {
+            display: block;
+        }
+
+        .contact-heading .purple-highlight {
+            color: var(--color-purple-bright);
+        }
+
+        .contact-heading-bg {
+            position: absolute;
+            top: 45%;
+            left: -10%;
+            width: 80%;
+            height: 35%;
+            background-color: rgba(55, 16, 58, 0.6); /* var(--color-purple-dark) with opacity */
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+
+        .contact-message {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            max-width: 85%;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .contact-message::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 3px;
+            height: 100%;
+            background-color: var(--color-purple-bright);
+            opacity: 0.5;
+        }
+
+        .contact-message p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-message p:last-child {
+            margin-bottom: 0;
+            color: var(--color-text-main);
+        }
+
+        .contact-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 2;
+            padding-left: 2rem;
+        }
+
+        .contact-links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-text-main);
+            font-family: var(--font-display);
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 0;
+            border-bottom: 2px solid rgba(166, 45, 208, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .contact-link-number {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-purple-bright);
+            margin-right: 2rem;
+            font-weight: 600;
+        }
+
+        .contact-link-text {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s ease;
+        }
+
+        .contact-link-arrow {
+            margin-left: auto;
+            color: var(--color-purple-bright);
+            font-family: var(--font-body);
+            font-size: 2rem;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .contact-link-item::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-purple-bright);
+            transition: width 0.4s ease;
+        }
+
+        .contact-link-item:hover,
+        .contact-link-item:focus {
+            color: #FFF;
+            outline: none;
+            background: rgba(166, 45, 208, 0.05); /* Slight highlight */
+        }
+
+        .contact-link-item:hover::before,
+        .contact-link-item:focus::before {
+            width: 100%;
+        }
+
+        .contact-link-item:hover .contact-link-text,
+        .contact-link-item:focus .contact-link-text {
+            transform: translateX(10px);
+            color: var(--color-purple-bright);
+        }
+
+        .contact-link-item:hover .contact-link-arrow,
+        .contact-link-item:focus .contact-link-arrow {
+            opacity: 1;
+            transform: translateX(-10px);
+        }
+
+        /* Decorative Graphic Elements */
+        .contact-decor-star {
+            position: absolute;
+            top: 15%;
+            left: 48%;
+            color: var(--color-purple-bright);
+            font-size: 3rem;
+            animation: rotateText 15s linear infinite;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .contact-decor-circle {
+            position: absolute;
+            bottom: -5%;
+            right: 5%;
+            width: 250px;
+            height: 250px;
+            border: 2px solid var(--color-purple-dark);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .contact-decor-cross {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            color: var(--color-purple-bright);
+            font-size: 1.5rem;
+            font-family: var(--font-body);
+            opacity: 0.4;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 900px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .contact-panel {
+                width: 100%;
+                right: 0;
+                top: 0;
+                height: 50%;
+                opacity: 0.3;
+            }
+
+            .contact-right {
+                padding-left: 0;
+            }
+
+            .contact-heading {
+                font-size: clamp(3.5rem, 15vw, 5rem);
+            }
+
+            .contact-message {
+                max-width: 100%;
+            }
+
+            .contact-link-item {
+                font-size: 2.2rem;
+            }
+            
+            .contact-decor-star {
+                left: 80%;
+                top: 5%;
+            }
+        }
+
+        /* ========================================== */
+        /* ACHIEVEMENTS SECTION STYLES                */
+        /* ========================================== */
+        .achievements-section {
+            background-color: var(--bg-color);
+            color: var(--color-text-main);
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .achievements-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        /* Left Side: 2x2 Grid */
+        .achievements-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: rgba(36, 16, 45, 0.3);
+            border: 1px solid rgba(138, 34, 181, 0.15);
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card:hover {
+            border-color: rgba(166, 45, 208, 0.4);
+            background: rgba(36, 16, 45, 0.6);
+            box-shadow: 0 10px 30px rgba(166, 45, 208, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .achievement-large-text {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            line-height: 1;
+            color: var(--color-text-main);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .achievement-small-label {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-purple-bright);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .achievement-support-text {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .achievement-verify-link {
+            margin-top: 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-text-main);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .achievement-verify-link span {
+            transition: transform 0.3s ease;
+            color: var(--color-purple-bright);
+        }
+
+        .achievement-verify-link:hover {
+            color: var(--color-purple-bright);
+        }
+
+        .achievement-verify-link:hover span {
+            transform: translateX(5px);
+        }
+
+        /* Right Side: Intro Card */
+        .achievements-intro-card {
+            width: 38%;
+            background: rgba(36, 16, 45, 0.15);
+            border: 1px solid rgba(138, 34, 181, 0.1);
+            border-radius: 12px;
+            padding: 4rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .achievements-intro-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--color-text-main);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .achievements-intro-card p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+        }
+
+        /* Verification Image Modal */
+        .verify-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 5, 14, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 2rem;
+        }
+
+        .verify-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .verify-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .verify-modal-overlay.active .verify-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .verify-modal-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(166, 45, 208, 0.3);
+        }
+
+        .verify-modal-close {
+            position: absolute;
+            top: -2.5rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--color-text-secondary);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .verify-modal-close:hover {
+            color: var(--color-purple-bright);
+        }
+
+        /* Mobile Layout for Achievements */
+        @media (max-width: 900px) {
+            .achievements-container {
+                flex-direction: column;
+            }
+
+            .achievements-intro-card {
+                width: 100%;
+                order: -1;
+                padding: 3rem 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-large-text {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* ========================================== */
+        /* PROTOSEM INTRO & JOURNEY STYLES            */
+        /* ========================================== */
+        .protosem-section {
+            background-color: var(--bg-color);
+            color: var(--color-text-main);
+            padding-top: 8rem;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .protosem-intro-box {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto 6rem auto;
+            background: rgba(36, 16, 45, 0.4);
+            border: 1px solid rgba(138, 34, 181, 0.2);
+            border-radius: 12px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .protosem-intro-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--color-purple-bright), #ff00ff);
+        }
+
+        .protosem-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-main);
+        }
+
+        .protosem-role {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-purple-bright);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .protosem-programme {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .protosem-desc {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--color-text-main);
+            margin-bottom: 3.5rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .explore-journey-btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--bg-color);
+            background: var(--color-text-main);
+            padding: 1.2rem 2.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .explore-journey-btn:hover {
+            background: var(--color-purple-bright);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(152, 36, 214, 0.3);
+        }
+
+        /* Journey Map Section */
+        .journey-section {
+            background: linear-gradient(180deg, var(--bg-color) 0%, #110714 100%);
+            color: var(--color-text-main);
+            padding: 6rem 5% 10rem 5%;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .journey-header h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--color-text-main);
+        }
+        
+        .journey-header p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        .journey-dashboard {
+            max-width: 1200px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .journey-tracker-card {
+            background: rgba(36, 16, 45, 0.4);
+            border: 1px solid rgba(138, 34, 181, 0.2);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .journey-tracker-title {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-purple-bright);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .current-destination-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            line-height: 1.3;
+            color: var(--color-text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .current-progress-text {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .passport-stamps-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .passport-mini-stamp {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px dashed rgba(166, 45, 208, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .passport-mini-stamp.completed {
+            border: 1px solid var(--color-purple-bright);
+            color: #fff;
+            background: rgba(152, 36, 214, 0.4);
+            font-weight: bold;
+        }
+
+        /* The Map */
+        .journey-map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding: 4rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .journey-stamp {
+            position: relative;
+            z-index: 2;
+            background: rgba(26, 14, 28, 0.95);
+            border: 2px dashed rgba(166, 45, 208, 0.4);
+            border-radius: 4px;
+            padding: 1.5rem 1rem;
+            width: 200px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .journey-stamp::before {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px dotted rgba(166, 45, 208, 0.2);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .journey-stamp:nth-child(even) {
+            transform: rotate(-3deg);
+        }
+
+        .journey-stamp:nth-child(odd) {
+            transform: rotate(2deg);
+        }
+
+        .journey-stamp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(152, 36, 214, 0.15);
+            border-color: var(--color-purple-bright);
+            z-index: 5;
+        }
+
+        .journey-stamp.completed {
+            border-color: rgba(166, 45, 208, 0.7);
+        }
+
+        .journey-stamp.current {
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .journey-stamp.upcoming {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
+        
+        .journey-stamp.upcoming:hover {
+            box-shadow: none;
+            border-color: rgba(166, 45, 208, 0.4);
+        }
+
+        .stamp-week {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--color-text-main);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stamp-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-purple-bright);
+            margin-bottom: 0.8rem;
+            min-height: 24px;
+        }
+
+        .stamp-status {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+
+        .journey-stamp.completed .stamp-status {
+            color: #d896ff;
+        }
+
+        /* The Paper Airplane */
+        .paper-airplane {
+            position: absolute;
+            z-index: 5;
+            font-size: 2.5rem;
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 5px 15px rgba(255, 0, 255, 0.4));
+            transform-origin: center;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Journal Modal */
+        .journal-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 5, 14, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 3000;
+            display: flex;
+            justify-content: flex-end;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .journal-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .journal-panel {
+            width: 100%;
+            max-width: 750px;
+            height: 100%;
+            background: #150a17;
+            border-left: 1px solid rgba(138, 34, 181, 0.3);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            padding: 4rem 3.5rem;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .journal-modal-overlay.active .journal-panel {
+            transform: translateX(0);
+        }
+
+        .journal-close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            background: none;
+            border: none;
+            color: var(--color-text-secondary);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .journal-close-btn:hover {
+            color: var(--color-purple-bright);
+        }
+        
+        .journal-header {
+            border-bottom: 1px solid rgba(138, 34, 181, 0.2);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .journal-week-num {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-purple-bright);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .journal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--color-text-main);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .journal-intro {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        .journal-day {
+            margin-bottom: 4rem;
+        }
+
+        .journal-day-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-text-main);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(138,34,181,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .journal-section-heading {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-purple-bright);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+
+        .journal-section-content {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--color-text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        .journal-takeaway {
+            background: rgba(152, 36, 214, 0.1);
+            border-left: 3px solid var(--color-purple-bright);
+            padding: 2rem;
+            margin-top: 3rem;
+            font-family: var(--font-handwritten);
+            font-size: 2rem;
+            color: var(--color-parchment);
+            line-height: 1.4;
+        }
+
+        .journal-photos {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(138, 34, 181, 0.2);
+        }
+
+        .journal-photos h4 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-text-main);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: var(--color-parchment);
+            border: 10px solid #fff;
+            border-bottom-width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-handwritten);
+            font-size: 1.5rem;
+            color: #333;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.4s ease;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 80px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .photo-placeholder:nth-child(even) {
+            transform: rotate(3deg);
+        }
+        
+        .photo-placeholder:nth-child(odd) {
+            transform: rotate(-3deg);
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 2;
+        }
+
+        @media (max-width: 900px) {
+            .journey-dashboard {
+                grid-template-columns: 1fr;
+            }
+            .journey-map-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .journey-stamp {
+                width: 100%;
+                max-width: 320px;
+            }
+            .journal-panel {
+                padding: 3rem 1.5rem;
+            }
+            .protosem-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* ========================================== */
+        /* BLOG SECTION STYLES                        */
+        /* ========================================== */
+        .blog-section {
+            padding: 5rem 2rem;
+            background: var(--bg-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .blog-header h2 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-text-main);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .blog-header p {
+            color: var(--color-text-secondary);
+            font-family: var(--font-body);
+        }
+
+        .blog-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .blog-card {
+            background: rgba(36, 16, 45, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid rgba(138, 34, 181, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(152, 36, 214, 0.15);
+            border-color: rgba(152, 36, 214, 0.4);
+        }
+
+        .blog-card-image-wrapper {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.05);
+        }
+
+        .blog-card-content {
+            padding: 2rem;
+        }
+
+        .blog-card-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-text-main);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blog-card-preview {
+            font-family: var(--font-body);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-card-read-more {
+            font-family: var(--font-body);
+            color: var(--color-purple-bright);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Blog Modal Styles */
+        .blog-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 5, 12, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .blog-modal {
+            background: var(--bg-panel);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 12px;
+            border: 1px solid rgba(138, 34, 181, 0.3);
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-modal-overlay.active .blog-modal {
+            transform: translateY(0);
+        }
+
+        .blog-modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(26, 14, 28, 0.8);
+            border: 1px solid rgba(138, 34, 181, 0.4);
+            color: var(--color-text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .blog-modal-close:hover {
+            background: var(--color-purple-bright);
+            transform: rotate(90deg);
+        }
+
+        .blog-modal-header-image {
+            width: 100%;
+            height: 400px;
+        }
+
+        .blog-modal-header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-modal-body {
+            padding: 3rem;
+        }
+
+        .blog-modal-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            color: var(--color-text-main);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .blog-modal-text {
+            font-family: var(--font-body);
+            color: var(--color-text-main);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-modal-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-modal-header-image {
+                height: 250px;
+            }
+            .blog-modal-body {
+                padding: 2rem 1.5rem;
+            }
+            .blog-modal-title {
+                font-size: 2.5rem;
+            }
+            .blog-card-image-wrapper {
+                height: 200px;
+            }
+        }
+
+        /* ========================================== */
+        /* CINEMATIC TRANSITION STYLES                */
+        /* ========================================== */
+        #protosem-transition {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #100612, #290a2c);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        #protosem-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .transition-airplane {
+            font-size: 3rem;
+            position: absolute;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%) rotate(20deg);
+            filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.5));
+            opacity: 0;
+            z-index: 2;
+        }
+
+        #protosem-transition.animating .transition-airplane {
+            animation: flight-anim 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .transition-title {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: var(--color-text-main);
+            letter-spacing: 5px;
+            opacity: 0;
+            transform: scale(0.9);
+            z-index: 1;
+        }
+
+        #protosem-transition.animating .transition-title {
+            animation: text-appear 1s ease 1.2s forwards;
+        }
+
+        .transition-path-svg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        .transition-path-line {
+            fill: none;
+            stroke: rgba(166, 45, 208, 0.2);
+            stroke-width: 3;
+            stroke-dasharray: 20, 20;
+        }
+
+        @keyframes flight-anim {
+            0% {
+                left: -10vw;
+                top: 60%;
+                transform: translateY(-50%) rotate(25deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            80% {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes text-appear {
+            0% { opacity: 0; transform: scale(0.95); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1); filter: blur(0); }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-orange-500 selection:text-white">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 glow-card border-b-0 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-accent">Ayesha.</a>
-            <div class="space-x-6 hidden md:flex">
-                <a href="#about" class="hover:text-[#ff4500] transition">About</a>
-                <a href="#experience" class="hover:text-[#ff4500] transition">Experience</a>
-                <a href="#projects" class="hover:text-[#ff4500] transition">Projects</a>
-                <a href="#contact" class="hover:text-[#ff4500] transition">Contact</a>
-                <a href="resume.html" target="_blank" class="px-4 py-2 rounded border border-[#ff4500] text-[#ff4500] hover:bg-[#ff4500] hover:text-white transition shadow-[0_0_15px_rgba(255,69,0,0.3)]">Resume</a>
-            </div>
+<body>
+
+    <!-- PROTOSEM CINEMATIC TRANSITION -->
+    <div id="protosem-transition">
+        <svg class="transition-path-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="transition-path-line" id="flight-path" d="M -10,60 Q 30,20 50,50" />
+        </svg>
+        <div class="transition-airplane" id="transition-airplane">
+            <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+            </svg>
         </div>
-    </nav>
+        <div class="transition-title">PROTOSEM</div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden" id="home">
-        <!-- Glowing Gradient Blobs -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob"></div>
-        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-red-600 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-yellow-500 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob animation-delay-4000"></div>
-
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 relative z-10">
-            <div class="md:w-1/2" data-aos="fade-right">
-                <p class="text-xl mb-2 text-gray-400">Hello, I'm</p>
-                <h1 class="text-5xl md:text-7xl font-bold mb-4">Ayesha <span class="text-accent">Jumana</span> S</h1>
-                <h2 class="text-2xl md:text-3xl text-gray-300 mb-6 h-10"><span id="typed"></span></h2>
-                <p class="text-gray-400 mb-8 max-w-lg">
-                    Pre-Final Year EEE student at Kumaraguru College of Technology. Passionate about Embedded Systems, Industrial Automation, AI & IoT. <br><br>
-                    <span class="text-accent font-semibold">🏆 2x Mahatma Gandhi Scholar | Infosys STEM Scholar</span>
-                </p>
-                <div class="flex flex-wrap gap-4 mt-6">
-                    <a href="#projects" class="px-6 py-3 rounded bg-[#ff4500] text-white font-bold hover:shadow-[0_0_20px_rgba(255,69,0,0.6)] transition">View Projects</a>
-                    <a href="proof.pdf" target="_blank" class="px-6 py-3 rounded border border-[#ff4500] text-[#ff4500] hover:bg-[#ff4500] hover:text-white transition shadow-[0_0_15px_rgba(255,69,0,0.3)]">View Proof / Certificates</a>
-                    <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="px-6 py-3 rounded border border-gray-600 hover:border-[#ff4500] hover:text-accent transition">LinkedIn</a>
-                </div>
-            </div>
-            
-            <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
-                <!-- 3D Floating Card Hero -->
-                <div class="glow-card rounded-2xl p-4 transform-gpu cursor-pointer" data-tilt data-tilt-glare data-tilt-max-glare="0.5" data-tilt-scale="1.05">
-                    <img src="https://ui-avatars.com/api/?name=Ayesha+Jumana+S&background=ff4500&color=ffffff&size=256&bold=true" alt="Profile" class="w-64 h-64 object-cover rounded-xl shadow-2xl">
-                </div>
-            </div>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="brand">
+            <span id="brand-text">AYESHA JUMANA</span>
         </div>
-    </section>
+        <nav>
+            <ul class="nav-links" id="desktop-nav">
+                <!-- Inserted by JS -->
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Main Hero -->
+    <main class="hero">
+        <!-- 1. Background Purple Rectangle -->
+        <div class="hero-panel"></div>
+
+        <!-- 2. Huge Typography Layer -->
+        <div class="hero-typography">
+            <div class="huge-text" id="huge-text-top">I CREATE</div>
+            <div class="huge-text" id="huge-text-bottom">THINGS</div>
+        </div>
+
+        <!-- 3. Portrait Layer (Sits over text and panel) -->
+        <!-- Update src to a real image path to test -->
+        <img src="profile.png" alt="Ayesha Jumana" class="hero-portrait" id="profile-img">
+
+        <!-- 4. UI Elements Overlay -->
+        <div class="hero-ui">
+
+            <!-- Top Left -->
+            <div class="greeting">
+                <span class="purple-text" id="greeting-top">HELLO 👋</span>
+                <span id="greeting-bottom">EVERYONE</span>
+            </div>
+
+            <!-- Middle Right -->
+            <div class="description" id="description-text">
+                <!-- Inserted by JS -->
+            </div>
+
+            <!-- Top Right / Center -->
+            <div class="badge">
+                <span id="badge-text">LET'S<br>CREATE</span>
+            </div>
+
+
+
+        </div>
+    </main>
+
+    <!-- Bottom Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-track" id="ticker-track">
+            <!-- Inserted by JS -->
+        </div>
+    </div>
 
     <!-- Experience Section -->
-    <section class="py-20 bg-slate-800/50" id="experience">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Experience & <span class="text-accent">Leadership</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Innovation Engineer Trainee</h3>
-                    <h4 class="text-xl mb-4 text-gray-300">Industry Immersion Program</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-2">
-                        <li>Undergoing a comprehensive 20-week industry immersion program.</li>
-                        <li>Developing technical and innovative problem-solving skills.</li>
-                    </ul>
-                </div>
+    <section id="experience" class="experience-section">
+        <div class="section-header">
+            <h2>EXPERIENCE</h2>
+            <p>A journey through hands-on learning, leadership, innovation, and technology.</p>
+        </div>
 
-                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Intern</h3>
-                    <h4 class="text-xl mb-4 text-gray-300">Roots Industries India Pvt. Ltd.</h4>
-                    <p class="text-gray-400 mb-2 italic">"My launchpad into the industry."</p>
-                    <ul class="list-disc list-inside text-gray-400 space-y-2">
-                        <li>Gained real-world understanding of the industry beyond textbooks.</li>
-                        <li>Received valuable mentorship that clarified my career direction.</li>
-                    </ul>
+        <div class="experience-container">
+            <!-- Left Column: Timeline -->
+            <div class="timeline-col">
+                <div class="timeline-line"></div>
+                <div id="timeline-items-container">
+                    <!-- Timeline items inserted by JS -->
                 </div>
+            </div>
 
-                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Industrial Intern</h3>
-                    <h4 class="text-xl mb-4 text-gray-300">Scanner Electro Lab</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-2">
-                        <li>Hands-on with PLC, VFD drives, IGBT-based systems and HMI in industrial automation.</li>
-                        <li>Programmed Delta PLCs using Ladder Logic & Structured Text.</li>
-                        <li>Troubleshooted IGBTs, relays, and contactors.</li>
-                    </ul>
+            <!-- Right Column: Details Card (Desktop) -->
+            <div class="details-col">
+                <div class="details-placeholder" id="desktop-details-placeholder">
+                    Select an experience from the timeline to view details
                 </div>
-                
-                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Data Analytics Intern</h3>
-                    <h4 class="text-xl mb-4 text-gray-300">Goldfish Garments</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-2">
-                        <li>Operational data analysis and reporting using Advanced Excel.</li>
-                        <li>Database management with SQL queries.</li>
-                        <li>Data visualization using Power BI for business decisions.</li>
-                    </ul>
-                </div>
-
-                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Industry Relations Lead</h3>
-                    <h4 class="text-xl mb-4 text-gray-300">IEEE</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-2">
-                        <li>Strengthened connections between academia and industry.</li>
-                        <li>Organized industry-oriented sessions and alumni engagements.</li>
-                    </ul>
-                </div>
-                
-                <div class="glow-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Team Manager</h3>
-                    <h4 class="text-xl mb-4 text-gray-300">eMoto KCT (FMAE)</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-2">
-                        <li>Managed an electric vehicle competition team.</li>
-                        <li>Received a Letter of Appreciation for team coordination and project execution.</li>
-                    </ul>
+                <div class="experience-card" id="desktop-details-card">
+                    <div class="card-org" id="card-org"></div>
+                    <div class="card-program" id="card-program"></div>
+                    <div class="card-desc" id="card-desc"></div>
+                    <div class="card-skills-title" id="card-skills-title" style="display:none;">Skills & Technologies
+                    </div>
+                    <div class="card-skills" id="card-skills"></div>
+                    <div class="card-status" id="card-status"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="py-20" id="projects">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Research & <span class="text-accent">Projects</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glow-card p-8 rounded-xl" data-aos="zoom-in" data-aos-delay="100">
-                    <h3 class="text-2xl font-bold mb-3 text-white">Wearable Electronics for Stroke Rehabilitation</h3>
-                    <p class="text-gray-400 mb-4">Explored the integration of electronics, sensing and wearable technology for healthcare applications focusing on stroke patients.</p>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Wearable Tech</span>
-                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Healthcare</span>
+    <!-- Research & Projects Section -->
+    <section id="projects" class="research-section">
+        <div class="research-header">
+            <h2>RESEARCH & PROJECTS</h2>
+            <p>Researching ideas. Building solutions. Creating impact.</p>
+        </div>
+
+        <div class="radial-container" id="radial-container">
+            <!-- Center Image -->
+            <div class="radial-center">
+                <img id="research-center-img" src="" alt="Ayesha Jumana - The Marketing Times">
+            </div>
+
+            <!-- Radial Cards and Connectors inserted by JS -->
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="blog-header">
+            <h2>BLOG</h2>
+            <p>Thoughts, experiences, and deep dives.</p>
+        </div>
+        <div class="blog-container">
+            <!-- Only ONE blog card -->
+            <div class="blog-card" id="blog-forge-card">
+                <div class="blog-card-image-wrapper">
+                    <img src="forge-fablab.jpg" alt="Why Forge? — Maybe the 750-Meter Walk Was Worth It" class="blog-card-image">
+                </div>
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">Why Forge? — Maybe the 750-Meter Walk Was Worth It</h3>
+                    <p class="blog-card-preview">
+                        I had heard about Forge long before I actually became a part of it. I knew about the internships. I had heard about students getting opportunities there...
+                    </p>
+                    <div class="blog-card-read-more">Read Article &rarr;</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements-section">
+        <div class="achievements-container">
+            <!-- Left Side: Grid -->
+            <div class="achievements-grid">
+                <!-- Card 1 -->
+                <div class="achievement-card">
+                    <div class="achievement-large-text">3</div>
+                    <div class="achievement-small-label">All India Rank</div>
+                    <div class="achievement-support-text">National-level competition</div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="achievement-card">
+                    <div class="achievement-large-text">STEM</div>
+                    <div class="achievement-small-label">Scholar</div>
+                    <div class="achievement-support-text">Infosys STEM Scholar</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="achievement-card">
+                    <div class="achievement-large-text">2 Years</div>
+                    <div class="achievement-small-label">Mahatma Gandhi Scholarship</div>
+                    <div class="achievement-support-text">Awarded consecutively</div>
+                    <button class="achievement-verify-link" data-verify-img="mahatma-gandhi-scholarship.jpg">
+                        View Verification <span>→</span>
+                    </button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="achievement-card">
+                    <div class="achievement-large-text">Team Manager</div>
+                    <div class="achievement-small-label">E-Moto KCT</div>
+                    <div class="achievement-support-text">Letter of Appreciation</div>
+                    <button class="achievement-verify-link" data-verify-img="fmae-appreciation.jpg">
+                        View Verification <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Intro -->
+            <div class="achievements-intro-card">
+                <h3>Milestones that matter</h3>
+                <p>A collection of achievements, recognitions, and experiences that reflect consistent learning, leadership, and participation beyond the classroom.</p>
+            </div>
+        </div>
+    </section>
+    <!-- PROTOSEM INTRO SECTION -->
+    <section id="protosem" class="protosem-section">
+        <div class="protosem-intro-box">
+            <h2 class="protosem-title">PROTOSEM</h2>
+            <div class="protosem-role">Innovation Engineer Trainee</div>
+            <div class="protosem-programme">20-Week Industry-Integrated Innovation Programme</div>
+            <p class="protosem-desc">Selected for a 20-week industry-integrated innovation programme focused on solving real-world retail and commerce challenges through AI, analytics, intelligent systems, IoT, prototyping, and entrepreneurship. Working with industry problem statements to explore, develop, and validate practical technology solutions beyond conventional classroom learning.</p>
+            <a href="#journey" class="explore-journey-btn"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right: 0.5rem;"><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon><line x1="22" y1="2" x2="11" y2="13"></line></svg> EXPLORE MY 20-WEEK JOURNEY</a>
+        </div>
+
+        <!-- PROTOSEM JOURNEY SECTION -->
+        <div id="journey" class="journey-section">
+            <div class="journey-header">
+                <h2>THE PROCESS</h2>
+                <p>20 WEEKS. ONE PROCESS.</p>
+            </div>
+
+            <div class="journey-dashboard">
+                <!-- Current Destination -->
+                <div class="journey-tracker-card">
+                    <div class="journey-tracker-title">CURRENT DESTINATION</div>
+                    <div class="current-destination-text" id="current-destination-text">Loading...</div>
+                    <div class="current-progress-text" id="current-progress-text">0 / 20 weeks completed</div>
+                </div>
+
+                <!-- Price Passport -->
+                <div class="journey-tracker-card">
+                    <div class="journey-tracker-title">🛂 MY PRICE PASSPORT</div>
+                    <div style="display:flex; gap: 1.5rem; color: var(--color-text-secondary); font-family: var(--font-body); font-size: 0.85rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                        <div><strong style="color:var(--color-text-main)">JOURNEY:</strong> PRICE Protosem</div>
+                        <div><strong style="color:var(--color-text-main)">DURATION:</strong> 20 Weeks</div>
+                        <div><strong style="color:var(--color-text-main)">STATUS:</strong> In Flight <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-left: 0.2rem;"><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon><line x1="22" y1="2" x2="11" y2="13"></line></svg></div>
+                    </div>
+                    <div class="passport-stamps-grid" id="passport-stamps-grid">
+                        <!-- Stamps injected by JS -->
                     </div>
                 </div>
-                
-                <div class="glow-card p-8 rounded-xl" data-aos="zoom-in" data-aos-delay="200">
-                    <h3 class="text-2xl font-bold mb-3 text-white">Microplastic Detection System</h3>
-                    <p class="text-gray-400 mb-4">Proposed a continuous monitoring system integrating an acoustic pre-concentrator, optical photodiode detection and impedance sensing.</p>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Signal Processing</span>
-                        <span class="px-3 py-1 bg-[#ff4500]/10 text-accent rounded-full text-sm">Sensors</span>
-                    </div>
+            </div>
+
+            <!-- The Map -->
+            <div class="journey-map-container" id="journey-map-container">
+                <div class="paper-airplane" id="paper-airplane">
+                    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                    </svg>
+                </div>
+                <!-- Weekly Stamps injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-me" class="contact-section">
+        <div class="contact-panel"></div>
+        <div class="contact-decor-star">✴</div>
+        <div class="contact-decor-circle"></div>
+        <div class="contact-decor-cross">+</div>
+        
+        <div class="contact-container">
+            <!-- Left Side: Editorial Typography -->
+            <div class="contact-left">
+                <div class="contact-micro-label">Let's Connect</div>
+                <h2 class="contact-heading">
+                    <div class="contact-heading-bg"></div>
+                    <span>LET'S</span>
+                    <span>BUILD</span>
+                    <span>SOMETHING</span>
+                    <span class="purple-highlight">TOGETHER.</span>
+                </h2>
+                <div class="contact-message">
+                    <p>Welcome! Whether you're a developer, creator, collaborator, or simply someone interested in building something meaningful, I'd love to connect.</p>
+                    <p>I'm always open to exploring new ideas, learning from others, and creating something impactful together.</p>
+                    <p><strong>Let's build something together.</strong></p>
+                </div>
+            </div>
+
+            <!-- Right Side: Contact Links -->
+            <div class="contact-right">
+                <div class="contact-links-wrapper">
+                    <a href="https://github.com/Ayeshajumana" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                        <span class="contact-link-number">01</span>
+                        <span class="contact-link-text">GITHUB</span>
+                        <span class="contact-link-arrow">↗</span>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                        <span class="contact-link-number">02</span>
+                        <span class="contact-link-text">LINKEDIN</span>
+                        <span class="contact-link-arrow">↗</span>
+                    </a>
+                    
+                    <a href="mailto:ayeshajumana313@gmail.com" class="contact-link-item">
+                        <span class="contact-link-number">03</span>
+                        <span class="contact-link-text">EMAIL</span>
+                        <span class="contact-link-arrow">↗</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Journal Modal Overlay -->
+    <div class="journal-modal-overlay" id="journal-modal-overlay">
+        <div class="journal-panel">
+            <button class="journal-close-btn" id="journal-close-btn">&times;</button>
+            <div class="journal-header">
+                <div class="journal-week-num" id="journal-week-num">WEEK -- LOG</div>
+                <h2 class="journal-title" id="journal-title">Title</h2>
+                <p class="journal-intro" id="journal-intro">Intro</p>
+            </div>
+            
+            <div id="journal-days-container">
+                <!-- Days injected by JS -->
+            </div>
+            
+            <div class="journal-takeaway" id="journal-final-reflection" style="display: none;"></div>
 
-    <!-- Connect With Me Section -->
-    <section class="py-20 bg-slate-800/30" id="contact">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8" data-aos="fade-up">Connect With <span class="text-accent">Me</span></h2>
-            <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="200">
-                <a href="https://github.com/AyeshaJumanaS" target="_blank" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-accent transition">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a" target="_blank" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-accent transition">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="mailto:ayeshajumana313@gmail.com" class="glow-card px-8 py-4 rounded-xl flex items-center gap-3 hover:text-accent transition">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
-                    <span>Email</span>
-                </a>
+            <div class="journal-photos" id="journal-photos-container" style="display: none;">
+                <h4>📸 THINGS I DON'T WANT TO FORGET</h4>
+                <div class="photo-grid" id="photo-grid">
+                    <!-- Photo placeholders injected by JS -->
+                </div>
+            </div>
+
+            <div class="journal-artifacts" id="journal-artifacts-container" style="display: none;">
+                <!-- Artifacts area -->
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="py-8 bg-slate-900 border-t border-slate-800 text-center text-gray-500">
-        <p>&copy; 2026 Ayesha Jumana S. Crafted with <span class="text-accent">Orange Red</span> and Ember Glow.</p>
-    </footer>
+    <!-- Verification Modal Overlay -->
+    <div class="verify-modal-overlay" id="verify-modal-overlay">
+        <div class="verify-modal-content">
+            <button class="verify-modal-close" id="verify-modal-close">&times;</button>
+            <img class="verify-modal-img" id="verify-modal-img" src="" alt="Verification Document">
+        </div>
+    </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    
+    <!-- Project Modal Overlay -->
+    <div class="project-modal-overlay" id="project-modal-overlay">
+        <div class="project-modal" id="project-modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-category" id="modal-category"></div>
+            <div class="modal-title" id="modal-title"></div>
+            <div class="modal-label" id="modal-label"></div>
+            <div class="modal-content" id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Blog Full Article Modal -->
+    <div class="blog-modal-overlay" id="blog-modal-overlay">
+        <div class="blog-modal" id="blog-modal">
+            <button class="blog-modal-close" id="blog-modal-close">&times;</button>
+            <div class="blog-modal-header-image">
+                <img src="forge-fablab.jpg" alt="Forge photograph">
+            </div>
+            <div class="blog-modal-body">
+                <h1 class="blog-modal-title">Why Forge? — Maybe the 750-Meter Walk Was Worth It</h1>
+                <div class="blog-modal-text">
+                    <p>I had heard about Forge long before I actually became a part of it.</p>
+                    <p>I knew about the internships. I had heard about students getting opportunities there. I knew Forge had a certain brand value and that being associated with it could add some weight to your resume. But honestly, I had no idea how I could actually get into Forge.</p>
+                    <p>And by the time I started looking seriously, I thought I had already missed my chance.</p>
+                    <p>One of my friends had already been selected into Forge as part of the Asari cohort, and I remember thinking, “Okay, I guess that opportunity is gone.” I wasn't even aware that the selections for the next programme were happening.</p>
+                    <p>Then, one afternoon, probably around lunch, I was casually scrolling through Teams when I came across a message from Sivakumar Sir saying that the programme was open to participants across KCT and K-Class.</p>
+                    <p>And that one line — “K-Class” — caught my attention.</p>
+                    <p>I come from a technical background, and the thought of being around people from completely different disciplines immediately interested me. I thought, Why not? Maybe this could be an opportunity to step outside the usual engineering classroom and actually learn from people who think differently from me.</p>
+                    <p>So I did the most straightforward thing possible.</p>
+                    <p>I asked my friend about the programme.</p>
+                    <p>She told me, “Go meet Ram Sir directly.”</p>
+                    <p>And that's how my Forge journey technically began.</p>
+                    <p>The funny part?</p>
+                    <p>The entire journey from my classroom to Forge was probably just 500–750 metres.</p>
+                    <p>That's it.</p>
+                    <p>A short walk.</p>
+                    <p>But sometimes, a small decision and a short walk can take you somewhere you didn't expect.</p>
+                    <p>I decided to go.</p>
+                    <p>I met Ram Sir, asked about the programme, and he told me to attend the interview the next day.</p>
+                    <p>The next day, I attended the interview, hoping I had done well enough.</p>
+                    <p>And then came the message I was waiting for:</p>
+                    <p>I got selected.</p>
+                    <p>And suddenly, the opportunity I thought I had missed was actually right in front of me.</p>
+                    <p>What was I looking for?</p>
+                    <p>When I joined Forge, I had a few expectations.</p>
+                    <p>The first was interdisciplinary learning.</p>
+                    <p>I didn't want to spend another experience surrounded only by people who think the way I do or come from the same technical background. I wanted to understand how people from different disciplines approach problems, how they communicate their ideas, and how they build solutions differently.</p>
+                    <p>The second — and probably the most important for me — was networking.</p>
+                    <p>Not networking just for the sake of collecting contacts, but meeting people, listening to their stories, understanding what they are working on, and building relationships with people who could become collaborators, mentors, friends, or even future teammates.</p>
+                    <p>Then came industrial exposure.</p>
+                    <p>I wanted to understand what happens beyond the classroom — how ideas are transformed into something useful, how industries look at problems, and how innovation actually works when there are real constraints, real users, and real consequences.</p>
+                    <p>And finally, entrepreneurship.</p>
+                    <p>This one is personal.</p>
+                    <p>Somewhere five or six years down the line, I don't just want to be someone working on someone else's idea. I genuinely want to build something of my own.</p>
+                    <p>I don't know exactly what that venture will be yet.</p>
+                    <p>And honestly, I think that's okay.</p>
+                    <p>What I do know is that I want to create something, take an idea from “What if?” to “Let's build it,” and eventually turn it into something that creates value.</p>
+                    <p>For me, Forge feels like a stepping stone towards that version of myself.</p>
+                    <p>Maybe I joined because I happened to see a Teams message at lunch.</p>
+                    <p>Maybe I joined because my friend told me to meet Ram Sir.</p>
+                    <p>Maybe I joined because Forge had a name I already knew.</p>
+                    <p>Or maybe I joined because, at the right moment, I decided to take that 750-metre walk instead of scrolling past the opportunity.</p>
+                    <p>Whatever the reason, I'm glad I walked.</p>
+                    <p>Because sometimes, the biggest journeys don't begin with a flight ticket, a grand plan, or a perfectly designed roadmap.</p>
+                    <p>Sometimes, they begin with a message on Teams...</p>
+                    <p>and a decision to just go and ask.</p>
+                    <p>And that's why I want to be here at Forge — to learn differently, meet differently, think differently, and hopefully, one day, build differently.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
+        // ==========================================
+        // EDIT PORTFOLIO CONTENT HERE
+        // ==========================================
+        const portfolioContent = {
+            name: "AYESHA JUMANA",
 
-        // Initialize Typed.js
-        var typed = new Typed('#typed', {
-            strings: ['Electrical & Electronics Engineer', 'Research Enthusiast', 'Tech Innovator'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true
+            // Separated for the visual style of the greeting
+            greetingTop: "HELLO",
+            greetingBottom: "EVERYONE",
+
+            // The massive background text (leave empty to remove)
+            mainHeadingTop: "I'M AYESHA",
+            mainHeadingBottom: "JUMANA",
+
+            // The paragraph on the right
+            description: "I AM AN UNDERGRADUATE STUDENT PURSUING ELECTRICAL AND ELECTRONICS ENGINEERING AT KUMARAGURU COLLEGE OF TECHNOLOGY. CURRENTLY, I SERVE AS THE INDUSTRIAL RELATIONS LEAD FOR THE DEPARTMENT ASSOCIATION OF ELECTRICAL AND ELECTRONICS ENGINEERING AND WORK AS AN INNOVATION ENGINEER TRAINEE AT FORGE INNOVATION & VENTURES.",
+
+            // Starburst badge text
+            badgeText: "LET'S<br>CREATE",
+
+            // Words for the moving bottom bar
+            tickerItems: [
+                "RESEARCH ENTHUSIAST",
+                "INTERDISCIPLINARY LEARNER",
+                "NETWORKING ENTHUSIAST",
+                "MANAGEMENT ENTHUSIAST",
+                "INNOVATION EXPLORER"
+            ],
+
+            // Top right links
+            navigationItems: [
+                "EXPERIENCE",
+                "PROJECTS",
+                "RESUME",
+                "BLOG",
+                "ACHIEVEMENTS",
+                "PROTOSEM",
+                "CONTACT ME"
+            ],
+
+            // ==========================================
+            // EDIT PROFILE IMAGE HERE
+            // Note: Change to your actual image file path
+            // ==========================================
+            profileImage: "profile.png",
+
+            // ==========================================
+            // EXPERIENCE SECTION DATA
+            // ==========================================
+            experiences: [
+                {
+                    id: "exp-01",
+                    date: "August 2026 – Present",
+                    position: "Innovation Engineer Trainee",
+                    organization: "PRICE ProtoSem",
+                    program: "20-Week Industry-Integrated Innovation Programme",
+                    description: [
+                        "Selected for a 20-week industry-integrated innovation programme focused on solving real-world retail and commerce challenges.",
+                        "Exploring applications of AI, analytics, intelligent systems, IoT, prototyping, and entrepreneurship.",
+                        "Working on practical, technology-driven problem-solving and innovation.",
+                        "Gaining hands-on exposure to developing solutions for real-world industry challenges.",
+                        "Developing an interdisciplinary approach combining engineering, technology, analytics, and innovation."
+                    ],
+                    skills: [],
+                    status: "Status: Ongoing"
+                },
+                {
+                    id: "exp-02",
+                    date: "August 2026 – Present",
+                    position: "Data Analytics, AI & ML Intern",
+                    organization: "NoviTech R&D Private Limited",
+                    program: "",
+                    description: [
+                        "Working in the domain of Data Analytics, Artificial Intelligence, and Machine Learning.",
+                        "Exploring how data-driven technologies can be applied to real-world engineering and business problems.",
+                        "Developing practical skills in Python, SQL, Data Analytics, Machine Learning, and AI.",
+                        "Gaining hands-on exposure through projects and practical learning.",
+                        "Exploring the use of AI and analytics to support better decision-making.",
+                        "Building an interdisciplinary understanding between Electrical & Electronics Engineering and emerging data-driven technologies."
+                    ],
+                    skills: [],
+                    status: "Status: Ongoing"
+                },
+                {
+                    id: "exp-03",
+                    date: "July 2025 – July 2026",
+                    position: "Team Manager — E-Moto KCT | FMAE",
+                    organization: "E-Moto KCT",
+                    program: "",
+                    description: [
+                        "Served as Team Manager of an electric vehicle competition team.",
+                        "Coordinated technical and non-technical team activities and supported project execution.",
+                        "Managed task planning, team communication, event preparation, and execution.",
+                        "Worked closely with team members to maintain progress toward competition requirements.",
+                        "Developed capabilities in leadership, team management, stakeholder coordination, problem-solving, and decision-making.",
+                        "Worked effectively under time and performance constraints.",
+                        "Received a Letter of Appreciation from FMAE recognizing my role as Team Manager — E-Moto KCT."
+                    ],
+                    skills: [],
+                    status: ""
+                },
+                {
+                    id: "exp-04",
+                    date: "June 2026",
+                    position: "Industrial Intern",
+                    organization: "Scanners Electro Lab",
+                    program: "",
+                    description: [
+                        "Gained practical exposure to industrial automation and electrical control systems.",
+                        "Worked with PLC, Delta PLC, Ladder Logic, and Structured Text (ST) programming.",
+                        "Gained exposure to VFD drives, IGBT, HMI, motors, relays, and contactors.",
+                        "Worked with industrial software tools used for automation.",
+                        "Performed component testing, fault diagnosis, and troubleshooting of electrical drives.",
+                        "Used datasheets to identify faulty components and understand component specifications.",
+                        "Developed practical soldering and systematic troubleshooting skills.",
+                        "Connected industrial automation experience with concepts later encountered in Control Systems."
+                    ],
+                    skills: ["PLC", "Delta PLC", "Ladder Logic", "Structured Text", "VFD", "IGBT", "HMI", "Motors", "Relays", "Contactors", "Soldering", "Troubleshooting"],
+                    status: ""
+                },
+                {
+                    id: "exp-05",
+                    date: "May 2026",
+                    position: "Industrial / Data Analytics Intern",
+                    organization: "Goldfish Garments",
+                    program: "",
+                    description: [
+                        "Gained practical exposure to operational data analysis in a garment-industry environment.",
+                        "Used Excel and Advanced Excel for data organization, analysis, and reporting.",
+                        "Used SQL for querying and working with structured data.",
+                        "Developed dashboards and visual reports using Power BI.",
+                        "Gained exposure to database management and operational data handling.",
+                        "Applied analytical thinking to understand operational information and generate useful insights."
+                    ],
+                    skills: ["Excel", "Advanced Excel", "SQL", "Power BI", "Database Management", "Operational Data Analysis"],
+                    status: ""
+                },
+                {
+                    id: "exp-06",
+                    date: "March 2026",
+                    position: "Event Coordination — IEBC",
+                    organization: "India's Electric Bike Challenge (IEBC)",
+                    program: "",
+                    description: [
+                        "Contributed to the planning and execution of India's Electric Bike Challenge.",
+                        "Supported participant and guest management.",
+                        "Coordinated volunteers and worked closely with staff and multiple teams.",
+                        "Assisted with on-ground operational execution.",
+                        "Worked in a dynamic technical-event environment requiring quick problem-solving and attention to detail.",
+                        "Strengthened skills in event management, stakeholder coordination, communication, teamwork, and operational planning.",
+                        "Gained exposure to managing a large-scale technical and electric-mobility event."
+                    ],
+                    skills: [],
+                    status: ""
+                },
+                {
+                    id: "exp-07",
+                    date: "May 2025",
+                    position: "Industrial Intern",
+                    organization: "Roots Industries India Pvt. Ltd.",
+                    program: "",
+                    description: [
+                        "Undertook my first industrial internship as a first-year engineering student.",
+                        "Gained early exposure to a professional industrial environment.",
+                        "Developed an understanding of how engineering concepts are applied beyond classroom learning.",
+                        "Learned through guidance and interaction with industry mentors.",
+                        "Gained exposure to workplace practices, industrial processes, and professional collaboration.",
+                        "The experience provided early clarity about my interests and future career direction."
+                    ],
+                    skills: [],
+                }
+            ],
+
+            // ==========================================
+            // RESEARCH & PROJECTS DATA
+            // ==========================================
+            researchImage: "research-center.jpg",
+            researchProjects: [
+                {
+                    id: "res-01",
+                    title: "Green Energy Solutions for Post-Harvest Storage: A PCM–Solar Hybrid System",
+                    category: "RESEARCH",
+                    label: "RESEARCH PUBLICATION",
+                    positionClass: "pos-1",
+                    description: [
+                        "Research publication",
+                        "Journal of Advance Electrical Engineering and Engineering",
+                        "Volume 3, Issue 3, 2025",
+                        "PCM-based thermal energy storage",
+                        "Solar-powered cold storage",
+                        "Post-harvest preservation",
+                        "Renewable energy",
+                        "Sustainable engineering"
+                    ]
+                },
+                {
+                    id: "res-02",
+                    title: "Gender-Inclusive Automotive Safety",
+                    category: "RESEARCH",
+                    label: "ONGOING REVIEW PAPER",
+                    positionClass: "pos-2",
+                    description: [
+                        "Female occupant safety",
+                        "Crash injury patterns",
+                        "Anthropometry",
+                        "Female crash-test dummies",
+                        "Occupant positioning",
+                        "Crash sensing",
+                        "Inclusive vehicle safety"
+                    ]
+                },
+                {
+                    id: "proj-03",
+                    title: "Wearable Electronics for Stroke Rehabilitation",
+                    category: "PROJECT",
+                    label: "WEARABLE TECHNOLOGY",
+                    positionClass: "pos-3",
+                    description: [
+                        "Wearable electronics",
+                        "Sensor-based systems",
+                        "Healthcare technology",
+                        "Rehabilitation",
+                        "Human-centred engineering"
+                    ]
+                },
+                {
+                    id: "proj-04",
+                    title: "Microplastic Detection & Continuous Monitoring System",
+                    category: "PROJECT",
+                    label: "IDEATHON PRESENTATION",
+                    positionClass: "pos-4",
+                    description: [
+                        "Acoustic pre-concentrator",
+                        "Optical photodiode detection",
+                        "Impedance sensing",
+                        "Microcontroller-based processing",
+                        "Raman-based detection exploration",
+                        "Continuous monitoring",
+                        "Concept presented at an Ideathon"
+                    ]
+                },
+                {
+                    id: "proj-05",
+                    title: "Light Intensity Controlled Water Pump Using STM32 Microcontroller",
+                    category: "PROJECT",
+                    label: "EMBEDDED SYSTEM DEVELOPMENT",
+                    positionClass: "pos-5",
+                    description: [
+                        "STM32 Microcontroller Programming",
+                        "Embedded C",
+                        "STM32 HAL Libraries",
+                        "PWM-based motor speed control",
+                        "I²C communication",
+                        "BH1750 sensor interfacing",
+                        "Real-time embedded system development",
+                        "Varies DC water-pump speed according to ambient light intensity measured using the BH1750 sensor"
+                    ]
+                }
+            ]
+        };
+
+        // ==========================================
+        // INITIALIZATION LOGIC 
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Set Brand Name
+            document.getElementById('brand-text').textContent = portfolioContent.name;
+
+            // 2. Set Navigation
+            const navContainer = document.getElementById('desktop-nav');
+            portfolioContent.navigationItems.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = "#" + item.toLowerCase().replace(/\s+/g, '-');
+                a.textContent = item;
+                li.appendChild(a);
+                navContainer.appendChild(li);
+            });
+
+            // 3. Set Greeting
+            document.getElementById('greeting-top').innerHTML = portfolioContent.greetingTop + " 👋";
+            document.getElementById('greeting-bottom').textContent = portfolioContent.greetingBottom;
+
+            // 4. Set Main Heading
+            document.getElementById('huge-text-top').textContent = portfolioContent.mainHeadingTop;
+            document.getElementById('huge-text-bottom').textContent = portfolioContent.mainHeadingBottom;
+
+            // 5. Set Description
+            document.getElementById('description-text').textContent = portfolioContent.description;
+
+            // 6. Set Badge
+            document.getElementById('badge-text').innerHTML = portfolioContent.badgeText;
+
+            // 7. Set Profile Image
+            document.getElementById('profile-img').src = portfolioContent.profileImage;
+
+            // 8. Set Ticker
+            const tickerTrack = document.getElementById('ticker-track');
+
+            const createTickerItems = () => {
+                const fragment = document.createDocumentFragment();
+                portfolioContent.tickerItems.forEach(item => {
+                    const span = document.createElement('span');
+                    span.className = 'ticker-item';
+                    span.innerHTML = `${item} <span class="ticker-star">✴</span>`;
+                    fragment.appendChild(span);
+                });
+                return fragment;
+            };
+
+            for (let i = 0; i < 4; i++) {
+                tickerTrack.appendChild(createTickerItems());
+            }
+
+            // 9. Render Experience Timeline
+            const timelineContainer = document.getElementById('timeline-items-container');
+            const desktopDetailsPlaceholder = document.getElementById('desktop-details-placeholder');
+            const desktopDetailsCard = document.getElementById('desktop-details-card');
+
+            // Build card content HTML helper
+            const populateCardContent = (exp, cardElement) => {
+                const orgEl = cardElement.querySelector('.card-org');
+                const progEl = cardElement.querySelector('.card-program');
+                const descEl = cardElement.querySelector('.card-desc');
+                const skillsTitleEl = cardElement.querySelector('.card-skills-title');
+                const skillsEl = cardElement.querySelector('.card-skills');
+                const statusEl = cardElement.querySelector('.card-status');
+
+                orgEl.textContent = exp.organization;
+
+                if (exp.program) {
+                    progEl.style.display = 'block';
+                    progEl.textContent = exp.program;
+                } else {
+                    progEl.style.display = 'none';
+                }
+
+                let descHTML = '<ul>';
+                exp.description.forEach(point => {
+                    descHTML += `<li>${point}</li>`;
+                });
+                descHTML += '</ul>';
+                descEl.innerHTML = descHTML;
+
+                if (exp.skills && exp.skills.length > 0) {
+                    skillsTitleEl.style.display = 'block';
+                    skillsEl.style.display = 'flex';
+                    skillsEl.innerHTML = '';
+                    exp.skills.forEach(skill => {
+                        const span = document.createElement('span');
+                        span.className = 'skill-tag';
+                        span.textContent = skill;
+                        skillsEl.appendChild(span);
+                    });
+                } else {
+                    skillsTitleEl.style.display = 'none';
+                    skillsEl.style.display = 'none';
+                }
+
+                if (exp.status) {
+                    statusEl.style.display = 'block';
+                    statusEl.textContent = exp.status;
+                } else {
+                    statusEl.style.display = 'none';
+                }
+            };
+
+            let currentActiveId = null;
+
+            portfolioContent.experiences.forEach((exp, index) => {
+                // Create timeline item
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.dataset.id = exp.id;
+
+                item.innerHTML = `
+                    <div class="timeline-node"></div>
+                    <div class="timeline-date">${exp.date}</div>
+                    <div class="timeline-position">${exp.position}</div>
+                    <div class="mobile-card-container">
+                        <div class="experience-card mobile-card" id="mobile-card-${exp.id}">
+                            <div class="card-org"></div>
+                            <div class="card-program"></div>
+                            <div class="card-desc"></div>
+                            <div class="card-skills-title" style="display:none;">Skills & Technologies</div>
+                            <div class="card-skills"></div>
+                            <div class="card-status"></div>
+                        </div>
+                    </div>
+                `;
+
+                timelineContainer.appendChild(item);
+
+                // Pre-populate mobile card content
+                const mobileCard = item.querySelector('.mobile-card');
+                populateCardContent(exp, mobileCard);
+
+                // Add click listener
+                item.addEventListener('click', () => {
+                    const isMobile = window.innerWidth <= 900;
+
+                    // If clicking the currently active one, toggle it off
+                    if (currentActiveId === exp.id) {
+                        item.classList.remove('active');
+                        if (isMobile) {
+                            mobileCard.classList.remove('active');
+                        } else {
+                            desktopDetailsCard.classList.remove('active');
+                            desktopDetailsPlaceholder.classList.remove('hidden');
+                        }
+                        currentActiveId = null;
+                        return;
+                    }
+
+                    // Remove active from all
+                    document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
+                    document.querySelectorAll('.mobile-card').forEach(el => el.classList.remove('active'));
+
+                    // Activate this one
+                    item.classList.add('active');
+                    currentActiveId = exp.id;
+
+                    if (isMobile) {
+                        mobileCard.classList.add('active');
+                    } else {
+                        // Desktop
+                        desktopDetailsPlaceholder.classList.add('hidden');
+
+                        // Temporarily fade out to update content smoothly
+                        desktopDetailsCard.classList.remove('active');
+                        setTimeout(() => {
+                            populateCardContent(exp, desktopDetailsCard);
+                            desktopDetailsCard.classList.add('active');
+                        }, 200);
+                    }
+                });
+            });
+
+            // 10. Render Research & Projects Section
+            const researchCenterImg = document.getElementById('research-center-img');
+            researchCenterImg.src = portfolioContent.researchImage;
+
+            const radialContainer = document.getElementById('radial-container');
+            const projectModalOverlay = document.getElementById('project-modal-overlay');
+            const modalClose = document.getElementById('modal-close');
+
+            portfolioContent.researchProjects.forEach(proj => {
+                // Create connector
+                const connector = document.createElement('div');
+                connector.className = 'radial-connector';
+
+                // Create card
+                const card = document.createElement('div');
+                card.className = `radial-card ${proj.positionClass}`;
+                card.innerHTML = `
+                    <div class="card-category">${proj.category}</div>
+                    <div class="card-title">${proj.title}</div>
+                    <div class="card-label">
+                        <span>${proj.label}</span>
+                        <span class="explore-btn">→</span>
+                    </div>
+                `;
+
+                radialContainer.appendChild(card);
+                radialContainer.appendChild(connector);
+
+                // Connectors dynamic positioning
+                const positionConnector = () => {
+                    if (window.innerWidth <= 900) return; // disabled on mobile
+
+                    const cardRect = card.getBoundingClientRect();
+                    const containerRect = radialContainer.getBoundingClientRect();
+
+                    const cardCenterX = cardRect.left + cardRect.width / 2 - containerRect.left;
+                    const cardCenterY = cardRect.top + cardRect.height / 2 - containerRect.top;
+
+                    const containerCenterX = containerRect.width / 2;
+                    const containerCenterY = containerRect.height / 2;
+
+                    const dx = containerCenterX - cardCenterX;
+                    const dy = containerCenterY - cardCenterY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+                    connector.style.left = `${cardCenterX}px`;
+                    connector.style.top = `${cardCenterY}px`;
+                    connector.style.width = `${Math.max(distance - 120, 0)}px`; // leave gap for central image
+                    connector.style.transform = `rotate(${angle}deg)`;
+                };
+
+                setTimeout(positionConnector, 100);
+                window.addEventListener('resize', positionConnector);
+
+                // Modal Click Event
+                card.addEventListener('click', () => {
+                    document.getElementById('modal-category').textContent = proj.category;
+                    document.getElementById('modal-title').textContent = proj.title;
+                    document.getElementById('modal-label').textContent = proj.label;
+
+                    let contentHTML = '<ul>';
+                    proj.description.forEach(point => {
+                        contentHTML += `<li>${point}</li>`;
+                    });
+                    contentHTML += '</ul>';
+                    document.getElementById('modal-content').innerHTML = contentHTML;
+
+                    projectModalOverlay.classList.add('active');
+                });
+            });
+
+            // Close modal events
+            const closeModal = () => {
+                projectModalOverlay.classList.remove('active');
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            projectModalOverlay.addEventListener('click', (e) => {
+                if (e.target === projectModalOverlay) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // 11. Verification Image Modal
+            const verifyModalOverlay = document.getElementById('verify-modal-overlay');
+            const verifyModalImg = document.getElementById('verify-modal-img');
+            const verifyModalClose = document.getElementById('verify-modal-close');
+            const verifyLinks = document.querySelectorAll('.achievement-verify-link');
+
+            const closeVerifyModal = () => {
+                verifyModalOverlay.classList.remove('active');
+                setTimeout(() => {
+                    verifyModalImg.src = '';
+                }, 400); // Wait for transition
+            };
+
+            verifyLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const imgSrc = link.getAttribute('data-verify-img');
+                    if (imgSrc) {
+                        verifyModalImg.src = imgSrc;
+                        verifyModalOverlay.classList.add('active');
+                    }
+                });
+            });
+
+            verifyModalClose.addEventListener('click', closeVerifyModal);
+            verifyModalOverlay.addEventListener('click', (e) => {
+                if (e.target === verifyModalOverlay) closeVerifyModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && verifyModalOverlay.classList.contains('active')) {
+                    closeVerifyModal();
+                }
+            });
+
+            // ==========================================
+            // PROTOSEM JOURNEY DATA & LOGIC
+            // ==========================================
+            const protosemJourneyData = {
+                totalWeeks: 20,
+                weeks: [
+                    {
+                        weekNumber: 0,
+                        title: "THE JOURNEY BEGINS",
+                        journeyLabel: "FIRST LANDING",
+                        status: "COMPLETED",
+                        dateRange: "",
+                        intro: "It was the first landing of my PRICE Protosem journey—a week that made me look inward, look around, and finally start looking at what I could create. From wonder to teamwork, from curiosity to consumer problems, and from ideas to possibilities, Week 0 gave me the first glimpse of what this journey could become.",
+                        days: [
+                            {
+                                dayNumber: 1,
+                                title: "FINDING MY PLACE",
+                                sections: [
+                                    { heading: "Morning", content: "Starting With Introductions" },
+                                    { heading: "Afternoon", content: "From Ideas to Reality" }
+                                ],
+                                takeaway: "The journey began with knowing the people around me—and then seeing how ideas can actually take shape."
+                            },
+                            {
+                                dayNumber: 2,
+                                title: "WONDER, IDENTITY & DISCOVERING MYSELF",
+                                sections: [
+                                    { heading: "Finding a Story", content: "Finding a Story That Felt Like Me" },
+                                    { heading: "Another Story", content: "Mary Shelley’s Teenage Dream" },
+                                    { heading: "Discovering My Personality", content: "" },
+                                    { heading: "Understanding LinkedIn", content: "" }
+                                ],
+                                takeaway: "I discovered that my curiosity isn't just something I have—it might actually be one of the things that drives me."
+                            },
+                            {
+                                dayNumber: 3,
+                                title: "CHOICES, STRATEGY & TEAMWORK",
+                                sections: [
+                                    { heading: "The Marshmallow Challenge", content: "52 cm tower. First place." },
+                                    { heading: "Among Us", content: "Observe Before You Assume" },
+                                    { heading: "Beta Team", content: "The Beginning of a Team" }
+                                ],
+                                takeaway: "From building a 52 cm tower to decoding people's reactions, Day 3 reminded me that good teamwork is a mix of observation, strategy, adaptability, and a little bit of fun."
+                            },
+                            {
+                                dayNumber: 4,
+                                title: "TAKING THE STAGE & THINKING BEYOND THE OBVIOUS",
+                                sections: [
+                                    { heading: "Preparing for the Inauguration", content: "Voice & Views. Interdisciplinary learning. Networking." },
+                                    { heading: "From Consumer Problems to Wild Ideas", content: "Phygital retail" }
+                                ],
+                                takeaway: "Don't begin by asking, 'What can we build?' Begin by asking, 'What problem are people actually experiencing?'"
+                            },
+                            {
+                                dayNumber: 5,
+                                title: "LEARNING FROM THOSE WHO TOOK THE PATH",
+                                sections: [
+                                    { heading: "Accelerator Program", content: "Kickoff 2026" },
+                                    { heading: "R. Krishnan", content: "Tulasi Pharmacy" },
+                                    { heading: "An Unexpected Connection", content: "An Alumna on Stage" },
+                                    { heading: "Swati Shree", content: "A Toddler Thing" },
+                                    { heading: "Closing Week 0", content: "Looking Back. 'Who am I?' → 'What excites me?' → 'How do I work with others?' → 'What problems can I solve?' → 'What can I create?'" }
+                                ],
+                                takeaway: "The journey doesn't become inspiring because the destination is impressive. It becomes inspiring because of everything you learn, overcome, and discover along the way."
+                            }
+                        ],
+                        finalReflection: "And this is only the beginning.",
+                        photos: [
+                            "W00_DAY01_PHOTO_01",
+                            "W00_DAY02_PHOTO_01",
+                            "W00_DAY03_PHOTO_01",
+                            "W00_DAY04_PHOTO_01",
+                            "W00_DAY05_PHOTO_01"
+                        ],
+                        artifacts: []
+                    },
+                    {
+                        weekNumber: 1,
+                        title: "FROM CURIOSITY TO PROBLEM-SOLVING",
+                        journeyLabel: "SECOND LANDING",
+                        status: "COMPLETED",
+                        dateRange: "",
+                        intro: "If Week 0 was about discovering ourselves, Week 1 felt like the moment we started looking outward and solving problems. Learning Design Thinking ↓ Understanding an Industry ↓ Mapping the Pharmaceutical Ecosystem ↓ Finding Problem Statements ↓ Building Our Portfolios ↓ Reflecting on Mindset & Goals",
+                        days: [
+                            {
+                                dayNumber: 1,
+                                title: "LEARNING TO THINK LIKE A DESIGNER",
+                                sections: [
+                                    { heading: "Understanding Design Thinking", content: "Empathize → Define → Ideate → Prototype → Test" },
+                                    { heading: "Discovering IDEO", content: "" },
+                                    { heading: "Choosing Our Industry", content: "Pharmacy" },
+                                    { heading: "Mapping the Industry", content: "" }
+                                ],
+                                takeaway: "Design doesn't begin with a solution. It begins with understanding the person who needs one."
+                            },
+                            {
+                                dayNumber: 2,
+                                title: "LOOKING BENEATH THE INDUSTRY",
+                                sections: [
+                                    { heading: "Understanding the Pharmaceutical Value Chain", content: "" },
+                                    { heading: "SWOT Analysis", content: "" },
+                                    { heading: "Finding the Problem", content: "" }
+                                ],
+                                takeaway: "Understanding an industry means looking beyond its products and seeing the entire ecosystem behind them."
+                            },
+                            {
+                                dayNumber: 3,
+                                title: "A WORKING HOLIDAY",
+                                sections: [
+                                    { heading: "Working holiday", content: "Research. Discussions. Project direction." }
+                                ],
+                                takeaway: "Not every productive day needs to look busy."
+                            },
+                            {
+                                dayNumber: 4,
+                                title: "BUILDING MY DIGITAL IDENTITY",
+                                sections: [
+                                    { heading: "Portfolio", content: "Personal website. Programming. Understanding systems." },
+                                    { heading: "Process", content: "Build → Evaluate → Identify what is missing → Improve" }
+                                ],
+                                takeaway: "Building something that works is one thing. Building something that represents you is another."
+                            },
+                            {
+                                dayNumber: 5,
+                                title: "MINDSET, PRIORITIES & LOOKING BACK",
+                                sections: [
+                                    { heading: "Ram Kumar Sir", content: "80/20 rule / Pareto Principle. SMART framework." },
+                                    { heading: "Finishing the Portfolio", content: "Blog content. Final Week 1 presentation." }
+                                ],
+                                takeaway: ""
+                            }
+                        ],
+                        finalReflection: "First, understand the problem. Then understand yourself. Only then start building.",
+                        photos: [
+                            "W01_DAY01_PHOTO_01",
+                            "W01_DAY02_PHOTO_01",
+                            "W01_DAY03_PHOTO_01",
+                            "W01_DAY04_PHOTO_01",
+                            "W01_DAY05_PHOTO_01"
+                        ],
+                        artifacts: []
+                    }
+                ]
+            };
+
+            // Initialize remaining upcoming weeks
+            for (let i = 2; i <= protosemJourneyData.totalWeeks; i++) {
+                const label = (i === protosemJourneyData.totalWeeks) ? "FINAL DESTINATION" : "NEXT DESTINATION";
+                protosemJourneyData.weeks.push({
+                    weekNumber: i,
+                    title: label,
+                    journeyLabel: "UPCOMING",
+                    status: "UPCOMING",
+                    dateRange: "",
+                    intro: "",
+                    days: [],
+                    finalReflection: "",
+                    photos: [],
+                    artifacts: []
+                });
+            }
+
+            // Render Journey Map & Dashboard
+            const mapContainer = document.getElementById('journey-map-container');
+            const passportGrid = document.getElementById('passport-stamps-grid');
+            let completedCount = 0;
+            let latestCompletedIndex = -1;
+
+            protosemJourneyData.weeks.forEach((week, index) => {
+                if (week.status === 'COMPLETED') {
+                    completedCount++;
+                    latestCompletedIndex = index;
+                }
+
+                // Render Stamp
+                const stamp = document.createElement('div');
+                stamp.className = `journey-stamp ${week.status.toLowerCase()}`;
+                if (index === latestCompletedIndex) stamp.classList.add('current');
+                stamp.dataset.index = index;
+                stamp.id = `stamp-w${week.weekNumber}`;
+
+                stamp.innerHTML = `
+                    <div class="stamp-week">W${String(week.weekNumber).padStart(2, '0')}</div>
+                    <div class="stamp-label">${week.journeyLabel || week.title}</div>
+                    <div class="stamp-status">${week.status === 'COMPLETED' ? '✓ LANDED' : (week.status === 'UPCOMING' ? 'UPCOMING' : week.status)}</div>
+                `;
+
+                mapContainer.appendChild(stamp);
+
+                // Render Passport Mini Stamp
+                const miniStamp = document.createElement('div');
+                miniStamp.className = `passport-mini-stamp ${week.status === 'COMPLETED' ? 'completed' : ''}`;
+                miniStamp.textContent = `W${String(week.weekNumber).padStart(2, '0')}`;
+                passportGrid.appendChild(miniStamp);
+                
+                // Click event for modal
+                if (week.status !== 'UPCOMING') {
+                    stamp.addEventListener('click', () => openJournalModal(week));
+                }
+            });
+
+            // Update Dashboard Stats
+            document.getElementById('current-progress-text').textContent = `${completedCount} / ${protosemJourneyData.totalWeeks} weeks completed`;
+            if (latestCompletedIndex >= 0) {
+                document.getElementById('current-destination-text').textContent = `WEEK ${String(protosemJourneyData.weeks[latestCompletedIndex].weekNumber).padStart(2, '0')} — ${protosemJourneyData.weeks[latestCompletedIndex].title}`;
+            }
+
+            // Animate Airplane
+            const airplane = document.getElementById('paper-airplane');
+            const positionAirplane = () => {
+                if (latestCompletedIndex >= 0) {
+                    const targetStamp = document.getElementById(`stamp-w${protosemJourneyData.weeks[latestCompletedIndex].weekNumber}`);
+                    if (targetStamp) {
+                        const containerRect = mapContainer.getBoundingClientRect();
+                        const targetRect = targetStamp.getBoundingClientRect();
+                        
+                        // Calculate relative position to land near the stamp
+                        const left = targetRect.left - containerRect.left + (targetRect.width / 2) - 20;
+                        const top = targetRect.top - containerRect.top - 40;
+                        
+                        airplane.style.opacity = '1';
+                        airplane.style.left = `${left}px`;
+                        airplane.style.top = `${top}px`;
+                    }
+                }
+            };
+            
+            // Wait for layout to settle before positioning
+            setTimeout(positionAirplane, 500);
+            window.addEventListener('resize', positionAirplane);
+
+            // Journal Modal Logic
+            const journalOverlay = document.getElementById('journal-modal-overlay');
+            const journalClose = document.getElementById('journal-close-btn');
+            
+            const openJournalModal = (weekData) => {
+                document.getElementById('journal-week-num').textContent = `WEEK ${String(weekData.weekNumber).padStart(2, '0')} LOG`;
+                document.getElementById('journal-title').textContent = weekData.title;
+                document.getElementById('journal-intro').textContent = weekData.intro;
+                
+                const daysContainer = document.getElementById('journal-days-container');
+                daysContainer.innerHTML = '';
+                
+                weekData.days.forEach(day => {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'journal-day';
+                    
+                    let sectionsHtml = '';
+                    day.sections.forEach(sec => {
+                        sectionsHtml += `
+                            <div class="journal-section-heading">${sec.heading}</div>
+                            <div class="journal-section-content">${sec.content || '-'}</div>
+                        `;
+                    });
+                    
+                    const takeawayHtml = day.takeaway ? `<div class="journal-takeaway">"${day.takeaway}"</div>` : '';
+                    
+                    dayEl.innerHTML = `
+                        <h4 class="journal-day-title">DAY ${String(day.dayNumber).padStart(2, '0')} — ${day.title}</h4>
+                        ${sectionsHtml}
+                        ${takeawayHtml}
+                    `;
+                    daysContainer.appendChild(dayEl);
+                });
+                
+                // Final Reflection
+                const reflectionEl = document.getElementById('journal-final-reflection');
+                if (weekData.finalReflection) {
+                    reflectionEl.style.display = 'block';
+                    reflectionEl.innerHTML = `"${weekData.finalReflection}"`;
+                } else {
+                    reflectionEl.style.display = 'none';
+                }
+
+                // Photos
+                const photoContainer = document.getElementById('journal-photos-container');
+                const photoGrid = document.getElementById('photo-grid');
+                if (weekData.photos && weekData.photos.length > 0) {
+                    photoContainer.style.display = 'block';
+                    photoGrid.innerHTML = '';
+                    weekData.photos.forEach(photoId => {
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'photo-placeholder';
+                        placeholder.textContent = photoId;
+                        photoGrid.appendChild(placeholder);
+                    });
+                } else {
+                    photoContainer.style.display = 'none';
+                }
+                
+                // Artifacts (hidden as requested when empty)
+                const artifactsContainer = document.getElementById('journal-artifacts-container');
+                artifactsContainer.style.display = 'none';
+                
+                journalOverlay.classList.add('active');
+            };
+
+            const closeJournalModal = () => {
+                journalOverlay.classList.remove('active');
+            };
+
+            journalClose.addEventListener('click', closeJournalModal);
+            journalOverlay.addEventListener('click', (e) => {
+                if (e.target === journalOverlay) closeJournalModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && journalOverlay.classList.contains('active')) {
+                    closeJournalModal();
+                }
+            });
+
+            // ==========================================
+            // CINEMATIC TRANSITION LOGIC
+            // ==========================================
+            const transitionOverlay = document.getElementById('protosem-transition');
+            
+            // Function to attach listeners since navLinks are built dynamically
+            const setupTransitionListeners = () => {
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#protosem') {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            
+                            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                            const hasPlayed = sessionStorage.getItem('protosemAnimationPlayed');
+                            
+                            if (prefersReducedMotion || hasPlayed) {
+                                // Skip animation, scroll immediately
+                                const protosemSection = document.querySelector('#protosem');
+                                if (protosemSection) protosemSection.scrollIntoView({ behavior: 'smooth' });
+                                return;
+                            }
+                            
+                            // Play animation
+                            transitionOverlay.classList.add('active');
+                            
+                            // Force reflow to restart animation safely
+                            void transitionOverlay.offsetWidth;
+                            
+                            transitionOverlay.classList.add('animating');
+                            
+                            // Animation takes ~2.5s, after which we scroll and fade out
+                            setTimeout(() => {
+                                const protosemSection = document.querySelector('#protosem');
+                                if (protosemSection) protosemSection.scrollIntoView({ behavior: 'auto' });
+                                sessionStorage.setItem('protosemAnimationPlayed', 'true');
+                                
+                                // Fade out transition
+                                transitionOverlay.style.opacity = '0';
+                                setTimeout(() => {
+                                    transitionOverlay.classList.remove('active', 'animating');
+                                    transitionOverlay.style.opacity = '';
+                                }, 500);
+                            }, 2500);
+                        });
+                    }
+                });
+            };
+            
+            // Attach listeners immediately (nav is built earlier in this script block)
+            setupTransitionListeners();
+
+            // Blog Modal Logic
+            const blogCard = document.getElementById('blog-forge-card');
+            const blogModalOverlay = document.getElementById('blog-modal-overlay');
+            const blogModalClose = document.getElementById('blog-modal-close');
+
+            if (blogCard && blogModalOverlay && blogModalClose) {
+                blogCard.addEventListener('click', () => {
+                    blogModalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                const closeBlogModal = () => {
+                    blogModalOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+
+                blogModalClose.addEventListener('click', closeBlogModal);
+                blogModalOverlay.addEventListener('click', (e) => {
+                    if (e.target === blogModalOverlay) {
+                        closeBlogModal();
+                    }
+                });
+            }
         });
     </script>
 </body>
-</html>
 
+</html>
