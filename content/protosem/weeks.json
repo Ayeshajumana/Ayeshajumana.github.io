@@ -1,0 +1,379 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-09T09:32:49.401Z",
+  "totalWeeks": 20,
+  "weeks": [
+    {
+      "weekNumber": 0,
+      "title": "THE JOURNEY BEGINS",
+      "journeyLabel": "FIRST LANDING",
+      "status": "COMPLETED",
+      "dateRange": "",
+      "intro": "It was the first landing of my PRICE Protosem journey—a week that made me look inward, look around, and finally start looking at what I could create. From wonder to teamwork, from curiosity to consumer problems, and from ideas to possibilities, Week 0 gave me the first glimpse of what this journey could become.",
+      "days": [
+        {
+          "dayNumber": 1,
+          "title": "FINDING MY PLACE",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Morning</h3>\n<p>Starting With Introductions</p>\n<h3>Afternoon</h3>\n<p>From Ideas to Reality</p>\n<blockquote>The journey began with knowing the people around me—and then seeing how ideas can actually take shape.</blockquote>"
+            }
+          ],
+          "takeaway": "The journey began with knowing the people around me—and then seeing how ideas can actually take shape.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 2,
+          "title": "WONDER, IDENTITY & DISCOVERING MYSELF",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Finding a Story</h3>\n<p>Finding a Story That Felt Like Me</p>\n<h3>Another Story</h3>\n<p>Mary Shelley’s Teenage Dream</p>\n<h3>Discovering My Personality</h3>\n<h3>Understanding LinkedIn</h3>\n<blockquote>I discovered that my curiosity isn't just something I have—it might actually be one of the things that drives me.</blockquote>"
+            }
+          ],
+          "takeaway": "I discovered that my curiosity isn't just something I have—it might actually be one of the things that drives me.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 3,
+          "title": "CHOICES, STRATEGY & TEAMWORK",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>The Marshmallow Challenge</h3>\n<p>52 cm tower. First place.</p>\n<h3>Among Us</h3>\n<p>Observe Before You Assume</p>\n<h3>Beta Team</h3>\n<p>The Beginning of a Team</p>\n<blockquote>From building a 52 cm tower to decoding people’s reactions, Day 3 reminded me that good teamwork is a mix of observation, strategy, adaptability, and a little bit of fun.</blockquote>"
+            }
+          ],
+          "takeaway": "From building a 52 cm tower to decoding people’s reactions, Day 3 reminded me that good teamwork is a mix of observation, strategy, adaptability, and a little bit of fun.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 4,
+          "title": "TAKING THE STAGE & THINKING BEYOND THE OBVIOUS",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Preparing for the Inauguration</h3>\n<p>Voice &amp; Views. Interdisciplinary learning. Networking.</p>\n<h3>From Consumer Problems to Wild Ideas</h3>\n<p>Phygital retail</p>\n<blockquote>Don’t begin by asking, “What can we build?” Begin by asking, “What problem are people actually experiencing?”</blockquote>"
+            }
+          ],
+          "takeaway": "Don’t begin by asking, “What can we build?” Begin by asking, “What problem are people actually experiencing?”",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 5,
+          "title": "LEARNING FROM THOSE WHO TOOK THE PATH",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Accelerator Program</h3>\n<p>Kickoff 2026</p>\n<h3>R. Krishnan</h3>\n<p>Tulasi Pharmacy</p>\n<h3>An Unexpected Connection</h3>\n<p>An Alumna on Stage</p>\n<h3>Swati Shree</h3>\n<p>A Toddler Thing</p>\n<h3>Closing Week 0</h3>\n<p>Looking Back. “Who am I?” → “What excites me?” → “How do I work with others?” → “What problems can I solve?” → “What can I create?”</p>\n<blockquote>The journey doesn’t become inspiring because the destination is impressive. It becomes inspiring because of everything you learn, overcome, and discover along the way.</blockquote>"
+            }
+          ],
+          "takeaway": "The journey doesn’t become inspiring because the destination is impressive. It becomes inspiring because of everything you learn, overcome, and discover along the way.",
+          "photos": [],
+          "artifacts": []
+        }
+      ],
+      "finalReflection": "And this is only the beginning.",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 1,
+      "title": "FROM CURIOSITY TO PROBLEM-SOLVING",
+      "journeyLabel": "SECOND LANDING",
+      "status": "COMPLETED",
+      "dateRange": "",
+      "intro": "If Week 0 was about discovering ourselves, Week 1 felt like the moment we started looking outward and solving problems. Learning Design Thinking ↓ Understanding an Industry ↓ Mapping the Pharmaceutical Ecosystem ↓ Finding Problem Statements ↓ Building Our Portfolios ↓ Reflecting on Mindset & Goals",
+      "days": [
+        {
+          "dayNumber": 1,
+          "title": "LEARNING TO THINK LIKE A DESIGNER",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Understanding Design Thinking</h3>\n<p>Empathize → Define → Ideate → Prototype → Test</p>\n<h3>Discovering IDEO</h3>\n<h3>Choosing Our Industry</h3>\n<p>Pharmacy</p>\n<h3>Mapping the Industry</h3>\n<blockquote>Design doesn’t begin with a solution. It begins with understanding the person who needs one.</blockquote>"
+            }
+          ],
+          "takeaway": "Design doesn’t begin with a solution. It begins with understanding the person who needs one.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 2,
+          "title": "LOOKING BENEATH THE INDUSTRY",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Understanding the Pharmaceutical Value Chain</h3>\n<h3>SWOT Analysis</h3>\n<h3>Finding the Problem</h3>\n<blockquote>Understanding an industry means looking beyond its products and seeing the entire ecosystem behind them.</blockquote>"
+            }
+          ],
+          "takeaway": "Understanding an industry means looking beyond its products and seeing the entire ecosystem behind them.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 3,
+          "title": "A WORKING HOLIDAY",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Working holiday</h3>\n<p>Research. Discussions. Project direction.</p>\n<blockquote>Not every productive day needs to look busy.</blockquote>"
+            }
+          ],
+          "takeaway": "Not every productive day needs to look busy.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 4,
+          "title": "BUILDING MY DIGITAL IDENTITY",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Portfolio</h3>\n<p>Personal website. Programming. Understanding systems.</p>\n<h3>Process</h3>\n<p>Build → Evaluate → Identify what is missing → Improve</p>\n<blockquote>Building something that works is one thing. Building something that represents you is another.</blockquote>"
+            }
+          ],
+          "takeaway": "Building something that works is one thing. Building something that represents you is another.",
+          "photos": [],
+          "artifacts": []
+        },
+        {
+          "dayNumber": 5,
+          "title": "MINDSET, PRIORITIES & LOOKING BACK",
+          "sections": [
+            {
+              "heading": "JOURNAL",
+              "contentHtml": "<h3>Ram Kumar Sir</h3>\n<p>80/20 rule / Pareto Principle. SMART framework.</p>\n<h3>Finishing the Portfolio</h3>\n<p>Blog content. Final Week 1 presentation.</p>"
+            }
+          ],
+          "takeaway": "",
+          "photos": [],
+          "artifacts": []
+        }
+      ],
+      "finalReflection": "First, understand the problem. Then understand yourself. Only then start building.",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 2,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 3,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 4,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 5,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 6,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 7,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 8,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 9,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 10,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 11,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 12,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 13,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 14,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 15,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 16,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 17,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 18,
+      "title": "NEXT DESTINATION",
+      "journeyLabel": "UPCOMING",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    },
+    {
+      "weekNumber": 19,
+      "title": "FINAL DESTINATION",
+      "journeyLabel": "FINAL DESTINATION",
+      "status": "UPCOMING",
+      "dateRange": "",
+      "intro": "",
+      "days": [],
+      "finalReflection": "",
+      "photos": [],
+      "artifacts": []
+    }
+  ]
+}

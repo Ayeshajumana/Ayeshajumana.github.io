@@ -1,0 +1,8 @@
+{
+  "name": "ayeshamubeena-portfolio-content-pipeline",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:protosem": "node scripts/build-templates.js"
+  }
+}
