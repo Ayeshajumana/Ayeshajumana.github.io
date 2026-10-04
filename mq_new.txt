@@ -1,0 +1,11 @@
+            .journey-dashboard {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .passport-stamp {
+                width: 80px;
+                height: 80px;
+            }
+            .stamp-week {
+                font-size: 1.4rem;
+            }

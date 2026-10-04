@@ -1,0 +1,69 @@
+            // Render Journey Dashboard (Redesign)
+            const passportGrid = document.getElementById('passport-stamps-grid');
+            let completedCount = 0;
+            let latestCompletedIndex = -1;
+
+            if (passportGrid) passportGrid.innerHTML = '';
+
+            protosemJourneyData.weeks.forEach((week, index) => {
+                if (week.status === 'COMPLETED') {
+                    completedCount++;
+                    latestCompletedIndex = index;
+                }
+
+                // Render Stamp
+                const stamp = document.createElement('div');
+                stamp.className = `passport-stamp ${week.status.toLowerCase()}`;
+                if (index === latestCompletedIndex) stamp.classList.add('current');
+                stamp.dataset.index = index;
+                stamp.id = `stamp-w${week.weekNumber}`;
+
+                let statusText = week.status;
+                if (week.status === 'COMPLETED') statusText = '✓ LANDED';
+                else if (week.status === 'UPCOMING') {
+                    statusText = (week.weekNumber === protosemJourneyData.totalWeeks) ? 'FINAL STOP' : 'NEXT STOP';
+                }
+
+                stamp.innerHTML = `
+                    <div class="stamp-week">W${String(week.weekNumber).padStart(2, '0')}</div>
+                    <div class="stamp-status">${statusText}</div>
+                `;
+
+                if (passportGrid) passportGrid.appendChild(stamp);
+                
+                // Click event for modal
+                if (week.status !== 'UPCOMING') {
+                    stamp.addEventListener('click', () => openJournalModal(week));
+                }
+            });
+
+            // Update Dashboard Stats
+            const progressEl = document.getElementById('current-progress-text');
+            const destinationEl = document.getElementById('current-destination-text');
+            if (progressEl) progressEl.textContent = `${completedCount} / ${protosemJourneyData.totalWeeks} WEEKS COMPLETED`;
+            if (latestCompletedIndex >= 0 && destinationEl) {
+                destinationEl.innerHTML = `WEEK ${String(protosemJourneyData.weeks[latestCompletedIndex].weekNumber).padStart(2, '0')} &mdash;<br>${protosemJourneyData.weeks[latestCompletedIndex].title}`;
+            }
+
+            // Animate Airplane
+            const airplane = document.getElementById('paper-airplane');
+            const positionAirplane = () => {
+                if (latestCompletedIndex >= 0 && airplane) {
+                    const targetStamp = document.getElementById(`stamp-w${protosemJourneyData.weeks[latestCompletedIndex].weekNumber}`);
+                    if (targetStamp) {
+                        const dashboardRect = document.querySelector('.journey-dashboard').getBoundingClientRect();
+                        const targetRect = targetStamp.getBoundingClientRect();
+                        
+                        const left = targetRect.left - dashboardRect.left + (targetRect.width / 2) - 22;
+                        const top = targetRect.top - dashboardRect.top - 22;
+                        
+                        airplane.style.opacity = '1';
+                        airplane.style.left = `${left}px`;
+                        airplane.style.top = `${top}px`;
+                    }
+                }
+            };
+            
+            // Wait for layout to settle before positioning
+            setTimeout(positionAirplane, 500);
+            window.addEventListener('resize', positionAirplane);

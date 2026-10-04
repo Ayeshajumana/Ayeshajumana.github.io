@@ -1,0 +1,130 @@
+experiences: [
+                {
+                    id: "exp-01",
+                    date: "August 2026 – Present",
+                    position: "Innovation Engineer Trainee",
+                    organization: "PRICE ProtoSem",
+                    program: "20-Week Industry-Integrated Innovation Programme",
+                    description: [
+                        "Selected for a 20-week industry-integrated innovation programme focused on solving real-world retail and commerce challenges.",
+                        "Exploring applications of AI, analytics, intelligent systems, IoT, prototyping, and entrepreneurship.",
+                        "Working on practical, technology-driven problem-solving and innovation.",
+                        "Gaining hands-on exposure to developing solutions for real-world industry challenges.",
+                        "Developing an interdisciplinary approach combining engineering, technology, analytics, and innovation."
+                    ],
+                    skills: [],
+                    status: "Status: Ongoing",
+                    images: []
+                },
+                {
+                    id: "exp-02",
+                    date: "August 2026 – Present",
+                    position: "Data Analytics, AI & ML Intern",
+                    organization: "NoviTech R&D Private Limited",
+                    program: "",
+                    description: [
+                        "Working in the domain of Data Analytics, Artificial Intelligence, and Machine Learning.",
+                        "Exploring how data-driven technologies can be applied to real-world engineering and business problems.",
+                        "Developing practical skills in Python, SQL, Data Analytics, Machine Learning, and AI.",
+                        "Gaining hands-on exposure through projects and practical learning.",
+                        "Exploring the use of AI and analytics to support better decision-making.",
+                        "Building an interdisciplinary understanding between Electrical & Electronics Engineering and emerging data-driven technologies."
+                    ],
+                    skills: [],
+                    status: "Status: Ongoing",
+                    images: []
+                },
+                {
+                    id: "exp-03",
+                    date: "July 2025 – July 2026",
+                    position: "Team Manager — E-Moto KCT | FMAE",
+                    organization: "E-Moto KCT",
+                    program: "",
+                    description: [
+                        "Served as Team Manager of an electric vehicle competition team.",
+                        "Coordinated technical and non-technical team activities and supported project execution.",
+                        "Managed task planning, team communication, event preparation, and execution.",
+                        "Worked closely with team members to maintain progress toward competition requirements.",
+                        "Developed capabilities in leadership, team management, stakeholder coordination, problem-solving, and decision-making.",
+                        "Worked effectively under time and performance constraints.",
+                        "Received a Letter of Appreciation from FMAE recognizing my role as Team Manager — E-Moto KCT."
+                    ],
+                    skills: [],
+                    status: "",
+                    images: []
+                },
+                {
+                    id: "exp-04",
+                    date: "June 2026",
+                    position: "Industrial Intern",
+                    organization: "Scanners Electro Lab",
+                    program: "",
+                    description: [
+                        "Gained practical exposure to industrial automation and electrical control systems.",
+                        "Worked with PLC, Delta PLC, Ladder Logic, and Structured Text (ST) programming.",
+                        "Gained exposure to VFD drives, IGBT, HMI, motors, relays, and contactors.",
+                        "Worked with industrial software tools used for automation.",
+                        "Performed component testing, fault diagnosis, and troubleshooting of electrical drives.",
+                        "Used datasheets to identify faulty components and understand component specifications.",
+                        "Developed practical soldering and systematic troubleshooting skills.",
+                        "Connected industrial automation experience with concepts later encountered in Control Systems."
+                    ],
+                    skills: ["PLC", "Delta PLC", "Ladder Logic", "Structured Text", "VFD", "IGBT", "HMI", "Motors", "Relays", "Contactors", "Soldering", "Troubleshooting"],
+                    status: "",
+                    images: []
+                },
+                {
+                    id: "exp-05",
+                    date: "May 2026",
+                    position: "Industrial / Data Analytics Intern",
+                    organization: "Goldfish Garments",
+                    program: "",
+                    description: [
+                        "Gained practical exposure to operational data analysis in a garment-industry environment.",
+                        "Used Excel and Advanced Excel for data organization, analysis, and reporting.",
+                        "Used SQL for querying and working with structured data.",
+                        "Developed dashboards and visual reports using Power BI.",
+                        "Gained exposure to database management and operational data handling.",
+                        "Applied analytical thinking to understand operational information and generate useful insights."
+                    ],
+                    skills: ["Excel", "Advanced Excel", "SQL", "Power BI", "Database Management", "Operational Data Analysis"],
+                    status: "",
+                    images: []
+                },
+                {
+                    id: "exp-06",
+                    date: "March 2026",
+                    position: "Event Coordination — IEBC",
+                    organization: "India's Electric Bike Challenge (IEBC)",
+                    program: "",
+                    description: [
+                        "Contributed to the planning and execution of India's Electric Bike Challenge.",
+                        "Supported participant and guest management.",
+                        "Coordinated volunteers and worked closely with staff and multiple teams.",
+                        "Assisted with on-ground operational execution.",
+                        "Worked in a dynamic technical-event environment requiring quick problem-solving and attention to detail.",
+                        "Strengthened skills in event management, stakeholder coordination, communication, teamwork, and operational planning.",
+                        "Gained exposure to managing a large-scale technical and electric-mobility event."
+                    ],
+                    skills: [],
+                    status: "",
+                    images: []
+                },
+                {
+                    id: "exp-07",
+                    date: "May 2025",
+                    position: "Industrial Intern",
+                    organization: "Roots Industries India Pvt. Ltd.",
+                    program: "",
+                    description: [
+                        "Undertook my first industrial internship as a first-year engineering student.",
+                        "Gained early exposure to a professional industrial environment.",
+                        "Developed an understanding of how engineering concepts are applied beyond classroom learning.",
+                        "Learned through guidance and interaction with industry mentors.",
+                        "Gained exposure to workplace practices, industrial processes, and professional collaboration.",
+                        "The experience provided early clarity about my interests and future career direction."
+                    ],
+                    skills: [],
+                    images: []
+                }
+            ],

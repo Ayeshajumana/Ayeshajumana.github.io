@@ -1,20 +1,19 @@
-name: Obsidian ProtoSem Auto-Publish
+﻿name: Obsidian Weekly Auto-Publish
 
 on:
   schedule:
-    - cron: '0 5 * * 1'
-  workflow_dispatch:
+    - cron: '0 5 * * 1' # Runs every Monday at 5:00 AM UTC
+  workflow_dispatch: 
   push:
     paths:
       - 'portfolio-content/**'
-      - 'scripts/build-templates.js'
-      - 'package.json'
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,14 +25,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Compile Obsidian content
-        run: npm run build:protosem
+      - name: Generate Weekly Templates
+        run: node scripts/build-templates.js
 
-      - name: Commit generated portfolio content
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'chore: compile Obsidian ProtoSem journal 🚀'
-          file_pattern: 'content/protosem/** assets/weekly/**'
-          commit_user_name: 'github-actions[bot]'
-          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+          commit_message: "chore: auto-compile weekly obsidian templates 🚀"
+          file_pattern: "public/assets/weekly/** src/content/blogs/**"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          skip_dirty_check: false 

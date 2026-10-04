@@ -519,229 +519,311 @@
         }
 
         /* ========================================== */
+        /* ========================================== */
         /* EXPERIENCE SECTION STYLES                  */
         /* ========================================== */
 
         .experience-section {
-            background-color: #160C1C;
-            color: var(--color-text-main);
+            background-color: var(--bg-color);
             padding: 8rem 5%;
             position: relative;
             z-index: 10;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-header h2 {
-            font-family: var(--font-display);
-            font-size: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--color-text-main);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            color: #B9A9C4;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .experience-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 4rem;
+        .interactive-timeline {
+            max-width: 900px;
+            margin: 4rem auto;
             position: relative;
-        }
-
-        /* Timeline (Left Column) */
-        .timeline-col {
-            flex: 1;
-            position: relative;
-            padding-left: 2rem;
+            padding: 2rem 0;
         }
 
         .timeline-line {
             position: absolute;
-            top: 10px;
-            bottom: 10px;
-            left: 5px;
+            left: 24px;
+            top: 0;
+            bottom: 0;
             width: 2px;
-            background-color: #64158A;
-            opacity: 0.5;
+            background: linear-gradient(to bottom, transparent, rgba(152, 36, 214, 0.3) 10%, rgba(152, 36, 214, 0.3) 90%, transparent);
         }
 
-        .timeline-item {
+        .interactive-timeline-item {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 4rem;
             margin-bottom: 3rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .timeline-item:last-child {
+        .interactive-timeline-item:last-child {
             margin-bottom: 0;
         }
 
         .timeline-node {
             position: absolute;
-            left: -23px;
-            /* centers over line */
-            top: 8px;
-            width: 14px;
-            height: 14px;
+            left: 17px;
+            top: 0;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            background-color: #64158A;
-            border: 2px solid #160C1C;
-            transition: all 0.3s ease;
+            background: var(--bg-panel);
+            border: 2px solid var(--color-purple-bright);
             z-index: 2;
+            transition: all 0.3s ease;
         }
 
-        .timeline-item:hover .timeline-node {
-            background-color: #8A22B5;
-            box-shadow: 0 0 10px #8A22B5;
+        .timeline-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        .timeline-item.active .timeline-node {
-            background-color: #A62DD0;
-            box-shadow: 0 0 15px #A62DD0;
+        .interactive-timeline-item:hover {
+            transform: translateX(10px);
         }
 
-        .timeline-date {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            color: #B9A9C4;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
+        .interactive-timeline-item:hover .timeline-node {
+            background: var(--color-purple-bright);
+            box-shadow: 0 0 15px rgba(152, 36, 214, 0.6);
+            transform: scale(1.2);
+        }
+
+        .interactive-timeline-item:hover .timeline-card {
+            border-color: rgba(152, 36, 214, 0.4);
+            background: rgba(42, 15, 43, 0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
 
         .timeline-position {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-display);
             font-size: 1.6rem;
             color: var(--color-text-main);
-            transition: color 0.3s ease;
-            line-height: 1.2;
+            margin-bottom: 0.2rem;
         }
 
-        .timeline-item:hover .timeline-position {
-            color: #A62DD0;
+        .timeline-org {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--color-purple-bright);
+            font-weight: 600;
         }
 
-        .timeline-item.active .timeline-position {
-            color: #A62DD0;
+        .timeline-date {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8b6b72;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
-
-        .timeline-item.active .timeline-date {
-            color: #8A22B5;
-        }
-
-        /* Details Card (Right Column) */
-        .details-col {
-            flex: 1;
-            position: relative;
-        }
-
-        .experience-card {
-            background-color: rgba(36, 16, 45, 0.7);
-            border: 1px solid rgba(138, 34, 181, 0.2);
-            border-radius: 8px;
-            padding: 3rem;
+        
+        .timeline-preview {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: #B9A9C4;
+            max-height: 0;
+            overflow: hidden;
             opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
             transition: all 0.4s ease;
-            position: absolute;
+            line-height: 1.6;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .interactive-timeline-item:hover .timeline-preview {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+
+        .view-exp-cta {
+            margin-top: 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-purple-bright);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            transform: translateY(5px);
+        }
+
+        .interactive-timeline-item:hover .view-exp-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .view-exp-cta svg {
+            transition: transform 0.3s ease;
+        }
+        
+        .interactive-timeline-item:hover .view-exp-cta svg {
+            transform: translateX(4px);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            pointer-events: none;
+            height: 100%;
+            background: rgba(16, 10, 20, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
 
-        .experience-card.active {
+        .modal-overlay.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
+        }
+
+        .experience-modal {
+            background: var(--bg-panel);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 12px;
+            border: 1px solid rgba(152, 36, 214, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow-y: auto;
             position: relative;
-            /* Take up space */
-        }
-
-        /* Default empty state for right column */
-        .details-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            min-height: 300px;
-            color: rgba(185, 169, 196, 0.5);
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            text-align: center;
-            transition: opacity 0.3s ease;
-        }
-
-        .details-placeholder.hidden {
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             opacity: 0;
+        }
+
+        .modal-overlay.active .experience-modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .modal-close-btn {
             position: absolute;
-            pointer-events: none;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: var(--color-text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(152, 36, 214, 0.2);
+            color: var(--color-purple-bright);
+            transform: rotate(90deg);
+        }
+
+        .exp-modal-header {
+            padding: 3rem 3rem 2rem 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(to bottom, rgba(152, 36, 214, 0.05), transparent);
         }
 
         .card-org {
-            color: #A62DD0;
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--color-purple-bright);
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
         }
 
         .card-program {
-            color: #B9A9C4;
+            font-family: var(--font-body);
             font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .card-desc {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #F4EEE2;
-            margin-bottom: 2rem;
-        }
-
-        .card-desc ul {
-            padding-left: 1.2rem;
+            color: #d896ff;
             margin-bottom: 1rem;
-        }
-
-        .card-desc li {
-            margin-bottom: 0.8rem;
+            font-style: italic;
         }
 
         .card-status {
-            font-style: italic;
-            color: #8A22B5;
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(152, 36, 214, 0.15);
+            color: #d896ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
             margin-top: 1rem;
         }
 
-        .card-skills-title {
-            font-family: var(--font-display);
+        .exp-modal-body {
+            padding: 2rem 3rem;
+        }
+
+        .card-desc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card-desc li {
+            font-family: var(--font-body);
             font-size: 1rem;
-            letter-spacing: 1px;
+            line-height: 1.6;
+            color: #E2DFE4;
+            padding-left: 1.5rem;
+            position: relative;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .card-desc li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--color-purple-bright);
+        }
+
+        #modal-skills-container {
+            margin-top: 2.5rem;
+        }
+
+        .card-skills-title {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
             color: #B9A9C4;
             margin-bottom: 1rem;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .card-skills {
@@ -751,7 +833,7 @@
         }
 
         .skill-tag {
-            background-color: rgba(100, 21, 138, 0.2);
+            background-color: rgba(100, 21, 138, 0.15);
             border: 1px solid rgba(138, 34, 181, 0.3);
             color: #F4EEE2;
             padding: 0.4rem 1rem;
@@ -759,47 +841,238 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+        
+        .skill-tag:hover {
+            background-color: rgba(100, 21, 138, 0.4);
+            border-color: rgba(138, 34, 181, 0.8);
         }
 
-        /* Mobile Card Details (Inline) */
-        .mobile-card-container {
-            display: none;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
+        /* Gallery Section */
+        .exp-gallery-section {
+            padding: 2rem 3rem 3rem 3rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.1);
         }
+
+        .gallery-title {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #B9A9C4;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .gallery-title::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s ease;
+            filter: brightness(0.8);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item-title {
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .gallery-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            border: 1px dashed rgba(255,255,255,0.1);
+            text-align: center;
+            gap: 1rem;
+            color: #8b6b72;
+        }
+        
+        .gallery-empty svg {
+            opacity: 0.5;
+        }
+        
+        .gallery-empty span {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Lightbox Styles */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-toolbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .lightbox-counter {
+            font-family: var(--font-body);
+            color: #fff;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(152, 36, 214, 0.5);
+        }
+
+        .lightbox-nav.prev { left: 2rem; }
+        .lightbox-nav.next { right: 2rem; }
 
         @media (max-width: 900px) {
-            .experience-container {
-                flex-direction: column;
-                gap: 2rem;
+            .interactive-timeline {
+                padding: 1rem;
             }
-
-            .details-col {
-                display: none;
-                /* Hide desktop cards */
+            .interactive-timeline-item {
+                padding-left: 2.5rem;
+                margin-bottom: 2rem;
             }
-
-            .mobile-card-container {
-                display: block;
-                /* Show inline cards */
+            .timeline-line {
+                left: 7px;
             }
-
-            .mobile-card-container .experience-card {
-                position: relative;
-                transform: none;
-                margin-top: 1rem;
-                padding: 2rem 1.5rem;
-                display: none;
+            .timeline-node {
+                left: 0;
             }
-
-            .mobile-card-container .experience-card.active {
-                display: block;
+            .interactive-timeline-item:hover {
+                transform: translateX(5px);
             }
-
-            .section-header h2 {
-                font-size: 3rem;
+            .timeline-preview {
+                max-height: none;
+                opacity: 1;
+                margin-top: 0.5rem;
             }
+            .view-exp-cta {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .exp-modal-header, .exp-modal-body, .exp-gallery-section {
+                padding: 1.5rem;
+            }
+            .modal-close-btn {
+                top: 1rem;
+                right: 1rem;
+            }
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+            }
+            .lightbox-nav.prev { left: 0.5rem; }
+            .lightbox-nav.next { right: 0.5rem; }
         }
+
+        /* ========================================== */
+
 
         /* ========================================== */
         /* RESEARCH & PROJECTS SECTION                */
@@ -819,8 +1092,18 @@
 
         .research-header {
             text-align: center;
-            margin-bottom: 2rem;
-            z-index: 2;
+            z-index: 10;
+            position: absolute;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            transition: top 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .research-section.animate-hub .research-header {
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .research-header h2 {
@@ -847,43 +1130,10 @@
             height: 700px;
             /* Base height for the radial layout */
             margin: 0 auto;
-            margin-top: 2rem;
+            margin-top: 5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        /* Center Anchor */
-        .radial-center {
-            position: absolute;
-            z-index: 5;
-            width: 300px;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        .radial-center img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-        }
-
-        @keyframes floating {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
         }
 
         /* Radial Cards */
@@ -896,14 +1146,22 @@
             padding: 1.5rem;
             cursor: pointer;
             z-index: 3;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .radial-card:hover {
+        .research-section.animate-hub .radial-card {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .research-section.animate-hub .radial-card:hover {
             transform: scale(1.05);
             border-color: #A62DD0;
             box-shadow: 0 0 20px rgba(166, 45, 208, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         /* Connecting Lines */
@@ -915,14 +1173,19 @@
             height: 1px;
             background: linear-gradient(90deg, rgba(166, 45, 208, 0.8), transparent);
             z-index: 2;
-            opacity: 0.4;
-            transition: opacity 0.3s ease;
+            opacity: 0;
+            transition: opacity 1.5s ease;
             pointer-events: none;
         }
 
-        .radial-card:hover+.radial-connector {
+        .research-section.animate-hub .radial-connector {
+            opacity: 0.4;
+        }
+
+        .research-section.animate-hub .radial-card:hover+.radial-connector {
             opacity: 1;
             box-shadow: 0 0 8px rgba(166, 45, 208, 0.8);
+            transition: opacity 0.3s ease;
         }
 
         /* Specific Positions (Desktop) */
@@ -954,10 +1217,14 @@
         .pos-5 {
             bottom: -5%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) scale(0.9) translateY(20px);
         }
 
-        .radial-card.pos-5:hover {
+        .research-section.animate-hub .pos-5 {
+            transform: translateX(-50%) scale(1);
+        }
+
+        .research-section.animate-hub .radial-card.pos-5:hover {
             transform: translateX(-50%) scale(1.05);
         }
 
@@ -1112,20 +1379,24 @@
 
         /* Mobile Layout */
         @media (max-width: 900px) {
+            .research-header {
+                position: relative;
+                top: 0 !important;
+                left: 0 !important;
+                transform: none !important;
+                margin-bottom: 2rem;
+            }
+
+            .research-section.animate-hub .research-header {
+                top: 0 !important;
+                transform: none !important;
+            }
+
             .radial-container {
                 flex-direction: column;
                 height: auto;
                 gap: 1.5rem;
-                margin-top: 3rem;
-            }
-
-            .radial-center {
-                position: relative;
-                width: 100%;
-                max-width: 300px;
-                height: 350px;
-                margin-bottom: 2rem;
-                animation: none;
+                margin-top: 0;
             }
 
             .radial-card {
@@ -1137,9 +1408,14 @@
                 right: auto !important;
                 bottom: auto !important;
                 transform: none !important;
+                opacity: 1 !important;
             }
 
-            .radial-card:hover {
+            .research-section.animate-hub .radial-card {
+                transform: none !important;
+            }
+
+            .radial-card:hover, .research-section.animate-hub .radial-card:hover {
                 transform: translateY(-5px) !important;
             }
 
@@ -1163,6 +1439,21 @@
             align-items: center;
         }
 
+        .contact-glow {
+            position: absolute;
+            top: 0; left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(166, 45, 208, 0.15) 0%, rgba(166, 45, 208, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            mix-blend-mode: screen;
+        }
+
         .contact-container {
             max-width: 1300px;
             margin: 0 auto;
@@ -1171,6 +1462,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             position: relative;
+            z-index: 2;
         }
 
         /* Large Purple Background Panel */
@@ -1181,12 +1473,24 @@
             width: 25%;
             height: 100%;
             background-color: var(--bg-panel);
-            z-index: -1;
+            z-index: 0;
         }
 
         .contact-left {
             position: relative;
             z-index: 2;
+        }
+
+        /* Entrance Animations */
+        .contact-anim-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .contact-section.contact-in-view .contact-anim-item {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .contact-micro-label {
@@ -1208,6 +1512,7 @@
             margin-bottom: 3rem;
             position: relative;
             letter-spacing: 0px;
+            transition: transform 0.1s ease-out; /* For parallax */
         }
 
         .contact-heading span {
@@ -1224,7 +1529,7 @@
             left: -10%;
             width: 80%;
             height: 35%;
-            background-color: rgba(55, 16, 58, 0.6); /* var(--color-purple-dark) with opacity */
+            background-color: rgba(55, 16, 58, 0.6);
             z-index: -1;
             transform: translateY(-50%);
         }
@@ -1285,12 +1590,12 @@
             font-size: 3rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 1rem 0;
+            padding: 1rem 1rem 1rem 0;
             border-bottom: 2px solid rgba(166, 45, 208, 0.2);
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
-            overflow: hidden;
             width: 100%;
+            background: transparent;
         }
 
         .contact-link-number {
@@ -1299,20 +1604,22 @@
             color: var(--color-purple-bright);
             margin-right: 2rem;
             font-weight: 600;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0.7;
         }
 
         .contact-link-text {
             position: relative;
             z-index: 2;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
         }
 
         .contact-link-arrow {
             margin-left: auto;
             color: var(--color-purple-bright);
-            font-family: var(--font-body);
-            font-size: 2rem;
-            transition: transform 0.4s ease, opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             opacity: 0;
             transform: translateX(-20px);
         }
@@ -1325,14 +1632,17 @@
             width: 0;
             height: 2px;
             background-color: var(--color-purple-bright);
-            transition: width 0.4s ease;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .contact-link-item:hover,
         .contact-link-item:focus {
             color: #FFF;
             outline: none;
-            background: rgba(166, 45, 208, 0.05); /* Slight highlight */
+            transform: translateX(10px);
+            background: linear-gradient(90deg, rgba(166, 45, 208, 0.05) 0%, transparent 100%);
+            border-radius: 8px 8px 0 0;
+            padding-left: 1rem;
         }
 
         .contact-link-item:hover::before,
@@ -1342,48 +1652,19 @@
 
         .contact-link-item:hover .contact-link-text,
         .contact-link-item:focus .contact-link-text {
-            transform: translateX(10px);
             color: var(--color-purple-bright);
+            transform: scale(1.02);
+        }
+
+        .contact-link-item:hover .contact-link-number,
+        .contact-link-item:focus .contact-link-number {
+            opacity: 1;
         }
 
         .contact-link-item:hover .contact-link-arrow,
         .contact-link-item:focus .contact-link-arrow {
             opacity: 1;
-            transform: translateX(-10px);
-        }
-
-        /* Decorative Graphic Elements */
-        .contact-decor-star {
-            position: absolute;
-            top: 15%;
-            left: 48%;
-            color: var(--color-purple-bright);
-            font-size: 3rem;
-            animation: rotateText 15s linear infinite;
-            z-index: 1;
-            opacity: 0.6;
-        }
-
-        .contact-decor-circle {
-            position: absolute;
-            bottom: -5%;
-            right: 5%;
-            width: 250px;
-            height: 250px;
-            border: 2px solid var(--color-purple-dark);
-            border-radius: 50%;
-            opacity: 0.5;
-            z-index: 0;
-        }
-        
-        .contact-decor-cross {
-            position: absolute;
-            top: 10%;
-            right: 15%;
-            color: var(--color-purple-bright);
-            font-size: 1.5rem;
-            font-family: var(--font-body);
-            opacity: 0.4;
+            transform: translateX(0);
         }
 
         /* Mobile Layout */
@@ -1415,11 +1696,6 @@
 
             .contact-link-item {
                 font-size: 2.2rem;
-            }
-            
-            .contact-decor-star {
-                left: 80%;
-                top: 5%;
             }
         }
 
@@ -1765,185 +2041,240 @@
         }
 
         .journey-dashboard {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto 5rem auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 4rem;
+            position: relative;
         }
 
-        .journey-tracker-card {
-            background: rgba(36, 16, 45, 0.4);
-            border: 1px solid rgba(138, 34, 181, 0.2);
-            border-radius: 12px;
-            padding: 2.5rem;
+        .flight-path-svg {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            width: 80%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
         }
 
-        .journey-tracker-title {
+        .destination-sheet {
+            background: #fdf8e9;
+            color: #2b1133;
+            border-radius: 4px;
+            padding: 4rem 3rem;
+            position: relative;
+            box-shadow: 10px 15px 30px rgba(0,0,0,0.4), inset 0 0 40px rgba(200, 170, 140, 0.2);
+            border: 1px solid rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            z-index: 2;
+        }
+
+        .destination-header {
             font-family: var(--font-body);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--color-purple-bright);
-            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            color: #8b6b72;
+            margin-bottom: 2rem;
             font-weight: 600;
         }
 
         .current-destination-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            line-height: 1.3;
-            color: var(--color-text-main);
-            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            line-height: 1.1;
+            color: #2c1236;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .current-progress-text {
             font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: #6a4c52;
+            font-weight: 600;
         }
 
-        .passport-stamps-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
+        .destination-annotation {
+            font-family: var(--font-handwritten);
+            font-size: 1.8rem;
+            color: #9824d6;
+            position: absolute;
+            bottom: 2rem;
+            right: -1rem;
+            transform: rotate(-5deg);
+            opacity: 0.8;
+            line-height: 1;
         }
 
-        .passport-mini-stamp {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px dashed rgba(166, 45, 208, 0.3);
+        .compass-illustration {
+            position: absolute;
+            bottom: 3rem;
+            right: 4rem;
+            width: 120px;
+            height: 120px;
+            opacity: 0.1;
+            pointer-events: none;
+            color: #2b1133;
+        }
+
+        .passport-panel {
+            background: #2a0f2b;
+            border-radius: 8px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.05);
+            color: var(--color-text-main);
+            z-index: 2;
+        }
+        
+        .passport-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 11px);
+            pointer-events: none;
+            border-radius: 8px;
+        }
+
+        .passport-header {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: #fdf8e9;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 1rem;
+            border-bottom: 2px dashed rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+        }
+
+        .passport-meta {
+            display: flex;
+            gap: 2rem;
             font-family: var(--font-body);
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            color: rgba(253, 248, 233, 0.7);
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-wrap: wrap;
         }
 
-        .passport-mini-stamp.completed {
-            border: 1px solid var(--color-purple-bright);
-            color: #fff;
-            background: rgba(152, 36, 214, 0.4);
-            font-weight: bold;
+        .passport-meta strong {
+            color: #fdf8e9;
         }
 
-        /* The Map */
-        .journey-map-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            padding: 4rem 0;
+        .passport-stamps-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 1.5rem;
-        }
-
-        .journey-stamp {
             position: relative;
             z-index: 2;
-            background: rgba(26, 14, 28, 0.95);
-            border: 2px dashed rgba(166, 45, 208, 0.4);
-            border-radius: 4px;
-            padding: 1.5rem 1rem;
-            width: 200px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-align: center;
+        }
+
+        .passport-stamp {
+            width: 95px;
+            height: 95px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(253, 248, 233, 0.2);
+            border-radius: 4px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            position: relative;
         }
 
-        .journey-stamp::before {
+        .passport-stamp::after {
             content: '';
             position: absolute;
-            top: 5px; left: 5px; right: 5px; bottom: 5px;
-            border: 1px dotted rgba(166, 45, 208, 0.2);
-            border-radius: 2px;
-            pointer-events: none;
+            inset: -4px;
+            border: 1px dashed rgba(253, 248, 233, 0.15);
+            border-radius: 6px;
         }
 
-        .journey-stamp:nth-child(even) {
-            transform: rotate(-3deg);
-        }
-
-        .journey-stamp:nth-child(odd) {
-            transform: rotate(2deg);
-        }
-
-        .journey-stamp:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(152, 36, 214, 0.15);
-            border-color: var(--color-purple-bright);
+        .passport-stamp:hover {
+            transform: scale(1.05) rotate(2deg);
+            border-color: #9824d6;
+            background: rgba(152, 36, 214, 0.1);
             z-index: 5;
         }
 
-        .journey-stamp.completed {
-            border-color: rgba(166, 45, 208, 0.7);
+        .passport-stamp.completed {
+            border-color: #d896ff;
+            color: #d896ff;
+            transform: rotate(-3deg);
         }
 
-        .journey-stamp.current {
-            border-color: #ff00ff;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-        }
-
-        .journey-stamp.upcoming {
-            opacity: 0.3;
-            cursor: not-allowed;
-            border-style: dashed;
+        .passport-stamp.completed::after {
+            border-color: rgba(216, 150, 255, 0.3);
         }
         
-        .journey-stamp.upcoming:hover {
-            box-shadow: none;
-            border-color: rgba(166, 45, 208, 0.4);
+        .passport-stamp.current {
+            border-color: #ff00ff;
+            color: #ff00ff;
+            background: rgba(255, 0, 255, 0.08);
+            transform: rotate(4deg) scale(1.1) !important;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+            z-index: 10;
         }
+
+        .passport-stamp.upcoming {
+            opacity: 0.25;
+            border-style: dotted;
+            cursor: not-allowed;
+        }
+        
+        .passport-stamp.upcoming:hover {
+            transform: none;
+            border-color: rgba(253, 248, 233, 0.3);
+            background: transparent;
+        }
+
+        .passport-stamp:nth-child(3n) { transform: rotate(2deg); }
+        .passport-stamp:nth-child(3n+1) { transform: rotate(-1deg); }
+        .passport-stamp:nth-child(3n+2) { transform: rotate(3deg); }
 
         .stamp-week {
             font-family: var(--font-display);
-            font-size: 2.2rem;
-            color: var(--color-text-main);
+            font-size: 1.6rem;
             line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stamp-label {
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--color-purple-bright);
-            margin-bottom: 0.8rem;
-            min-height: 24px;
+            margin-bottom: 0.4rem;
         }
 
         .stamp-status {
             font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--color-text-secondary);
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
         }
 
-        .journey-stamp.completed .stamp-status {
+        .passport-stamp.completed .stamp-status {
             color: #d896ff;
         }
 
-        /* The Paper Airplane */
         .paper-airplane {
             position: absolute;
-            z-index: 5;
-            font-size: 2.5rem;
+            left: -100px;
+            top: 200px;
+            transform: scale(0.5) rotate(-45deg);
+            z-index: 20;
+            width: 45px;
+            height: 45px;
             transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            filter: drop-shadow(0 5px 15px rgba(255, 0, 255, 0.4));
-            transform-origin: center;
-            top: 0;
-            left: 0;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
             opacity: 0;
             pointer-events: none;
         }
@@ -2145,14 +2476,14 @@
         @media (max-width: 900px) {
             .journey-dashboard {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            .journey-map-container {
-                flex-direction: column;
-                align-items: center;
+            .passport-stamp {
+                width: 80px;
+                height: 80px;
             }
-            .journey-stamp {
-                width: 100%;
-                max-width: 320px;
+            .stamp-week {
+                font-size: 1.4rem;
             }
             .journal-panel {
                 padding: 3rem 1.5rem;
@@ -2552,47 +2883,87 @@
             <p>A journey through hands-on learning, leadership, innovation, and technology.</p>
         </div>
 
-        <div class="experience-container">
-            <!-- Left Column: Timeline -->
-            <div class="timeline-col">
-                <div class="timeline-line"></div>
-                <div id="timeline-items-container">
-                    <!-- Timeline items inserted by JS -->
-                </div>
-            </div>
-
-            <!-- Right Column: Details Card (Desktop) -->
-            <div class="details-col">
-                <div class="details-placeholder" id="desktop-details-placeholder">
-                    Select an experience from the timeline to view details
-                </div>
-                <div class="experience-card" id="desktop-details-card">
-                    <div class="card-org" id="card-org"></div>
-                    <div class="card-program" id="card-program"></div>
-                    <div class="card-desc" id="card-desc"></div>
-                    <div class="card-skills-title" id="card-skills-title" style="display:none;">Skills & Technologies
-                    </div>
-                    <div class="card-skills" id="card-skills"></div>
-                    <div class="card-status" id="card-status"></div>
-                </div>
+        <div class="interactive-timeline">
+            <div class="timeline-line"></div>
+            <div id="interactive-timeline-container">
+                <!-- Timeline items injected by JS -->
             </div>
         </div>
     </section>
 
+    <!-- Experience Detail Modal -->
+    <div id="experience-modal-overlay" class="modal-overlay">
+        <div class="experience-modal">
+            <button class="modal-close-btn" id="exp-modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="exp-modal-content">
+                <div class="exp-modal-header">
+                    <div class="card-org" id="modal-org"></div>
+                    <div class="card-program" id="modal-program"></div>
+                    <div class="timeline-position" id="modal-position"></div>
+                    <div class="timeline-date" id="modal-date"></div>
+                    <div class="card-status" id="modal-status"></div>
+                </div>
+                
+                <div class="exp-modal-body">
+                    <div class="card-desc" id="modal-desc"></div>
+                    
+                    <div id="modal-skills-container">
+                        <div class="card-skills-title" id="modal-skills-title">Skills & Technologies</div>
+                        <div class="card-skills" id="modal-skills"></div>
+                    </div>
+                </div>
+                
+                <div class="exp-gallery-section">
+                    <div class="gallery-title">CERTIFICATES & MOMENTS</div>
+                    <div id="modal-gallery" class="gallery-grid">
+                        <!-- Images injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-screen Lightbox -->
+    <div id="lightbox-modal" class="lightbox-overlay">
+        <div class="lightbox-toolbar">
+            <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+            <button class="modal-close-btn" id="lightbox-close" aria-label="Close viewer">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Full screen preview">
+        <button class="lightbox-nav next" id="lightbox-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+    </div>
+
+
     <!-- Research & Projects Section -->
     <section id="projects" class="research-section">
-        <div class="research-header">
-            <h2>RESEARCH & PROJECTS</h2>
-            <p>Researching ideas. Building solutions. Creating impact.</p>
-        </div>
-
         <div class="radial-container" id="radial-container">
-            <!-- Center Image -->
-            <div class="radial-center">
-                <img id="research-center-img" src="" alt="Ayesha Jumana - The Marketing Times">
+            <div class="research-header" id="research-header">
+                <h2>RESEARCH & PROJECTS</h2>
+                <p>Researching ideas. Building solutions. Creating impact.</p>
             </div>
-
             <!-- Radial Cards and Connectors inserted by JS -->
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="research-section" style="text-align: center; padding-bottom: 80px; padding-top: 80px;">
+        <div class="research-header">
+            <h2>RESUME</h2>
+            <p>A comprehensive overview of my experience, projects, and skills.</p>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="resume.html" target="_blank" style="display: inline-block; padding: 15px 35px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9em; letter-spacing: 1px; transition: all 0.3s ease; background: transparent; color: #fff; cursor: pointer; text-transform: uppercase;" onmouseover="this.style.background='#fff'; this.style.color='#000';" onmouseout="this.style.background='transparent'; this.style.color='#fff';">
+                View ATS-Friendly Resume
+            </a>
         </div>
     </section>
 
@@ -2683,60 +3054,78 @@
                 <p>20 WEEKS. ONE PROCESS.</p>
             </div>
 
-            <div class="journey-dashboard">
+            <div class="journey-dashboard passport-redesign">
+                <!-- Flight Path Background -->
+                <svg class="flight-path-svg" viewBox="0 0 800 400" preserveAspectRatio="none">
+                    <path d="M 200,100 Q 400,-50 600,150 T 800,50" fill="none" stroke="rgba(253, 248, 233, 0.15)" stroke-width="3" stroke-dasharray="8 8" />
+                </svg>
+
                 <!-- Current Destination -->
-                <div class="journey-tracker-card">
-                    <div class="journey-tracker-title">CURRENT DESTINATION</div>
+                <div class="destination-sheet">
+                    <div class="destination-header">CURRENT DESTINATION</div>
                     <div class="current-destination-text" id="current-destination-text">Loading...</div>
                     <div class="current-progress-text" id="current-progress-text">0 / 20 weeks completed</div>
+                    <div class="destination-annotation">better questions.<br>bigger possibilities.</div>
+                    
+                    <div class="compass-illustration">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="50" cy="50" r="45" stroke-dasharray="4 4" />
+                            <circle cx="50" cy="50" r="35" />
+                            <path d="M50 15 L60 50 L50 85 L40 50 Z" fill="currentColor" />
+                            <path d="M50 15 L50 85" stroke-width="1" />
+                            <path d="M15 50 L85 50" stroke-width="1" stroke-dasharray="2 2" />
+                            <text x="50" y="10" text-anchor="middle" font-size="10" font-family="sans-serif">N</text>
+                            <text x="50" y="98" text-anchor="middle" font-size="10" font-family="sans-serif">S</text>
+                            <text x="92" y="53" text-anchor="middle" font-size="10" font-family="sans-serif">E</text>
+                            <text x="8" y="53" text-anchor="middle" font-size="10" font-family="sans-serif">W</text>
+                        </svg>
+                    </div>
                 </div>
 
                 <!-- Price Passport -->
-                <div class="journey-tracker-card">
-                    <div class="journey-tracker-title">🛂 MY PRICE PASSPORT</div>
-                    <div style="display:flex; gap: 1.5rem; color: var(--color-text-secondary); font-family: var(--font-body); font-size: 0.85rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                        <div><strong style="color:var(--color-text-main)">JOURNEY:</strong> PRICE Protosem</div>
-                        <div><strong style="color:var(--color-text-main)">DURATION:</strong> 20 Weeks</div>
-                        <div><strong style="color:var(--color-text-main)">STATUS:</strong> In Flight <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-left: 0.2rem;"><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon><line x1="22" y1="2" x2="11" y2="13"></line></svg></div>
+                <div class="passport-panel">
+                    <div class="passport-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><circle cx="12" cy="16" r="2"/></svg>
+                        MY PRICE PASSPORT
                     </div>
-                    <div class="passport-stamps-grid" id="passport-stamps-grid">
+                    <div class="passport-meta">
+                        <div><strong>JOURNEY:</strong> PRICE Protosem</div>
+                        <div><strong>DURATION:</strong> 20 Weeks</div>
+                        <div><strong>STATUS:</strong> In Flight</div>
+                    </div>
+                    <div class="passport-stamps-container" id="passport-stamps-grid">
                         <!-- Stamps injected by JS -->
                     </div>
                 </div>
-            </div>
-
-            <!-- The Map -->
-            <div class="journey-map-container" id="journey-map-container">
+                
+                <!-- Animated Paper Airplane -->
                 <div class="paper-airplane" id="paper-airplane">
-                    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <svg viewBox="0 0 24 24" width="100%" height="100%">
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" fill="#fdf8e9" stroke="#2b1133" stroke-width="1" stroke-linejoin="round"></polygon>
+                        <polygon points="22 2 11 13 15 22" fill="#eaddc5" stroke="#2b1133" stroke-width="1" stroke-linejoin="round"></polygon>
                     </svg>
                 </div>
-                <!-- Weekly Stamps injected by JS -->
             </div>
-        </div>
+            
+            <!-- Map container removed, keeping ID for compatibility if needed -->
+            <div id="journey-map-container" style="display:none;"></div>
     </section>
-
-    <!-- Contact Section -->
     <section id="contact-me" class="contact-section">
+        <div class="contact-glow" id="contact-glow"></div>
         <div class="contact-panel"></div>
-        <div class="contact-decor-star">✴</div>
-        <div class="contact-decor-circle"></div>
-        <div class="contact-decor-cross">+</div>
         
         <div class="contact-container">
             <!-- Left Side: Editorial Typography -->
             <div class="contact-left">
-                <div class="contact-micro-label">Let's Connect</div>
-                <h2 class="contact-heading">
+                <div class="contact-micro-label contact-anim-item" style="transition-delay: 0.1s;">Let's Connect</div>
+                <h2 class="contact-heading contact-anim-item" style="transition-delay: 0.3s;" id="contact-heading">
                     <div class="contact-heading-bg"></div>
                     <span>LET'S</span>
                     <span>BUILD</span>
                     <span>SOMETHING</span>
                     <span class="purple-highlight">TOGETHER.</span>
                 </h2>
-                <div class="contact-message">
+                <div class="contact-message contact-anim-item" style="transition-delay: 0.5s;">
                     <p>Welcome! Whether you're a developer, creator, collaborator, or simply someone interested in building something meaningful, I'd love to connect.</p>
                     <p>I'm always open to exploring new ideas, learning from others, and creating something impactful together.</p>
                     <p><strong>Let's build something together.</strong></p>
@@ -2745,23 +3134,23 @@
 
             <!-- Right Side: Contact Links -->
             <div class="contact-right">
-                <div class="contact-links-wrapper">
+                <div class="contact-links-wrapper contact-anim-item" style="transition-delay: 0.7s;">
                     <a href="https://github.com/Ayeshajumana" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                         <span class="contact-link-number">01</span>
                         <span class="contact-link-text">GITHUB</span>
-                        <span class="contact-link-arrow">↗</span>
+                        <span class="contact-link-arrow"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
                     </a>
                     
                     <a href="https://www.linkedin.com/in/ayesha-jumana-s-23636032a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                         <span class="contact-link-number">02</span>
                         <span class="contact-link-text">LINKEDIN</span>
-                        <span class="contact-link-arrow">↗</span>
+                        <span class="contact-link-arrow"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
                     </a>
                     
                     <a href="mailto:ayeshajumana313@gmail.com" class="contact-link-item">
                         <span class="contact-link-number">03</span>
                         <span class="contact-link-text">EMAIL</span>
-                        <span class="contact-link-arrow">↗</span>
+                        <span class="contact-link-arrow"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
                     </a>
                 </div>
             </div>
@@ -2893,7 +3282,7 @@
             mainHeadingBottom: "JUMANA",
 
             // The paragraph on the right
-            description: "I AM AN UNDERGRADUATE STUDENT PURSUING ELECTRICAL AND ELECTRONICS ENGINEERING AT KUMARAGURU COLLEGE OF TECHNOLOGY. CURRENTLY, I SERVE AS THE INDUSTRIAL RELATIONS LEAD FOR THE DEPARTMENT ASSOCIATION OF ELECTRICAL AND ELECTRONICS ENGINEERING AND WORK AS AN INNOVATION ENGINEER TRAINEE AT FORGE INNOVATION & VENTURES.",
+            description: "I am an undergraduate student pursuing Electrical and Electronics Engineering at Kumaraguru College of Technology. I currently serve as the Industrial Relations Lead for the Department Association of Electrical and Electronics Engineering and work as an Innovation Engineer Trainee at Forge Innovation & Ventures.",
 
             // Starburst badge text
             badgeText: "LET'S<br>CREATE",
@@ -2942,7 +3331,13 @@
                         "Developing an interdisciplinary approach combining engineering, technology, analytics, and innovation."
                     ],
                     skills: [],
-                    status: "Status: Ongoing"
+                    status: "Status: Ongoing",
+                    images: [
+                        {
+                            src: "proto-sem-eoi.jpeg",
+                            title: "Official Expression of Interest confirming my provisional selection for Cohort 1.18 of PRICE ProtoSem 2026."
+                        }
+                    ]
                 },
                 {
                     id: "exp-02",
@@ -2959,7 +3354,8 @@
                         "Building an interdisciplinary understanding between Electrical & Electronics Engineering and emerging data-driven technologies."
                     ],
                     skills: [],
-                    status: "Status: Ongoing"
+                    status: "Status: Ongoing",
+                    images: []
                 },
                 {
                     id: "exp-03",
@@ -2977,7 +3373,21 @@
                         "Received a Letter of Appreciation from FMAE recognizing my role as Team Manager — E-Moto KCT."
                     ],
                     skills: [],
-                    status: ""
+                    status: "",
+                    images: [
+                        {
+                            src: "fmae-letter.jpeg",
+                            title: "Letter of Appreciation<br>FMAE | Moto Student India Season 4"
+                        },
+                        {
+                            src: "emoto-team.jpeg",
+                            title: "E-Moto KCT Team<br>Moto Student India Season 4"
+                        },
+                        {
+                            src: "emoto-bikes.jpeg",
+                            title: "Bikes & Achievements<br>E-Moto KCT | Competition Highlights"
+                        }
+                    ]
                 },
                 {
                     id: "exp-04",
@@ -2996,7 +3406,8 @@
                         "Connected industrial automation experience with concepts later encountered in Control Systems."
                     ],
                     skills: ["PLC", "Delta PLC", "Ladder Logic", "Structured Text", "VFD", "IGBT", "HMI", "Motors", "Relays", "Contactors", "Soldering", "Troubleshooting"],
-                    status: ""
+                    status: "",
+                    images: []
                 },
                 {
                     id: "exp-05",
@@ -3013,7 +3424,8 @@
                         "Applied analytical thinking to understand operational information and generate useful insights."
                     ],
                     skills: ["Excel", "Advanced Excel", "SQL", "Power BI", "Database Management", "Operational Data Analysis"],
-                    status: ""
+                    status: "",
+                    images: []
                 },
                 {
                     id: "exp-06",
@@ -3031,7 +3443,8 @@
                         "Gained exposure to managing a large-scale technical and electric-mobility event."
                     ],
                     skills: [],
-                    status: ""
+                    status: "",
+                    images: []
                 },
                 {
                     id: "exp-07",
@@ -3048,8 +3461,10 @@
                         "The experience provided early clarity about my interests and future career direction."
                     ],
                     skills: [],
+                    images: []
                 }
             ],
+
 
             // ==========================================
             // RESEARCH & PROJECTS DATA
@@ -3183,7 +3598,7 @@
                 portfolioContent.tickerItems.forEach(item => {
                     const span = document.createElement('span');
                     span.className = 'ticker-item';
-                    span.innerHTML = `${item} <span class="ticker-star">✴</span>`;
+                    span.innerHTML = `${item} <span class="ticker-star">✦</span>`;
                     fragment.appendChild(span);
                 });
                 return fragment;
@@ -3193,137 +3608,218 @@
                 tickerTrack.appendChild(createTickerItems());
             }
 
-            // 9. Render Experience Timeline
-            const timelineContainer = document.getElementById('timeline-items-container');
-            const desktopDetailsPlaceholder = document.getElementById('desktop-details-placeholder');
-            const desktopDetailsCard = document.getElementById('desktop-details-card');
+                        // 9. Render Experience Timeline (Redesign)
+            const timelineContainer = document.getElementById('interactive-timeline-container');
+            const expModalOverlay = document.getElementById('experience-modal-overlay');
+            const expModalClose = document.getElementById('exp-modal-close');
+            
+            // Modal Elements
+            const modalOrg = document.getElementById('modal-org');
+            const modalProgram = document.getElementById('modal-program');
+            const modalPosition = document.getElementById('modal-position');
+            const modalDate = document.getElementById('modal-date');
+            const modalStatus = document.getElementById('modal-status');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalSkills = document.getElementById('modal-skills');
+            const modalSkillsContainer = document.getElementById('modal-skills-container');
+            const modalGallery = document.getElementById('modal-gallery');
+            
+            // Lightbox Elements
+            const lightboxOverlay = document.getElementById('lightbox-modal');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            
+            let currentGalleryImages = [];
+            let currentLightboxIndex = 0;
 
-            // Build card content HTML helper
-            const populateCardContent = (exp, cardElement) => {
-                const orgEl = cardElement.querySelector('.card-org');
-                const progEl = cardElement.querySelector('.card-program');
-                const descEl = cardElement.querySelector('.card-desc');
-                const skillsTitleEl = cardElement.querySelector('.card-skills-title');
-                const skillsEl = cardElement.querySelector('.card-skills');
-                const statusEl = cardElement.querySelector('.card-status');
+            portfolioContent.experiences.forEach((exp) => {
+                const item = document.createElement('div');
+                item.className = 'interactive-timeline-item';
+                
+                // Truncate description for preview (first sentence or first bullet point)
+                const previewText = exp.description && exp.description.length > 0 ? exp.description[0] : "";
+                
+                item.innerHTML = `
+                    <div class="timeline-node"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">${exp.date}</div>
+                        <div class="timeline-position">${exp.position}</div>
+                        <div class="timeline-org">${exp.organization}</div>
+                        <div class="timeline-preview">${previewText}</div>
+                        <div class="view-exp-cta">
+                            EXPLORE EXPERIENCE 
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                `;
 
-                orgEl.textContent = exp.organization;
+                item.addEventListener('click', () => {
+                    openExperienceModal(exp);
+                });
 
+                timelineContainer.appendChild(item);
+            });
+            
+            // Modal Logic
+            function openExperienceModal(exp) {
+                // Populate text
+                modalOrg.textContent = exp.organization;
+                modalPosition.textContent = exp.position;
+                modalDate.textContent = exp.date;
+                
                 if (exp.program) {
-                    progEl.style.display = 'block';
-                    progEl.textContent = exp.program;
+                    modalProgram.style.display = 'block';
+                    modalProgram.textContent = exp.program;
                 } else {
-                    progEl.style.display = 'none';
+                    modalProgram.style.display = 'none';
                 }
-
+                
+                if (exp.status) {
+                    modalStatus.style.display = 'inline-block';
+                    modalStatus.textContent = exp.status;
+                } else {
+                    modalStatus.style.display = 'none';
+                }
+                
+                // Populate Description
                 let descHTML = '<ul>';
                 exp.description.forEach(point => {
                     descHTML += `<li>${point}</li>`;
                 });
                 descHTML += '</ul>';
-                descEl.innerHTML = descHTML;
-
+                modalDesc.innerHTML = descHTML;
+                
+                // Populate Skills
                 if (exp.skills && exp.skills.length > 0) {
-                    skillsTitleEl.style.display = 'block';
-                    skillsEl.style.display = 'flex';
-                    skillsEl.innerHTML = '';
+                    modalSkillsContainer.style.display = 'block';
+                    modalSkills.innerHTML = '';
                     exp.skills.forEach(skill => {
                         const span = document.createElement('span');
                         span.className = 'skill-tag';
                         span.textContent = skill;
-                        skillsEl.appendChild(span);
+                        modalSkills.appendChild(span);
                     });
                 } else {
-                    skillsTitleEl.style.display = 'none';
-                    skillsEl.style.display = 'none';
+                    modalSkillsContainer.style.display = 'none';
                 }
-
-                if (exp.status) {
-                    statusEl.style.display = 'block';
-                    statusEl.textContent = exp.status;
+                
+                // Populate Gallery
+                modalGallery.innerHTML = '';
+                currentGalleryImages = exp.images || [];
+                
+                if (currentGalleryImages.length > 0) {
+                    modalGallery.style.display = 'grid';
+                    currentGalleryImages.forEach((img, index) => {
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.innerHTML = `
+                            <img src="${img.src}" alt="${img.title || 'Experience moment'}" loading="lazy">
+                            <div class="gallery-item-overlay">
+                                <div class="gallery-item-title">${img.title || 'View Document'}</div>
+                            </div>
+                        `;
+                        galleryItem.addEventListener('click', () => openLightbox(index));
+                        modalGallery.appendChild(galleryItem);
+                    });
                 } else {
-                    statusEl.style.display = 'none';
-                }
-            };
-
-            let currentActiveId = null;
-
-            portfolioContent.experiences.forEach((exp, index) => {
-                // Create timeline item
-                const item = document.createElement('div');
-                item.className = 'timeline-item';
-                item.dataset.id = exp.id;
-
-                item.innerHTML = `
-                    <div class="timeline-node"></div>
-                    <div class="timeline-date">${exp.date}</div>
-                    <div class="timeline-position">${exp.position}</div>
-                    <div class="mobile-card-container">
-                        <div class="experience-card mobile-card" id="mobile-card-${exp.id}">
-                            <div class="card-org"></div>
-                            <div class="card-program"></div>
-                            <div class="card-desc"></div>
-                            <div class="card-skills-title" style="display:none;">Skills & Technologies</div>
-                            <div class="card-skills"></div>
-                            <div class="card-status"></div>
+                    modalGallery.style.display = 'block';
+                    modalGallery.innerHTML = `
+                        <div class="gallery-empty">
+                            <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            <span>MORE MOMENTS COMING SOON</span>
                         </div>
-                    </div>
-                `;
+                    `;
+                }
 
-                timelineContainer.appendChild(item);
-
-                // Pre-populate mobile card content
-                const mobileCard = item.querySelector('.mobile-card');
-                populateCardContent(exp, mobileCard);
-
-                // Add click listener
-                item.addEventListener('click', () => {
-                    const isMobile = window.innerWidth <= 900;
-
-                    // If clicking the currently active one, toggle it off
-                    if (currentActiveId === exp.id) {
-                        item.classList.remove('active');
-                        if (isMobile) {
-                            mobileCard.classList.remove('active');
-                        } else {
-                            desktopDetailsCard.classList.remove('active');
-                            desktopDetailsPlaceholder.classList.remove('hidden');
-                        }
-                        currentActiveId = null;
-                        return;
+                // Show modal
+                expModalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeExperienceModal() {
+                expModalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            expModalClose.addEventListener('click', closeExperienceModal);
+            expModalOverlay.addEventListener('click', (e) => {
+                if (e.target === expModalOverlay) closeExperienceModal();
+            });
+            
+            // Lightbox Logic
+            function openLightbox(index) {
+                currentLightboxIndex = index;
+                updateLightboxImage();
+                lightboxOverlay.classList.add('active');
+            }
+            
+            function closeLightbox() {
+                lightboxOverlay.classList.remove('active');
+            }
+            
+            function updateLightboxImage() {
+                if (!currentGalleryImages[currentLightboxIndex]) return;
+                lightboxImg.src = currentGalleryImages[currentLightboxIndex].src;
+                lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentGalleryImages.length}`;
+            }
+            
+            function nextLightboxImg() {
+                currentLightboxIndex = (currentLightboxIndex + 1) % currentGalleryImages.length;
+                updateLightboxImage();
+            }
+            
+            function prevLightboxImg() {
+                currentLightboxIndex = (currentLightboxIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+                updateLightboxImage();
+            }
+            
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxNext.addEventListener('click', nextLightboxImg);
+            lightboxPrev.addEventListener('click', prevLightboxImg);
+            
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target === lightboxOverlay) closeLightbox();
+            });
+            
+            // Global Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (lightboxOverlay.classList.contains('active')) {
+                        closeLightbox();
+                    } else if (expModalOverlay.classList.contains('active')) {
+                        closeExperienceModal();
                     }
-
-                    // Remove active from all
-                    document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
-                    document.querySelectorAll('.mobile-card').forEach(el => el.classList.remove('active'));
-
-                    // Activate this one
-                    item.classList.add('active');
-                    currentActiveId = exp.id;
-
-                    if (isMobile) {
-                        mobileCard.classList.add('active');
-                    } else {
-                        // Desktop
-                        desktopDetailsPlaceholder.classList.add('hidden');
-
-                        // Temporarily fade out to update content smoothly
-                        desktopDetailsCard.classList.remove('active');
-                        setTimeout(() => {
-                            populateCardContent(exp, desktopDetailsCard);
-                            desktopDetailsCard.classList.add('active');
-                        }, 200);
-                    }
-                });
+                } else if (e.key === 'ArrowRight' && lightboxOverlay.classList.contains('active')) {
+                    nextLightboxImg();
+                } else if (e.key === 'ArrowLeft' && lightboxOverlay.classList.contains('active')) {
+                    prevLightboxImg();
+                }
             });
 
-            // 10. Render Research & Projects Section
-            const researchCenterImg = document.getElementById('research-center-img');
-            researchCenterImg.src = portfolioContent.researchImage;
 
+            // 10. Render Research & Projects Section
             const radialContainer = document.getElementById('radial-container');
             const projectModalOverlay = document.getElementById('project-modal-overlay');
             const modalClose = document.getElementById('modal-close');
+            
+            const researchSection = document.getElementById('projects');
+            let hasAnimatedProjects = false;
+            
+            const projectsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimatedProjects) {
+                        hasAnimatedProjects = true;
+                        setTimeout(() => {
+                            researchSection.classList.add('animate-hub');
+                        }, 2000);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            projectsObserver.observe(researchSection);
 
             portfolioContent.researchProjects.forEach(proj => {
                 // Create connector
@@ -3365,7 +3861,7 @@
 
                     connector.style.left = `${cardCenterX}px`;
                     connector.style.top = `${cardCenterY}px`;
-                    connector.style.width = `${Math.max(distance - 120, 0)}px`; // leave gap for central image
+                    connector.style.width = `${Math.max(distance - 200, 0)}px`; // leave gap for central heading
                     connector.style.transform = `rotate(${angle}deg)`;
                 };
 
@@ -3438,43 +3934,203 @@
             // ==========================================
             // PROTOSEM JOURNEY DATA & LOGIC
             // ==========================================
-            const createUpcomingWeeks = (weeks) => {
-                const byNumber = new Map((weeks || []).map(w => [w.weekNumber, w]));
-                const output = [];
-                for (let i = 0; i < 20; i++) {
-                    const existing = byNumber.get(i);
-                    if (existing) output.push(existing);
-                    else output.push({
-                        weekNumber: i,
-                        title: i === 19 ? "FINAL DESTINATION" : "NEXT DESTINATION",
-                        journeyLabel: i === 19 ? "FINAL DESTINATION" : "UPCOMING",
-                        status: "UPCOMING", dateRange: "", intro: "", days: [], finalReflection: "", photos: [], artifacts: []
-                    });
-                }
-                return output;
+            const protosemJourneyData = {
+                totalWeeks: 20,
+                weeks: [
+                    {
+                        weekNumber: 0,
+                        title: "THE JOURNEY BEGINS",
+                        journeyLabel: "FIRST LANDING",
+                        status: "COMPLETED",
+                        dateRange: "",
+                        intro: "It was the first landing of my PRICE Protosem journey—a week that made me look inward, look around, and finally start looking at what I could create. From wonder to teamwork, from curiosity to consumer problems, and from ideas to possibilities, Week 0 gave me the first glimpse of what this journey could become.",
+                        days: [
+                            {
+                                dayNumber: 1,
+                                title: "FINDING MY PLACE",
+                                sections: [
+                                    { heading: "Morning", content: "Starting With Introductions" },
+                                    { heading: "Afternoon", content: "From Ideas to Reality" }
+                                ],
+                                takeaway: "The journey began with knowing the people around me—and then seeing how ideas can actually take shape."
+                            },
+                            {
+                                dayNumber: 2,
+                                title: "WONDER, IDENTITY & DISCOVERING MYSELF",
+                                sections: [
+                                    { heading: "Finding a Story", content: "Finding a Story That Felt Like Me" },
+                                    { heading: "Another Story", content: "Mary Shelley’s Teenage Dream" },
+                                    { heading: "Discovering My Personality", content: "" },
+                                    { heading: "Understanding LinkedIn", content: "" }
+                                ],
+                                takeaway: "I discovered that my curiosity isn't just something I have—it might actually be one of the things that drives me."
+                            },
+                            {
+                                dayNumber: 3,
+                                title: "CHOICES, STRATEGY & TEAMWORK",
+                                sections: [
+                                    { heading: "The Marshmallow Challenge", content: "52 cm tower. First place." },
+                                    { heading: "Among Us", content: "Observe Before You Assume" },
+                                    { heading: "Beta Team", content: "The Beginning of a Team" }
+                                ],
+                                takeaway: "From building a 52 cm tower to decoding people's reactions, Day 3 reminded me that good teamwork is a mix of observation, strategy, adaptability, and a little bit of fun."
+                            },
+                            {
+                                dayNumber: 4,
+                                title: "TAKING THE STAGE & THINKING BEYOND THE OBVIOUS",
+                                sections: [
+                                    { heading: "Preparing for the Inauguration", content: "Voice & Views. Interdisciplinary learning. Networking." },
+                                    { heading: "From Consumer Problems to Wild Ideas", content: "Phygital retail" }
+                                ],
+                                takeaway: "Don't begin by asking, 'What can we build?' Begin by asking, 'What problem are people actually experiencing?'"
+                            },
+                            {
+                                dayNumber: 5,
+                                title: "LEARNING FROM THOSE WHO TOOK THE PATH",
+                                sections: [
+                                    { heading: "Accelerator Program", content: "Kickoff 2026" },
+                                    { heading: "R. Krishnan", content: "Tulasi Pharmacy" },
+                                    { heading: "An Unexpected Connection", content: "An Alumna on Stage" },
+                                    { heading: "Swati Shree", content: "A Toddler Thing" },
+                                    { heading: "Closing Week 0", content: "Looking Back. 'Who am I?' → 'What excites me?' → 'How do I work with others?' → 'What problems can I solve?' → 'What can I create?'" }
+                                ],
+                                takeaway: "The journey doesn't become inspiring because the destination is impressive. It becomes inspiring because of everything you learn, overcome, and discover along the way."
+                            }
+                        ],
+                        finalReflection: "And this is only the beginning.",
+                        photos: [
+                            "W00_DAY01_PHOTO_01",
+                            "W00_DAY02_PHOTO_01",
+                            "W00_DAY03_PHOTO_01",
+                            "W00_DAY04_PHOTO_01",
+                            "W00_DAY05_PHOTO_01"
+                        ],
+                        artifacts: []
+                    },
+                    {
+                        weekNumber: 1,
+                        title: "FROM CURIOSITY TO PROBLEM-SOLVING",
+                        journeyLabel: "SECOND LANDING",
+                        status: "COMPLETED",
+                        dateRange: "",
+                        intro: "If Week 0 was about discovering ourselves, Week 1 felt like the moment we started looking outward and solving problems. Learning Design Thinking → Understanding an Industry → Mapping the Pharmaceutical Ecosystem → Finding Problem Statements → Building Our Portfolios → Reflecting on Mindset & Goals",
+                        days: [
+                            {
+                                dayNumber: 1,
+                                title: "LEARNING TO THINK LIKE A DESIGNER",
+                                sections: [
+                                    { heading: "Understanding Design Thinking", content: "Empathize → Define → Ideate → Prototype → Test" },
+                                    { heading: "Discovering IDEO", content: "" },
+                                    { heading: "Choosing Our Industry", content: "Pharmacy" },
+                                    { heading: "Mapping the Industry", content: "" }
+                                ],
+                                takeaway: "Design doesn't begin with a solution. It begins with understanding the person who needs one."
+                            },
+                            {
+                                dayNumber: 2,
+                                title: "LOOKING BENEATH THE INDUSTRY",
+                                sections: [
+                                    { heading: "Understanding the Pharmaceutical Value Chain", content: "" },
+                                    { heading: "SWOT Analysis", content: "" },
+                                    { heading: "Finding the Problem", content: "" }
+                                ],
+                                takeaway: "Understanding an industry means looking beyond its products and seeing the entire ecosystem behind them."
+                            },
+                            {
+                                dayNumber: 3,
+                                title: "A WORKING HOLIDAY",
+                                sections: [
+                                    { heading: "Working holiday", content: "Research. Discussions. Project direction." }
+                                ],
+                                takeaway: "Not every productive day needs to look busy."
+                            },
+                            {
+                                dayNumber: 4,
+                                title: "BUILDING MY DIGITAL IDENTITY",
+                                sections: [
+                                    { heading: "Portfolio", content: "Personal website. Programming. Understanding systems." },
+                                    { heading: "Process", content: "Build → Evaluate → Identify what is missing → Improve" }
+                                ],
+                                takeaway: "Building something that works is one thing. Building something that represents you is another."
+                            },
+                            {
+                                dayNumber: 5,
+                                title: "MINDSET, PRIORITIES & LOOKING BACK",
+                                sections: [
+                                    { heading: "Ram Kumar Sir", content: "80/20 rule / Pareto Principle. SMART framework." },
+                                    { heading: "Finishing the Portfolio", content: "Blog content. Final Week 1 presentation." }
+                                ],
+                                takeaway: ""
+                            }
+                        ],
+                        finalReflection: "First, understand the problem. Then understand yourself. Only then start building.",
+                        photos: [
+                            "W01_DAY01_PHOTO_01",
+                            "W01_DAY02_PHOTO_01",
+                            "W01_DAY03_PHOTO_01",
+                            "W01_DAY04_PHOTO_01",
+                            "W01_DAY05_PHOTO_01"
+                        ],
+                        artifacts: []
+                    },
+                    {
+                        weekNumber: 6,
+                        title: "DIGITAL FABRICATION (3D PRINTING & LASER CUTTING)",
+                        journeyLabel: "FABRICATION LAB",
+                        status: "COMPLETED",
+                        customUrl: "week-06.html",
+                        dateRange: "",
+                        intro: "Comprehensive digital fabrication covering additive manufacturing (3D Printing with Bambu Lab H2S) and subtractive precision manufacturing (CO₂ Laser Cutting & RDWorks Cut vs Scan workflow).",
+                        days: [
+                            {
+                                dayNumber: 1,
+                                title: "DIGITAL-TO-PHYSICAL FABRICATION",
+                                sections: [
+                                    { heading: "3D Printing", content: "Additive manufacturing principles, Bambu Lab H2S CoreXY printer execution, Bambu Studio slicing, and Low Poly Cat 3D model fabrication." },
+                                    { heading: "Laser Cutting", content: "CO₂ Laser optics, RDWorks vector workflow, Cut vs Scan layer assignment, and precision parts fabrication." }
+                                ],
+                                takeaway: "From digital geometry to precision fabrication."
+                            }
+                        ],
+                        finalReflection: "Mastering both additive and subtractive digital manufacturing workflows.",
+                        photos: [
+                            "week6-assets/finished_low_poly_cat.png",
+                            "week6-assets/ayesha_printer_operation.jpg",
+                            "laser-assets/batman_vector_dxf.png",
+                            "laser-assets/rdworks_interface_workflow.png"
+                        ],
+                        artifacts: []
+                    }
+                ]
             };
 
-            let protosemJourneyData = { totalWeeks: 20, weeks: [] };
-            const loadProtoSemJourney = async () => {
-                try {
-                    const response = await fetch('./content/protosem/weeks.json', { cache: 'no-store' });
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    const compiled = await response.json();
-                    protosemJourneyData = { totalWeeks: compiled.totalWeeks || 20, weeks: createUpcomingWeeks(compiled.weeks) };
-                } catch (error) {
-                    console.error('Unable to load compiled ProtoSem content:', error);
-                    protosemJourneyData = { totalWeeks: 20, weeks: createUpcomingWeeks([]) };
-                }
+            // Initialize remaining upcoming weeks
+            for (let i = 2; i <= protosemJourneyData.totalWeeks; i++) {
+                if (i === 6) continue; // Week 6 is already defined above
+                const label = (i === protosemJourneyData.totalWeeks) ? "FINAL DESTINATION" : "NEXT DESTINATION";
+                protosemJourneyData.weeks.push({
+                    weekNumber: i,
+                    title: label,
+                    journeyLabel: "UPCOMING",
+                    status: "UPCOMING",
+                    dateRange: "",
+                    intro: "",
+                    days: [],
+                    finalReflection: "",
+                    photos: [],
+                    artifacts: []
+                });
+            }
 
-                renderProtoSemJourney();
-            };
+            // Sort weeks by weekNumber
+            protosemJourneyData.weeks.sort((a, b) => a.weekNumber - b.weekNumber);
 
-            const renderProtoSemJourney = () => {
-            // Render Journey Map & Dashboard
-            const mapContainer = document.getElementById('journey-map-container');
+            // Render Journey Dashboard (Redesign)
             const passportGrid = document.getElementById('passport-stamps-grid');
             let completedCount = 0;
             let latestCompletedIndex = -1;
+
+            if (passportGrid) passportGrid.innerHTML = '';
 
             protosemJourneyData.weeks.forEach((week, index) => {
                 if (week.status === 'COMPLETED') {
@@ -3484,64 +4140,86 @@
 
                 // Render Stamp
                 const stamp = document.createElement('div');
-                stamp.className = `journey-stamp ${week.status.toLowerCase()}`;
+                stamp.className = `passport-stamp ${week.status.toLowerCase()}`;
                 if (index === latestCompletedIndex) stamp.classList.add('current');
                 stamp.dataset.index = index;
                 stamp.id = `stamp-w${week.weekNumber}`;
 
+                let statusText = week.status;
+                if (week.status === 'COMPLETED') statusText = '✓ LANDED';
+                else if (week.status === 'UPCOMING') {
+                    statusText = (week.weekNumber === protosemJourneyData.totalWeeks) ? 'FINAL STOP' : 'NEXT STOP';
+                }
+
                 stamp.innerHTML = `
                     <div class="stamp-week">W${String(week.weekNumber).padStart(2, '0')}</div>
-                    <div class="stamp-label">${week.journeyLabel || week.title}</div>
-                    <div class="stamp-status">${week.status === 'COMPLETED' ? '✓ LANDED' : (week.status === 'UPCOMING' ? 'UPCOMING' : week.status)}</div>
+                    <div class="stamp-status">${statusText}</div>
                 `;
 
-                mapContainer.appendChild(stamp);
-
-                // Render Passport Mini Stamp
-                const miniStamp = document.createElement('div');
-                miniStamp.className = `passport-mini-stamp ${week.status === 'COMPLETED' ? 'completed' : ''}`;
-                miniStamp.textContent = `W${String(week.weekNumber).padStart(2, '0')}`;
-                passportGrid.appendChild(miniStamp);
+                if (passportGrid) passportGrid.appendChild(stamp);
                 
-                // Click event for modal
+                // Click event for modal or dedicated week page
                 if (week.status !== 'UPCOMING') {
-                    stamp.addEventListener('click', () => openJournalModal(week));
+                    stamp.addEventListener('click', () => {
+                        if (week.customUrl) {
+                            window.location.href = week.customUrl;
+                        } else {
+                            openJournalModal(week);
+                        }
+                    });
                 }
             });
 
             // Update Dashboard Stats
-            document.getElementById('current-progress-text').textContent = `${completedCount} / ${protosemJourneyData.totalWeeks} weeks completed`;
-            if (latestCompletedIndex >= 0) {
-                document.getElementById('current-destination-text').textContent = `WEEK ${String(protosemJourneyData.weeks[latestCompletedIndex].weekNumber).padStart(2, '0')} — ${protosemJourneyData.weeks[latestCompletedIndex].title}`;
+            const progressEl = document.getElementById('current-progress-text');
+            const destinationEl = document.getElementById('current-destination-text');
+            if (progressEl) progressEl.textContent = `${completedCount} / ${protosemJourneyData.totalWeeks} WEEKS COMPLETED`;
+            if (latestCompletedIndex >= 0 && destinationEl) {
+                destinationEl.innerHTML = `WEEK ${String(protosemJourneyData.weeks[latestCompletedIndex].weekNumber).padStart(2, '0')} &mdash;<br>${protosemJourneyData.weeks[latestCompletedIndex].title}`;
             }
 
             // Animate Airplane
             const airplane = document.getElementById('paper-airplane');
             const positionAirplane = () => {
-                if (latestCompletedIndex >= 0) {
+                if (latestCompletedIndex >= 0 && airplane) {
                     const targetStamp = document.getElementById(`stamp-w${protosemJourneyData.weeks[latestCompletedIndex].weekNumber}`);
                     if (targetStamp) {
-                        const containerRect = mapContainer.getBoundingClientRect();
+                        const dashboardRect = document.querySelector('.journey-dashboard').getBoundingClientRect();
                         const targetRect = targetStamp.getBoundingClientRect();
                         
-                        // Calculate relative position to land near the stamp
-                        const left = targetRect.left - containerRect.left + (targetRect.width / 2) - 20;
-                        const top = targetRect.top - containerRect.top - 40;
+                        const left = targetRect.left - dashboardRect.left + (targetRect.width / 2) - 22;
+                        const top = targetRect.top - dashboardRect.top - 22;
                         
                         airplane.style.opacity = '1';
                         airplane.style.left = `${left}px`;
                         airplane.style.top = `${top}px`;
+                        airplane.style.transform = `scale(1.2) rotate(0deg)`;
                     }
                 }
             };
             
-            // Wait for layout to settle before positioning
-            setTimeout(positionAirplane, 500);
-            window.addEventListener('resize', positionAirplane);
-
-            };
-
-            loadProtoSemJourney();
+            // Wait for intersection before animating
+            const journeySection = document.getElementById('protosem');
+            let hasAnimated = false;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        setTimeout(positionAirplane, 200);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            if (journeySection) {
+                observer.observe(journeySection);
+            } else {
+                setTimeout(positionAirplane, 500);
+            }
+            
+            window.addEventListener('resize', () => {
+                if(hasAnimated) positionAirplane();
+            });
 
             // Journal Modal Logic
             const journalOverlay = document.getElementById('journal-modal-overlay');
@@ -3563,7 +4241,7 @@
                     day.sections.forEach(sec => {
                         sectionsHtml += `
                             <div class="journal-section-heading">${sec.heading}</div>
-                            <div class="journal-section-content">${sec.contentHtml || sec.content || '-'}</div>
+                            <div class="journal-section-content">${sec.content || '-'}</div>
                         `;
                     });
                     
@@ -3592,15 +4270,11 @@
                 if (weekData.photos && weekData.photos.length > 0) {
                     photoContainer.style.display = 'block';
                     photoGrid.innerHTML = '';
-                    weekData.photos.forEach(photo => {
-                        const item = document.createElement('div');
-                        item.className = 'photo-placeholder';
-                        if (typeof photo === 'string' && /^(https?:\/\/|\.\/)/.test(photo)) {
-                            item.innerHTML = `<img src="${photo}" alt="ProtoSem journal photo" loading="lazy">`;
-                        } else {
-                            item.textContent = photo;
-                        }
-                        photoGrid.appendChild(item);
+                    weekData.photos.forEach(photoId => {
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'photo-placeholder';
+                        placeholder.textContent = photoId;
+                        photoGrid.appendChild(placeholder);
                     });
                 } else {
                     photoContainer.style.display = 'none';
@@ -3641,9 +4315,8 @@
                             e.preventDefault();
                             
                             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                            const hasPlayed = sessionStorage.getItem('protosemAnimationPlayed');
                             
-                            if (prefersReducedMotion || hasPlayed) {
+                            if (prefersReducedMotion) {
                                 // Skip animation, scroll immediately
                                 const protosemSection = document.querySelector('#protosem');
                                 if (protosemSection) protosemSection.scrollIntoView({ behavior: 'smooth' });
@@ -3702,8 +4375,75 @@
                     }
                 });
             }
+            
+            // ==========================================
+            // CONTACT SECTION INTERACTIONS
+            // ==========================================
+            const contactSection = document.getElementById('contact-me');
+            const contactGlow = document.getElementById('contact-glow');
+            const contactHeading = document.getElementById('contact-heading');
+
+            if (contactSection && contactGlow && contactHeading) {
+                const contactObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            contactSection.classList.add('contact-in-view');
+                            contactObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                contactObserver.observe(contactSection);
+
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
+                    let mouseX = window.innerWidth / 2;
+                    let mouseY = window.innerHeight / 2;
+                    let glowX = mouseX;
+                    let glowY = mouseY;
+                    let isHovering = false;
+
+                    const animateGlow = () => {
+                        glowX += (mouseX - glowX) * 0.1;
+                        glowY += (mouseY - glowY) * 0.1;
+                        
+                        contactGlow.style.left = `${glowX}px`;
+                        contactGlow.style.top = `${glowY}px`;
+                        
+                        if (isHovering) {
+                            requestAnimationFrame(animateGlow);
+                        }
+                    };
+
+                    contactSection.addEventListener('mousemove', (e) => {
+                        const rect = contactSection.getBoundingClientRect();
+                        mouseX = e.clientX - rect.left;
+                        mouseY = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const moveX = (mouseX - centerX) * 0.01;
+                        const moveY = (mouseY - centerY) * 0.01;
+                        
+                        contactHeading.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+                    
+                    contactSection.addEventListener('mouseenter', () => {
+                        isHovering = true;
+                        contactGlow.style.opacity = '1';
+                        animateGlow();
+                    });
+                    
+                    contactSection.addEventListener('mouseleave', () => {
+                        isHovering = false;
+                        contactGlow.style.opacity = '0';
+                        contactHeading.style.transform = 'translate(0px, 0px)';
+                    });
+                }
+            }
         });
     </script>
 </body>
 
 </html>
+

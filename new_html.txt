@@ -1,0 +1,64 @@
+<section id="experience" class="experience-section">
+        <div class="section-header">
+            <h2>EXPERIENCE</h2>
+            <p>A journey through hands-on learning, leadership, innovation, and technology.</p>
+        </div>
+
+        <div class="interactive-timeline">
+            <div class="timeline-line"></div>
+            <div id="interactive-timeline-container">
+                <!-- Timeline items injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Detail Modal -->
+    <div id="experience-modal-overlay" class="modal-overlay">
+        <div class="experience-modal">
+            <button class="modal-close-btn" id="exp-modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="exp-modal-content">
+                <div class="exp-modal-header">
+                    <div class="card-org" id="modal-org"></div>
+                    <div class="card-program" id="modal-program"></div>
+                    <div class="timeline-position" id="modal-position"></div>
+                    <div class="timeline-date" id="modal-date"></div>
+                    <div class="card-status" id="modal-status"></div>
+                </div>
+                
+                <div class="exp-modal-body">
+                    <div class="card-desc" id="modal-desc"></div>
+                    
+                    <div id="modal-skills-container">
+                        <div class="card-skills-title" id="modal-skills-title">Skills & Technologies</div>
+                        <div class="card-skills" id="modal-skills"></div>
+                    </div>
+                </div>
+                
+                <div class="exp-gallery-section">
+                    <div class="gallery-title">CERTIFICATES & MOMENTS</div>
+                    <div id="modal-gallery" class="gallery-grid">
+                        <!-- Images injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-screen Lightbox -->
+    <div id="lightbox-modal" class="lightbox-overlay">
+        <div class="lightbox-toolbar">
+            <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+            <button class="modal-close-btn" id="lightbox-close" aria-label="Close viewer">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Full screen preview">
+        <button class="lightbox-nav next" id="lightbox-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+    </div>

@@ -1,0 +1,235 @@
+        .journey-dashboard {
+            max-width: 1300px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 4rem;
+            position: relative;
+        }
+
+        .flight-path-svg {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            width: 80%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .destination-sheet {
+            background: #fdf8e9;
+            color: #2b1133;
+            border-radius: 4px;
+            padding: 4rem 3rem;
+            position: relative;
+            box-shadow: 10px 15px 30px rgba(0,0,0,0.4), inset 0 0 40px rgba(200, 170, 140, 0.2);
+            border: 1px solid rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            z-index: 2;
+        }
+
+        .destination-header {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8b6b72;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .current-destination-text {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            line-height: 1.1;
+            color: #2c1236;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .current-progress-text {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #6a4c52;
+            font-weight: 600;
+        }
+
+        .destination-annotation {
+            font-family: var(--font-handwritten);
+            font-size: 1.8rem;
+            color: #9824d6;
+            position: absolute;
+            bottom: 2rem;
+            right: -1rem;
+            transform: rotate(-5deg);
+            opacity: 0.8;
+            line-height: 1;
+        }
+
+        .compass-illustration {
+            position: absolute;
+            bottom: 3rem;
+            right: 4rem;
+            width: 120px;
+            height: 120px;
+            opacity: 0.1;
+            pointer-events: none;
+            color: #2b1133;
+        }
+
+        .passport-panel {
+            background: #2a0f2b;
+            border-radius: 8px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.05);
+            color: var(--color-text-main);
+            z-index: 2;
+        }
+        
+        .passport-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 11px);
+            pointer-events: none;
+            border-radius: 8px;
+        }
+
+        .passport-header {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: #fdf8e9;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 2px dashed rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+        }
+
+        .passport-meta {
+            display: flex;
+            gap: 2rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: rgba(253, 248, 233, 0.7);
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-wrap: wrap;
+        }
+
+        .passport-meta strong {
+            color: #fdf8e9;
+        }
+
+        .passport-stamps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .passport-stamp {
+            width: 95px;
+            height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(253, 248, 233, 0.2);
+            border-radius: 4px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            position: relative;
+        }
+
+        .passport-stamp::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px dashed rgba(253, 248, 233, 0.15);
+            border-radius: 6px;
+        }
+
+        .passport-stamp:hover {
+            transform: scale(1.05) rotate(2deg);
+            border-color: #9824d6;
+            background: rgba(152, 36, 214, 0.1);
+            z-index: 5;
+        }
+
+        .passport-stamp.completed {
+            border-color: #d896ff;
+            color: #d896ff;
+            transform: rotate(-3deg);
+        }
+
+        .passport-stamp.completed::after {
+            border-color: rgba(216, 150, 255, 0.3);
+        }
+        
+        .passport-stamp.current {
+            border-color: #ff00ff;
+            color: #ff00ff;
+            background: rgba(255, 0, 255, 0.08);
+            transform: rotate(4deg) scale(1.1) !important;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+            z-index: 10;
+        }
+
+        .passport-stamp.upcoming {
+            opacity: 0.25;
+            border-style: dotted;
+            cursor: not-allowed;
+        }
+        
+        .passport-stamp.upcoming:hover {
+            transform: none;
+            border-color: rgba(253, 248, 233, 0.3);
+            background: transparent;
+        }
+
+        .passport-stamp:nth-child(3n) { transform: rotate(2deg); }
+        .passport-stamp:nth-child(3n+1) { transform: rotate(-1deg); }
+        .passport-stamp:nth-child(3n+2) { transform: rotate(3deg); }
+
+        .stamp-week {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stamp-status {
+            font-family: var(--font-body);
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .passport-stamp.completed .stamp-status {
+            color: #d896ff;
+        }
+
+        .paper-airplane {
+            position: absolute;
+            z-index: 20;
+            width: 45px;
+            height: 45px;
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
+            opacity: 0;
+            pointer-events: none;
+        }

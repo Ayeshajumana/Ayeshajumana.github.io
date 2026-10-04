@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProtoSem Engineering Portfolio - Week 06: Comprehensive 25-Mark Assessment Documentation covering Laser Cutting (1490 CO2 Laser, RDWorks V8) and 3D Printing (Bambu Lab H2S, Bambu Studio).">
+    <title>Week 06: Digital Fabrication (Laser Cutting &amp; 3D Printing) | Ayesha Jumana S</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM & THEME TOKENS (MATCHING PROTOSEM PORTFOLIO STYLE)
+           ========================================================================== */
+        :root {
+            /* Core Theme Colors */
+            --bg-deep: #0a040e;
+            --bg-color: #140818;
+            --bg-card: rgba(26, 10, 32, 0.88);
+            --bg-card-hover: rgba(45, 14, 52, 0.96);
+            --bg-panel: #1e0924;
+            
+            /* Accent & Neon Tokens */
+            --color-purple-bright: #9824d6;
+            --color-purple-neon: #c026d3;
+            --color-magenta: #e879f9;
+            --color-laser-cyan: #38bdf8;
+            --color-laser-amber: #f59e0b;
+            --color-purple-glow: rgba(152, 36, 214, 0.35);
+            --color-purple-border: rgba(152, 36, 214, 0.35);
+            --color-purple-dark: #2a092d;
+
+            /* Typography Colors */
+            --color-text-main: #f0ead6;
+            --color-text-ivory: #fdf8e9;
+            --color-text-secondary: #aba1af;
+            --color-text-muted: #827588;
+            
+            /* Badges & Pills */
+            --badge-bg: rgba(152, 36, 214, 0.22);
+            --badge-border: rgba(192, 38, 211, 0.5);
+
+            /* Typography Stacks */
+            --font-display: 'Anton', sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Layout */
+            --max-width: 1280px;
+            --section-spacing: 4.5rem;
+        }
+
+        /* Global Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-deep);
+            color: var(--color-text-main);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: radial-gradient(circle at 50% 0%, #290d30 0%, #130717 50%, #08030b 100%);
+            min-height: 100vh;
+            line-height: 1.65;
+            overflow-x: hidden;
+            color: var(--color-text-main);
+        }
+
+        /* Subtle Background Grid Overlay */
+        .bg-grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(152, 36, 214, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(152, 36, 214, 0.04) 1px, transparent 1px);
+            background-size: 36px 36px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Sticky Navigation Bar */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(18, 6, 23, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--color-purple-border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9rem 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--color-text-ivory);
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--color-purple-bright), var(--color-purple-neon));
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 0 12px var(--color-purple-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-magenta);
+            background: rgba(152, 36, 214, 0.15);
+        }
+
+        .nav-links a.laser-link:hover {
+            color: var(--color-laser-cyan);
+            background: rgba(56, 189, 248, 0.15);
+        }
+
+        .nav-action-pill {
+            background: rgba(152, 36, 214, 0.25);
+            border: 1px solid var(--badge-border);
+            color: var(--color-magenta) !important;
+            padding: 6px 14px !important;
+            border-radius: 20px !important;
+            font-family: var(--font-mono);
+            font-size: 0.78rem !important;
+        }
+
+        .nav-action-pill:hover {
+            background: var(--color-purple-neon) !important;
+            color: #fff !important;
+            box-shadow: 0 0 15px var(--color-purple-glow);
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Header Section */
+        .page-hero {
+            padding: 4.5rem 0 3rem 0;
+            border-bottom: 1px solid var(--color-purple-border);
+            background: linear-gradient(180deg, rgba(30, 9, 36, 0.7) 0%, rgba(14, 4, 18, 0.95) 100%);
+            position: relative;
+        }
+
+        .hero-rubric-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(152, 36, 214, 0.25);
+            border: 1px solid var(--badge-border);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--color-magenta);
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-title-main {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: clamp(2.3rem, 4.5vw, 3.6rem);
+            font-weight: 800;
+            color: var(--color-text-ivory);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            max-width: 980px;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation Jump Tabs */
+        .hero-tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-tab-btn {
+            background: rgba(26, 10, 32, 0.9);
+            border: 1px solid var(--color-purple-border);
+            color: var(--color-text-secondary);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .hero-tab-btn:hover {
+            border-color: var(--color-magenta);
+            color: var(--color-text-ivory);
+            transform: translateY(-2px);
+            background: rgba(45, 14, 52, 0.95);
+        }
+
+        .hero-tab-btn.laser-tab {
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
+        .hero-tab-btn.laser-tab:hover {
+            border-color: var(--color-laser-cyan);
+            color: #fff;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+            background: rgba(14, 50, 70, 0.85);
+        }
+
+        .hero-tab-btn.active-laser {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            color: #041018 !important;
+            font-weight: 800;
+            border-color: #38bdf8;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+        }
+
+        .hero-tab-btn.active-3d {
+            background: linear-gradient(135deg, var(--color-purple-bright) 0%, var(--color-purple-neon) 100%);
+            color: #fff !important;
+            font-weight: 800;
+            border-color: var(--color-magenta);
+            box-shadow: 0 0 18px var(--color-purple-glow);
+        }
+
+        /* Page Separator Banner */
+        .page-divider-banner {
+            padding: 3.5rem 0 2rem 0;
+            background: linear-gradient(180deg, rgba(8, 2, 10, 0.98) 0%, rgba(20, 8, 26, 0.95) 100%);
+            border-top: 2px solid var(--color-purple-border);
+            border-bottom: 1px solid var(--color-purple-border);
+            margin-top: 3rem;
+        }
+
+        .page-divider-banner.laser-divider {
+            border-top-color: rgba(56, 189, 248, 0.5);
+            background: linear-gradient(180deg, rgba(4, 12, 18, 0.98) 0%, rgba(10, 24, 38, 0.95) 100%);
+        }
+
+        .page-tag-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            background: rgba(152, 36, 214, 0.3);
+            border: 1px solid var(--badge-border);
+            color: var(--color-magenta);
+        }
+
+        .page-tag-badge.laser-page-tag {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--color-laser-cyan);
+            color: var(--color-laser-cyan);
+        }
+
+        .page-title-h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            color: var(--color-text-ivory);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section Layout & Headers */
+        section {
+            padding: var(--section-spacing) 0;
+            border-bottom: 1px solid rgba(152, 36, 214, 0.15);
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 2.25rem;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--color-magenta);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-tag.laser-tag {
+            color: var(--color-laser-cyan);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+            color: var(--color-text-ivory);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.98rem;
+            color: var(--color-text-secondary);
+            max-width: 880px;
+            line-height: 1.6;
+        }
+
+        /* Grids & Cards */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+            align-items: start;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .grid-4col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-magenta);
+            background: var(--bg-card-hover);
+            box-shadow: 0 14px 35px rgba(152, 36, 214, 0.25);
+        }
+
+        .card.laser-card {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(14, 24, 38, 0.88);
+        }
+
+        .card.laser-card:hover {
+            border-color: var(--color-laser-cyan);
+            background: rgba(18, 36, 56, 0.95);
+            box-shadow: 0 14px 35px rgba(56, 189, 248, 0.25);
+        }
+
+        .card-icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: rgba(152, 36, 214, 0.25);
+            border: 1px solid var(--badge-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--color-magenta);
+            margin-bottom: 1.2rem;
+        }
+
+        .card.laser-card .card-icon-box {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--color-laser-cyan);
+            color: var(--color-laser-cyan);
+        }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-text-ivory);
+            margin-bottom: 0.65rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Visual Media Figures & Captions */
+        .visual-figure {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .visual-figure:hover {
+            border-color: var(--color-magenta);
+            box-shadow: 0 12px 35px rgba(152, 36, 214, 0.2);
+        }
+
+        .visual-figure.laser-fig {
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .visual-figure.laser-fig:hover {
+            border-color: var(--color-laser-cyan);
+            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.2);
+        }
+
+        .visual-img-container {
+            width: 100%;
+            background: #09030d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .visual-img-container img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .visual-figure:hover .visual-img-container img {
+            transform: scale(1.02);
+        }
+
+        .visual-caption {
+            padding: 1.1rem 1.4rem;
+            background: rgba(20, 6, 25, 0.95);
+            border-top: 1px solid rgba(152, 36, 214, 0.25);
+        }
+
+        .visual-figure.laser-fig .visual-caption {
+            background: rgba(10, 20, 32, 0.95);
+            border-top: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .visual-caption-title {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--color-magenta);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .visual-caption-title.laser-title {
+            color: var(--color-laser-cyan);
+        }
+
+        .visual-caption-desc {
+            font-size: 0.86rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Technical Tables */
+        .tech-table-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 14px;
+            overflow-x: auto;
+            margin-top: 1.25rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        table.tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        table.tech-table thead {
+            background: rgba(48, 12, 51, 0.9);
+            border-bottom: 1px solid var(--color-purple-border);
+        }
+
+        table.tech-table th {
+            padding: 1rem 1.25rem;
+            font-family: var(--font-mono);
+            color: var(--color-magenta);
+            font-size: 0.78rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        table.tech-table.laser-table thead {
+            background: rgba(14, 50, 70, 0.9);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+        }
+
+        table.tech-table.laser-table th {
+            color: var(--color-laser-cyan);
+        }
+
+        table.tech-table td {
+            padding: 0.95rem 1.25rem;
+            border-bottom: 1px solid rgba(152, 36, 214, 0.15);
+            color: var(--color-text-main);
+            vertical-align: middle;
+        }
+
+        table.tech-table tbody tr:hover {
+            background: rgba(152, 36, 214, 0.12);
+        }
+
+        .table-pill {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            background: rgba(152, 36, 214, 0.25);
+            border: 1px solid var(--badge-border);
+            color: var(--color-magenta);
+        }
+
+        .table-pill.laser-pill {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--color-laser-cyan);
+            color: var(--color-laser-cyan);
+        }
+
+        /* Custom Video Player Container */
+        .video-container-card {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+            margin-top: 1.5rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            max-height: 520px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .video-caption {
+            padding: 1.25rem 1.5rem;
+            background: rgba(22, 7, 28, 0.95);
+            border-top: 1px solid rgba(152, 36, 214, 0.25);
+        }
+
+        /* Timeline Step Items */
+        .timeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .timeline-step-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step-item:hover {
+            border-color: var(--color-magenta);
+            transform: translateX(6px);
+            background: var(--bg-card-hover);
+        }
+
+        .timeline-step-item.laser-step {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(14, 24, 38, 0.88);
+        }
+
+        .timeline-step-item.laser-step:hover {
+            border-color: var(--color-laser-cyan);
+            background: rgba(18, 36, 56, 0.95);
+        }
+
+        .step-number-badge {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(152, 36, 214, 0.35), rgba(192, 38, 211, 0.2));
+            border: 1px solid var(--badge-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-magenta);
+        }
+
+        .step-number-badge.laser-badge {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(2, 132, 199, 0.2));
+            border-color: var(--color-laser-cyan);
+            color: var(--color-laser-cyan);
+        }
+
+        .step-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-text-ivory);
+            margin-bottom: 0.45rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .step-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Engineering Pipeline Flowchart Component */
+        .pipeline-flowchart {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pipeline-flowchart.laser-flowchart {
+            border-color: rgba(56, 189, 248, 0.35);
+            background: rgba(14, 28, 42, 0.7);
+        }
+
+        .flowchart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(152, 36, 214, 0.2);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .flowchart-header.laser-header {
+            border-bottom-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .flowchart-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: var(--color-text-ivory);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .flowchart-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(152, 36, 214, 0.25);
+            border: 1px solid var(--badge-border);
+            color: var(--color-magenta);
+            letter-spacing: 0.5px;
+        }
+
+        .flowchart-badge.laser-badge-chip {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--color-laser-cyan);
+            color: var(--color-laser-cyan);
+        }
+
+        .flowchart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            position: relative;
+        }
+
+        .flowchart-node {
+            background: rgba(36, 12, 45, 0.65);
+            border: 1px solid rgba(152, 36, 214, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+            position: relative;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flowchart-node:hover {
+            transform: translateY(-3px);
+            border-color: var(--color-magenta);
+            box-shadow: 0 8px 20px rgba(192, 38, 211, 0.25);
+        }
+
+        .laser-flowchart .flowchart-node {
+            background: rgba(10, 24, 38, 0.65);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .laser-flowchart .flowchart-node:hover {
+            border-color: var(--color-laser-cyan);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        .node-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+        }
+
+        .node-num {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 0.78rem;
+            color: var(--color-magenta);
+            background: rgba(192, 38, 211, 0.15);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .laser-flowchart .node-num {
+            color: var(--color-laser-cyan);
+            background: rgba(56, 189, 248, 0.15);
+        }
+
+        .node-icon {
+            font-size: 1.1rem;
+            color: var(--color-magenta);
+        }
+
+        .laser-flowchart .node-icon {
+            color: var(--color-laser-cyan);
+        }
+
+        .node-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--color-text-ivory);
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .node-desc {
+            font-size: 0.82rem;
+            color: var(--color-text-secondary);
+            line-height: 1.45;
+        }
+
+        /* Downloads Section Grid */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .download-card {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            border-color: var(--color-magenta);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(152, 36, 214, 0.25);
+        }
+
+        .download-card.laser-download-card {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(14, 24, 38, 0.88);
+        }
+
+        .download-card.laser-download-card:hover {
+            border-color: var(--color-laser-cyan);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.25);
+        }
+
+        .download-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 1rem;
+        }
+
+        .download-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(152, 36, 214, 0.25);
+            border: 1px solid var(--badge-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--color-magenta);
+            flex-shrink: 0;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 11px 18px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--color-purple-bright) 0%, var(--color-purple-neon) 100%);
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+            margin-top: 1.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--color-purple-glow);
+            filter: brightness(1.1);
+        }
+
+        .download-btn.laser-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            color: #041018;
+        }
+
+        .download-btn.laser-btn:hover {
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Reflection Card */
+        .reflection-box {
+            background: linear-gradient(135deg, rgba(30, 10, 40, 0.9) 0%, rgba(16, 5, 22, 0.95) 100%);
+            border: 1px solid var(--badge-border);
+            border-radius: 16px;
+            padding: 2.25rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .reflection-box.laser-reflection {
+            border-color: rgba(56, 189, 248, 0.35);
+            background: linear-gradient(135deg, rgba(10, 24, 40, 0.9) 0%, rgba(6, 14, 24, 0.95) 100%);
+        }
+
+        .reflection-box p {
+            color: var(--color-text-main);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .reflection-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Pros & Cons / Compliance Grids */
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .pros-card {
+            background: rgba(18, 28, 22, 0.7);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            border-radius: 12px;
+            padding: 1.75rem;
+        }
+
+        .cons-card {
+            background: rgba(32, 16, 22, 0.7);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-radius: 12px;
+            padding: 1.75rem;
+        }
+
+        .list-unstyled {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .list-unstyled li {
+            position: relative;
+            padding-left: 1.75rem;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .pros-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+            font-family: var(--font-mono);
+        }
+
+        .cons-card li::before {
+            content: '⚠';
+            position: absolute;
+            left: 0;
+            color: #f87171;
+            font-weight: bold;
+        }
+
+        /* References Section */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .ref-card {
+            background: var(--bg-card);
+            border: 1px solid var(--color-purple-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.25s ease;
+        }
+
+        .ref-card:hover {
+            border-color: var(--color-magenta);
+            transform: translateY(-2px);
+        }
+
+        .ref-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--color-text-ivory);
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+        }
+
+        .ref-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .ref-link {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--color-magenta);
+            text-decoration: none;
+            word-break: break-all;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ref-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .page-footer {
+            background: rgba(8, 2, 10, 0.98);
+            border-top: 1px solid var(--color-purple-border);
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav-links a:hover {
+            color: var(--color-magenta);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .grid-3col, .grid-4col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-2col, .pros-cons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-nav {
+                padding: 0.9rem 1.25rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .grid-2col, .grid-3col, .grid-4col, .downloads-grid, .pros-cons-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-step-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .hero-title-main {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid-overlay"></div>
+
+    <!-- Top Sticky Navigation Bar -->
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-badge">PROTOSEM</span>
+            <span>WEEK 06 &bull; 3D PRINTING &amp; LASER CUTTING</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#page-1-laser" class="laser-link"><i class="fas fa-bolt"></i> Page 1: Laser Cutting</a></li>
+            <li><a href="#page-2-3d"><i class="fas fa-cube"></i> Page 2: 3D Printing</a></li>
+            <li><a href="#laser-downloads" class="laser-link"><i class="fas fa-download"></i> Laser Files</a></li>
+            <li><a href="#print-downloads"><i class="fas fa-download"></i> 3D Files</a></li>
+            <li><a href="#references-section"><i class="fas fa-book-bookmark"></i> References</a></li>
+            <li><a href="index.html#protosem" class="nav-action-pill">&larr; Back to Journey</a></li>
+        </ul>
+    </header>
+
+    <!-- Page Hero Header -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-rubric-badge">
+                <span>WEEK 06 &bull; MY LEARNING JOURNEY</span>
+            </div>
+            <h1 class="hero-title-main">From Digital Designs to Real Creations</h1>
+            <p class="hero-subtitle">Ever wondered how a digital design becomes a physical object? In Week 6, I explored the fundamentals of 3D printing and laser cutting, learning how digital designs can be transformed into real-world creations through two different manufacturing processes.</p>
+            
+            <div class="hero-tabs-nav">
+                <a href="#page-1-laser" class="hero-tab-btn laser-tab active-laser"><i class="fas fa-bolt"></i> PAGE 1: LASER CUTTING (13 TOPICS)</a>
+                <a href="#page-2-3d" class="hero-tab-btn active-3d"><i class="fas fa-cube"></i> PAGE 2: 3D PRINTING (10 TOPICS)</a>
+                <a href="#laser-downloads" class="hero-tab-btn laser-tab"><i class="fas fa-file-code"></i> Laser Source Files</a>
+                <a href="#print-downloads" class="hero-tab-btn"><i class="fas fa-box-archive"></i> STL / 3MF Downloads</a>
+                <a href="#references-section" class="hero-tab-btn"><i class="fas fa-book-bookmark"></i> References &amp; Credits</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       PAGE 1 — LASER CUTTING (EXACT 13 ASSESSMENT HEADINGS)
+       ========================================================================== -->
+    <div id="page-1-laser">
+
+        <!-- Page 1 Header Banner -->
+        <div class="page-divider-banner laser-divider">
+            <div class="container">
+                <span class="page-tag-badge laser-page-tag"><i class="fas fa-bolt"></i> ASSESSMENT SECTION &bull; PAGE 1</span>
+                <h2 class="page-title-h1">PAGE 1 — LASER CUTTING</h2>
+                <p class="section-subtitle">Complete laboratory documentation across safety compliance, machine specifications, vector CAD preparation, RDWorks V8 toolpath configuration, cutting execution, and troubleshooting.</p>
+            </div>
+        </div>
+
+        <!-- 1. Lab Safety & Safety Rules -->
+        <section id="laser-safety">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 01</div>
+                    <h2 class="section-title">1. Lab Safety &amp; Safety Rules</h2>
+                    <p class="section-subtitle">Safety precautions, personal protective equipment, and facility safety subsystems followed during laser cutting in the FORGE Digital Fabrication Laboratory.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-shield-halved"></i></div>
+                        <h3>The 6 Required Laboratory Safety Pillars</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>1. Laser Safety (Class 4 Beam Shielding):</strong> The 150W CO₂ laser produces invisible infrared light at 10.6 &micro;m. Operation is strictly restricted to an enclosed Class 1 safety interlocked chamber with tinted acrylic shielding. Dedicated OD6+ safety goggles are worn at all times.</li>
+                            <li><strong>2. Exhaust System (Centrifugal Fume Extraction):</strong> High-volume industrial exhaust blowers maintain continuous negative chamber pressure, evacuating vaporized PMMA particulate, organic fumes, and smoke directly through ducted external exhaust vents.</li>
+                            <li><strong>3. Water Chiller (Optical Thermal Stabilization):</strong> An industrial continuous water chiller maintains the CO₂ glass resonator tube temperature strictly between 18&deg;C and 22&deg;C with distilled water, preventing tube cracking, mode hopping, and power degradation.</li>
+                            <li><strong>4. Earthing (High-Voltage Static &amp; Flyback Grounding):</strong> Dedicated heavy-gauge protective earth ground connections prevent high-voltage (25kV+) flyback power supply discharge, eliminating electrical shock risks and electrical noise interference with DSP controllers.</li>
+                            <li><strong>5. Coaxial Air Assist (Kerf Slag Ejection):</strong> High-pressure compressed air is directed coaxially through the nozzle orifice onto the cutting point, preventing combustion flare-ups, clearing molten kerf slag, and shielding the focusing lens from smoke deposits.</li>
+                            <li><strong>6. General Machine Safety (No Unattended Cutting):</strong> The machine is never operated unattended. An operator remains in visual contact with immediate access to the Emergency Stop switch, and a dedicated CO₂ fire extinguisher is stationed at the workstation.</li>
+                        </ul>
+                    </div>
+
+                    <div class="visual-figure laser-fig">
+                        <div class="visual-img-container">
+                            <img src="laser-assets/laser_safety_rules_chart.png" alt="Official FORGE Laser Cutter Rules & Safety Compliance Chart" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title laser-title"><i class="fas fa-clipboard-check"></i> Evidence Photo: FORGE Laboratory Laser Safety Rules</div>
+                            <div class="visual-caption-desc">Official FORGE Digital Fabrication Lab placard outlining mandatory PPE (safety goggles), pre-flight checks (chiller and exhaust confirmation), and strictly prohibited hazardous materials (PVC/Vinyl).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Machine Details -->
+        <section id="laser-machine">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 02</div>
+                    <h2 class="section-title">2. Machine Details</h2>
+                    <p class="section-subtitle">Verified technical specifications of the industrial CO₂ laser cutting platform located at the FORGE HW Junction DFab #2 Laboratory.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table laser-table">
+                        <thead>
+                            <tr>
+                                <th>Required Field</th>
+                                <th>Verified Machine Specification</th>
+                                <th>Engineering Context / Operating Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Make</strong></td>
+                                <td><strong>HW Junction / FORGE Laboratory</strong></td>
+                                <td>Industrial CNC Laser Platform (DFab Lab #2)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Model</strong></td>
+                                <td><strong>1490 CO₂ Laser System</strong></td>
+                                <td>Heavy-duty dual-gantry linear motion chassis with knife-blade &amp; honeycomb bed</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bed Size</strong></td>
+                                <td><strong>1300 mm &times; 900 mm</strong></td>
+                                <td>Large format working envelope accommodating full-sheet acrylic and plywood stock</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Laser Tube Wattage</strong></td>
+                                <td><strong>150W (Watts)</strong></td>
+                                <td>150 Watt water-cooled sealed CO₂ glass laser resonator tube (10.6 &micro;m IR wavelength)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Control Software</strong></td>
+                                <td><strong>RDWorks V8 (V8.01.65)</strong></td>
+                                <td>DSP Controller Ecosystem with Ruida RDC6442G mainboard integration</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 1.75rem;">
+                    <div class="visual-figure laser-fig">
+                        <div class="visual-img-container">
+                            <img src="laser-assets/laser_machine_specs_placard.png" alt="FORGE DFab #2 1490 CO2 Laser Machine Specification Placard" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title laser-title"><i class="fas fa-tag"></i> Evidence Photo: Machine Specification Placard</div>
+                            <div class="visual-caption-desc">Hardware specification placard on the laboratory unit confirming Model 1490 CO₂ Laser, 1300 &times; 900 mm working table, 150W laser wattage, 1000W total machine power, 0.1 mm precision, and active vacuum air-blowing system.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Materials Used -->
+        <section id="laser-materials">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 03</div>
+                    <h2 class="section-title">3. Materials Used</h2>
+                    <p class="section-subtitle">Documented stock materials, measured thickness values, and material origins used during laboratory laser cutting.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table laser-table">
+                        <thead>
+                            <tr>
+                                <th>Material Type</th>
+                                <th>Measured Thickness</th>
+                                <th>Stock Source</th>
+                                <th>Fabrication Suitability &amp; Optical Properties</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cast Acrylic (PMMA)</strong></td>
+                                <td><span class="table-pill laser-pill">3.0 mm</span> (Verified with calipers)</td>
+                                <td>FORGE DFab Innovation Lab Material Store</td>
+                                <td>High optical absorption at 10.6 &micro;m; vaporizes cleanly leaving flame-polished, transparent, vertical edge contours.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Engineered Plywood / MDF</strong></td>
+                                <td><span class="table-pill laser-pill">3.0 mm</span> (Verified with calipers)</td>
+                                <td>FORGE DFab Innovation Lab Material Store</td>
+                                <td>Homogeneous density, minimal internal voids; produces high-contrast dark carbonized engraving and sharp vector cuts.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Selected Design/Image -->
+        <section id="laser-design">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 04</div>
+                    <h2 class="section-title">4. Selected Design / Image</h2>
+                    <p class="section-subtitle">Visual vector emblems chosen for multi-operation laser cutting and raster scan surface engraving.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-bezier-curve"></i></div>
+                        <h3>Design Selection Rationale</h3>
+                        <p style="margin-bottom: 1rem;">
+                            <strong>Selection Justification:</strong> The Batman emblem and Hot Wheels insignia designs were selected specifically to evaluate dual-mode laser processing:
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><strong>Geometric Boundary Evaluation:</strong> Complex external silhouettes with sharp inside corner radii (&lt;0.2 mm) to test vector continuous cutting accuracy.</li>
+                            <li><strong>Dual-Layer Interaction:</strong> Interior lettering and solid fills require dense raster scanning (engraving), while the outer border requires full through-cut separation.</li>
+                            <li><strong>Keyring / Functional Integration:</strong> Inclusion of precision mounting holes to verify kerf fit and structural strength in 3.0 mm stock.</li>
+                        </ul>
+                    </div>
+
+                    <div class="visual-figure laser-fig">
+                        <div class="visual-img-container">
+                            <img src="laser-assets/batman_vector_dxf.png" alt="Batman Vector Graphic DXF Path Layout" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title laser-title"><i class="fas fa-vector-square"></i> Evidence Graphic: Selected Batman Vector Geometry</div>
+                            <div class="visual-caption-desc">Selected vector artwork featuring closed polylines, continuous interior letter contours, and designated anchor points for dual-mode cut and scan execution.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Image-to-DXF Conversion -->
+        <section id="laser-conversion">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 05</div>
+                    <h2 class="section-title">5. Image-to-DXF Conversion</h2>
+                    <p class="section-subtitle">Chronological conversion pipeline transforming raster digital graphics into machine-readable CAD vector exchange formats.</p>
+                </div>
+
+                <!-- Practical Method Note (Convertio Online Conversion) -->
+                <div class="card laser-card" style="margin-bottom: 2rem; border-left: 4px solid var(--color-laser-cyan);">
+                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                        <div class="card-icon-box" style="margin-bottom: 0;"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h3 style="margin-bottom: 0.5rem; color: var(--color-text-ivory);">Rapid Prototyping Pipeline &bull; Convertio Online Tool</h3>
+                            <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.65;">
+                                Due to laboratory session time constraints and the need for rapid digital fabrication turnaround, <strong>Convertio</strong> (an online file conversion tool) was utilized to efficiently convert high-contrast 2D raster images (PNG/JPEG) directly into clean <strong>.DXF (Drawing Exchange Format)</strong> vector files. This streamlined workflow eliminated lengthy manual tracing while producing accurate polyline boundaries ready for CAM nesting in RDWorks V8.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-steps">
+                    <div class="timeline-step-item laser-step">
+                        <div class="step-number-badge laser-badge">01</div>
+                        <div class="step-content">
+                            <h4>Step 1: Raster Artwork Selection &amp; Contrast Prep</h4>
+                            <p>High-resolution, high-contrast monochrome raster images (PNG/JPEG) of the Batman and Hot Wheels emblems were prepared, ensuring clean boundary separation between solid graphic fills and negative space.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step-item laser-step">
+                        <div class="step-number-badge laser-badge">02</div>
+                        <div class="step-content">
+                            <h4>Step 2: Online Vectorization via Convertio</h4>
+                            <p>Under lab time constraints, the raster files were processed through <strong>Convertio (convertio.co)</strong>, an online vector conversion tool that automatically computes vector contours and outputs standardized <code>.dxf</code> CAD vector files.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step-item laser-step">
+                        <div class="step-number-badge laser-badge">03</div>
+                        <div class="step-content">
+                            <h4>Step 3: DXF Geometry &amp; Scale Validation</h4>
+                            <p>The exported <code>.dxf</code> files were inspected to ensure all contours, closed polylines, and millimeter unit scales were preserved accurately without missing internal text loops or corrupted vertices.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step-item laser-step">
+                        <div class="step-number-badge laser-badge">04</div>
+                        <div class="step-content">
+                            <h4>Step 4: RDWorks V8 Import &amp; Layer Assignment</h4>
+                            <p>The DXF files were imported directly into RDWorks V8, where vector geometry was verified on the 1400&times;900 mm bed and assigned distinct layer colors for surface engraving (Scan) and perimeter through-cutting (Cut).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Stage Image-to-DXF Conversion Infographic -->
+                <div style="margin-top: 2rem;">
+                    <div class="visual-figure laser-fig">
+                        <div class="visual-img-container">
+                            <img src="laser-assets/dxf_conversion_pipeline.jpg" alt="Four stages of Image-to-DXF Conversion Pipeline Infographic for Laser Cutting" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title laser-title"><i class="fas fa-project-diagram"></i> Workflow Infographic: 4-Stage Image-to-DXF Conversion Pipeline</div>
+                            <div class="visual-caption-desc">Sequential engineering workflow illustrating the digital-to-vector transformation: high-contrast raster artwork selection, automated vector contour generation, standardized .DXF CAD export, and RDWorks V8 software import.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. File Preparation -->
+        <section id="laser-file-prep">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 06</div>
+                    <h2 class="section-title">6. File Preparation</h2>
+                    <p class="section-subtitle">Vector cleaning, geometry verification, scaling, and closed path confirmation prior to sending toolpaths to the machine.</p>
+                </div>
+
+                <div class="grid-3col">
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-broom"></i></div>
+                        <h3>Vector Cleaning &amp; Duplicate Removal</h3>
+                        <p>Eliminated overlapping duplicate vectors using RDWorks' "Delete Overlap" tool. Duplicate lines cause double-firing along the same path, resulting in severe edge melting and charring.</p>
+                    </div>
+
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-arrows-up-down-left-right"></i></div>
+                        <h3>Scaling &amp; Dimensional Locking</h3>
+                        <p>Verified physical bounding dimensions in RDWorks (e.g. 80 mm width for keychains), locking aspect ratios to preserve geometric symmetry and tight tolerances (&plusmn;0.1 mm).</p>
+                    </div>
+
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-draw-polygon"></i></div>
+                        <h3>Closed Path Confirmation</h3>
+                        <p>Executed curve closure checks to ensure all outer cut paths represent closed polylines. Open gaps prevent complete perimeter severance during through-cutting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Nesting & Layout in RDWorks -->
+        <section id="laser-nesting">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 07</div>
+                    <h2 class="section-title">7. Nesting &amp; Layout in RDWorks</h2>
+                    <p class="section-subtitle">Layer color assignments, operational mode differentiation (Laser Scan vs. Laser Cut), and part arrangement on the 1300 &times; 900 mm workspace.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-layer-group"></i></div>
+                        <h3>Layer Segregation &amp; Execution Priority</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Blue Layer &mdash; <code>Laser Scan</code> (Engraving):</strong> Assigned to internal graphics and emblem lettering. Configured with Priority 1 so surface raster engraving completes before any cutting occurs.</li>
+                            <li><strong>Black Layer &mdash; <code>Laser Cut</code> (Through-Cut):</strong> Assigned to outer bounding contours and mounting holes. Configured with Priority 2 so parts are severed only after internal detail execution.</li>
+                            <li><strong>Material Placement &amp; Origin:</strong> Positioned within stock margins with 5 mm inter-part spacing to maximize sheet utilization and avoid edge blowout.</li>
+                        </ul>
+                    </div>
+
+                    <div class="visual-figure laser-fig">
+                        <div class="visual-img-container">
+                            <img src="laser-assets/rdworks_interface_workflow.png" alt="RDWorks V8 software interface showing Hot Wheels graphic with Blue Scan and Black Cut layer settings" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title laser-title"><i class="fas fa-sliders"></i> Evidence Screenshot: RDWorks V8 Layer Configuration</div>
+                            <div class="visual-caption-desc">RDWorks V8.01.65 interface showing Hot Wheels design: Blue layer assigned to <code>Laser Scan</code> (Priority 1) and Black perimeter assigned to <code>Laser Cut</code> (Priority 2, 100 mm/s speed, 30.0% power).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Final Machine Settings -->
+        <section id="laser-settings">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 08</div>
+                    <h2 class="section-title">8. Final Machine Settings</h2>
+                    <p class="section-subtitle">Verified parameter matrix used during laser fabrication on the 150W CO₂ laser platform.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table laser-table">
+                        <thead>
+                            <tr>
+                                <th>Material</th>
+                                <th>Thickness</th>
+                                <th>Operation</th>
+                                <th>Speed</th>
+                                <th>Minimum Power</th>
+                                <th>Maximum Power</th>
+                                <th>Number of Passes</th>
+                                <th>Frequency / Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cast Acrylic (PMMA)</strong></td>
+                                <td>3.0 mm</td>
+                                <td><strong>Laser Scan (Engraving)</strong></td>
+                                <td><span class="table-pill laser-pill">300.00 mm/s</span></td>
+                                <td>18.0 %</td>
+                                <td>22.0 %</td>
+                                <td>1 Pass</td>
+                                <td>Continuous Wave (CW)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cast Acrylic (PMMA)</strong></td>
+                                <td>3.0 mm</td>
+                                <td><strong>Laser Cut (Perimeter)</strong></td>
+                                <td><span class="table-pill laser-pill">100.00 mm/s</span></td>
+                                <td>30.0 %</td>
+                                <td>30.0 %</td>
+                                <td>1 Pass</td>
+                                <td>Continuous Wave (CW)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Engineered Plywood / MDF</strong></td>
+                                <td>3.0 mm</td>
+                                <td><strong>Laser Scan (Engraving)</strong></td>
+                                <td><span class="table-pill laser-pill">300.00 mm/s</span></td>
+                                <td>20.0 %</td>
+                                <td>25.0 %</td>
+                                <td>1 Pass</td>
+                                <td>Continuous Wave (CW)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Engineered Plywood / MDF</strong></td>
+                                <td>3.0 mm</td>
+                                <td><strong>Laser Cut (Perimeter)</strong></td>
+                                <td><span class="table-pill laser-pill">100.00 mm/s</span></td>
+                                <td>30.0 %</td>
+                                <td>30.0 %</td>
+                                <td>1 Pass</td>
+                                <td>Continuous Wave (CW)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Cutting Process -->
+        <section id="laser-process">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 09</div>
+                    <h2 class="section-title">9. Cutting Process</h2>
+                    <p class="section-subtitle">Chronological execution: software programming, machine focusing, assist-gas verification, and live toolpath execution.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="visual-figure laser-fig">
+                        <div class="visual-img-container">
+                            <img src="laser-assets/ayesha_rdworks_cad.png" alt="Ayesha programming toolpaths in RDWorks V8 at the fabrication laboratory workstation" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title laser-title"><i class="fas fa-desktop"></i> Evidence Photo: CAD/CAM Station Programming</div>
+                            <div class="visual-caption-desc">Ayesha programming toolpaths in RDWorks V8 on the dedicated laboratory workstation, with personal protective equipment (safety goggles) prepared on the workbench.</div>
+                        </div>
+                    </div>
+
+                    <div class="card laser-card">
+                        <div class="card-icon-box"><i class="fas fa-gears"></i></div>
+                        <h3>Sequential Machine Execution Protocol</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>1. Workpiece Loading:</strong> Acrylic/plywood sheet placed flat on the honeycomb bed, checked with manual clamps for planar level.</li>
+                            <li><strong>2. Focal Height Setting:</strong> Adjusted Z-axis bed height using the manual acrylic stepped focus gauge (focal distance strictly set to lens focal plane).</li>
+                            <li><strong>3. Subsystems Activation:</strong> Verified water chiller operational (18&deg;C&ndash;22&deg;C) and turned on high-flow exhaust blower and coaxial air assist.</li>
+                            <li><strong>4. Boundary Framing:</strong> Executed bounding box "Frame" test on Ruida DSP panel to ensure toolpaths lie completely inside sheet margins.</li>
+                            <li><strong>5. Execution &amp; Fume Evacuation:</strong> Laser job fired with closed lid; allowed 30-second dwell after completion for complete smoke extraction.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Embedded Video Player -->
+                <div class="video-container-card" style="border-color: rgba(56, 189, 248, 0.4); margin-top: 2rem;">
+                    <div class="video-wrapper">
+                        <video controls playsinline preload="metadata" poster="laser-assets/final_laser_output.png">
+                            <source src="week6-assets/lasercut.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-caption">
+                        <div class="visual-caption-title laser-title"><i class="fas fa-play-circle"></i> Live Video Demonstration: 1490 CO₂ Laser Gantry &amp; Beam Firing</div>
+                        <div class="visual-caption-desc">Live laboratory video capturing the 1490 CO₂ Laser in active operation: high-energy optical beam firing, coaxial assist-gas stream clearing the kerf, and motorized X-Y gantry executing vector toolpaths.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Final Result – Hero Shot -->
+        <section id="laser-hero">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 10 &bull; PRIMARY HIGHLIGHT</div>
+                    <h2 class="section-title">10. Final Result &ndash; Hero Shot</h2>
+                    <p class="section-subtitle">Photographic showcase of completed laser-cut and raster-engraved components.</p>
+                </div>
+
+                <div class="visual-figure laser-fig">
+                    <div class="visual-img-container" style="background: #08030b; padding: 1.5rem 0;">
+                        <img src="laser-assets/final_laser_output.png" alt="Finished precision laser-cut and engraved acrylic and wooden components" style="max-height: 520px; object-fit: contain; margin: 0 auto;" loading="lazy">
+                    </div>
+                    <div class="visual-caption">
+                        <div class="visual-caption-title laser-title"><i class="fas fa-award"></i> Evidence Photo: Completed Physical Laser Fabricated Result</div>
+                        <div class="visual-caption-desc">Final physical laser-cut and raster-engraved components exhibiting clean vertical edges, crisp high-contrast scan fills, zero burn taper, and tight dimensional accuracy (&plusmn;0.10 mm).</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Problems Faced & Solutions -->
+        <section id="laser-problems">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 11</div>
+                    <h2 class="section-title">11. Problems Faced &amp; Solutions</h2>
+                    <p class="section-subtitle">Documented troubleshooting log of real-world challenges encountered during laser fabrication and the corrective engineering solutions applied.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table laser-table">
+                        <thead>
+                            <tr>
+                                <th>Problem Encountered</th>
+                                <th>Possible / Identified Cause</th>
+                                <th>Solution Implemented</th>
+                                <th>Final Outcome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fragile Geometry Breakage (Hot Wheels Wheel &amp; Micro-Details)</strong></td>
+                                <td>Selecting graphic silhouettes with ultra-fine lettering and thin structural bridges (&lt;1.0 mm) in the Hot Wheels design caused the delicate wheel section to snap and break under concentrated laser kerf heat and mechanical handling.</td>
+                                <td>Analyzed the entire vector geometry in CAD before cutting; thickened delicate bridges, enlarged micro-lettering, and modified vector contours to ensure all structural sections exceed 1.5 mm minimum wall thickness.</td>
+                                <td>Durable fabricated output with intact wheel geometry and high structural stability.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Laser Scan vs. Cut Layer Confusion &amp; Engraving Depth Control</strong></td>
+                                <td>On the initial attempt, layer parameters were misconfigured between raster scanning (surface engraving) and vector cutting, making it difficult to control the precise engraving depth in millimeters and risking complete burn-through.</td>
+                                <td>Configured distinct dual-layer color rules in RDWorks V8: Blue layer set to high speed (300 mm/s) and low power (20&ndash;25%) to achieve the exact intended surface engraving depth (0.3&ndash;0.5 mm), while Black layer was set to higher power (30&ndash;65%) and controlled speed (30&ndash;100 mm/s) for through-cutting.</td>
+                                <td>Crisp, well-defined surface engraving with controlled depth without burning through the material.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sub-Optimal Execution Priority Sequence</strong></td>
+                                <td>Executing the outer perimeter cut before internal scan engraving caused small detached pieces to drop and shift out of the optical focal plane.</td>
+                                <td>Assigned Blue Scan layer to Priority 1 (execute surface engraving first on anchored stock) and Black Cut layer to Priority 2 (through-cut last).</td>
+                                <td>Flawless engraving alignment with zero workpiece displacement or defocusing.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Reflection -->
+        <section id="laser-reflection">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 12</div>
+                    <h2 class="section-title">12. Reflection</h2>
+                    <p class="section-subtitle">First-person technical synthesis covering skills gained, operational insights, and future manufacturing considerations.</p>
+                </div>
+
+                <div class="reflection-box laser-reflection">
+                    <p>
+                        <strong>What I Learned &amp; Hands-On Insights:</strong> Working with the 1490 CO₂ Laser provided immense practical engineering knowledge in subtractive fabrication. I learned how to carefully analyze graphic designs before fabrication—realizing that designs with ultra-small letters or delicate thin features (like the Hot Wheels wheel geometry) must be modified and thickened to prevent physical breakage. I also mastered how to adjust power, speed, and focal settings in RDWorks V8 to precisely control the engraving depth in millimeters, seamlessly transitioning between delicate surface scanning and clean perimeter through-cutting.
+                    </p>
+                    <p>
+                        <strong>Safety &amp; What I Would Do Differently:</strong> Safety is the single most critical factor when operating high-power laser equipment. Even when simply observing or monitoring the machine during cutting, looking into the enclosure without certified laser safety glasses is hazardous and strictly not advisable due to invisible Class 4 infrared reflections. In future projects, I will always perform pre-cut CAD geometry audits to verify minimum feature thickness and ensure all protective gear is worn throughout the entire operation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Source Files -->
+        <section id="laser-downloads">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag laser-tag">PAGE 1 &bull; TOPIC 13 &bull; SOURCE ASSETS</div>
+                    <h2 class="section-title">13. Source Files</h2>
+                    <p class="section-subtitle">Verified downloadable source files: Native RDWorks RLD manufacturing project packages with pre-configured laser parameter toolpaths.</p>
+                </div>
+
+                <div class="downloads-grid">
+                    <!-- Batman RLD -->
+                    <div class="download-card laser-download-card">
+                        <div>
+                            <div class="download-header">
+                                <div class="download-icon" style="background: rgba(56, 189, 248, 0.2); border-color: var(--color-laser-cyan); color: var(--color-laser-cyan);"><i class="fas fa-file-code"></i></div>
+                                <div>
+                                    <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-ivory); text-transform: uppercase;">Batman RDWorks RLD</h4>
+                                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-laser-cyan);">BATMAN FINAL.rld &bull; 671 KB</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--color-text-secondary); font-size: 0.88rem; margin-top: 0.5rem;">
+                                Complete native RDWorks V8 manufacturing project file containing pre-configured Blue Scan and Black Cut power/speed presets.
+                            </p>
+                        </div>
+                        <a href="week6-assets/BATMAN FINAL.rld" download="BATMAN_FINAL.rld" class="download-btn laser-btn">
+                            <i class="fas fa-download"></i> Download Batman RLD
+                        </a>
+                    </div>
+
+                    <!-- Hotwheels RLD -->
+                    <div class="download-card laser-download-card">
+                        <div>
+                            <div class="download-header">
+                                <div class="download-icon" style="background: rgba(56, 189, 248, 0.2); border-color: var(--color-laser-cyan); color: var(--color-laser-cyan);"><i class="fas fa-file-code"></i></div>
+                                <div>
+                                    <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-ivory); text-transform: uppercase;">Hotwheels RDWorks RLD</h4>
+                                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-laser-cyan);">Hotwheels.rld &bull; 836 KB</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--color-text-secondary); font-size: 0.88rem; margin-top: 0.5rem;">
+                                Complete native RDWorks V8 manufacturing package containing optimized scan intervals and perimeter cutting parameters.
+                            </p>
+                        </div>
+                        <a href="week6-assets/Hotwheels.rld" download="Hotwheels.rld" class="download-btn laser-btn">
+                            <i class="fas fa-download"></i> Download Hotwheels RLD
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ==========================================================================
+       PAGE 2 — 3D PRINTING (EXACT ASSESSMENT HEADINGS, PRESERVING GAP AT 9)
+       ========================================================================== -->
+    <div id="page-2-3d">
+
+        <!-- Page 2 Header Banner -->
+        <div class="page-divider-banner">
+            <div class="container">
+                <span class="page-tag-badge"><i class="fas fa-cube"></i> ASSESSMENT SECTION &bull; PAGE 2</span>
+                <h2 class="page-title-h1">PAGE 2 — 3D PRINTING</h2>
+                <p class="section-subtitle">Complete laboratory documentation covering additive manufacturing principles, Bambu Lab H2S CoreXY kinematics, Bambu Studio slicing, print telemetry, and finished Low Poly Cat execution.</p>
+            </div>
+        </div>
+
+        <!-- 1. Printer Details -->
+        <section id="print-details">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 01</div>
+                    <h2 class="section-title">1. Printer Details</h2>
+                    <p class="section-subtitle">Hardware specifications of the Bambu Lab H2S platform utilized during additive manufacturing execution.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th>Required Field</th>
+                                <th>Verified Hardware Specification</th>
+                                <th>Engineering Context</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Make</strong></td>
+                                <td><strong>Bambu Lab</strong></td>
+                                <td>High-precision consumer &amp; industrial additive manufacturing platform</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Model</strong></td>
+                                <td><strong>Bambu Lab H2S Platform</strong></td>
+                                <td>High-speed CoreXY enclosed chassis equipped with top-mounted AMS 2 unit</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Build Volume</strong></td>
+                                <td><strong>256 mm &times; 256 mm &times; 256 mm</strong></td>
+                                <td>Generous build envelope with magnetic textured PEI spring-steel build plate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nozzle Size</strong></td>
+                                <td><strong>0.4 mm</strong></td>
+                                <td>Stainless steel / hardened direct-drive hotend with dual part-cooling fans</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Supported Materials</strong></td>
+                                <td><strong>PLA, PETG, TPU, ABS, ASA, PC</strong></td>
+                                <td>Tested &amp; executed using <strong>Bambu PLA Basic (White)</strong> at 220&deg;C</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 1.75rem;">
+                    <div class="visual-figure">
+                        <div class="visual-img-container">
+                            <img src="week6-assets/bambu_lab_h2s_machine.png" alt="Bambu Lab H2S 3D Printer with AMS 2 Unit in the Innovation Lab" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-server"></i> Evidence Photo: Bambu Lab H2S Machine Setup</div>
+                            <div class="visual-caption-desc">The Bambu Lab H2S enclosed CoreXY 3D printer in the laboratory, equipped with the top-mounted AMS 2 multi-filament management unit, illuminated build chamber, and heated platform.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Slicer & Material -->
+        <section id="print-slicer-material">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 02</div>
+                    <h2 class="section-title">2. Slicer &amp; Material</h2>
+                    <p class="section-subtitle">CAM slicing software environment and engineering thermoplastic filament specifications.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-laptop-code"></i></div>
+                        <h3>CAM Slicer &mdash; Bambu Studio</h3>
+                        <p style="margin-bottom: 0.75rem;">
+                            <strong>Slicer Used:</strong> <strong>Bambu Studio</strong> (Official multi-platform slicing engine based on PrusaSlicer/Slic3r).
+                        </p>
+                        <p>
+                            Utilized the verified <code>0.20mm Standard @BBL H2S</code> printer profile with Arachne perimeter wall generation, precise G-code motion compilation, and integrated thermal management. <em>(Note: FlashPrint was not used).</em>
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-spool"></i></div>
+                        <h3>Thermoplastic Material &mdash; PLA Basic</h3>
+                        <p style="margin-bottom: 0.75rem;">
+                            <strong>Material Used:</strong> <strong>Bambu PLA Basic (White &bull; &Oslash;1.75 mm)</strong>.
+                        </p>
+                        <p>
+                            Polylactic Acid (PLA) provides high tensile strength, minimal thermal shrinkage / warpage, excellent interlayer bonding, and pleasant low-odor biodegradable extrusion. Glass transition temperature: Tg &approx; 60&deg;C.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Printer Limits & Capabilities -->
+        <section id="print-limits">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 03</div>
+                    <h2 class="section-title">3. Printer Limits &amp; Capabilities</h2>
+                    <p class="section-subtitle">Engineering constraints, geometric capabilities, thermal boundaries, and motion kinematics of the Bambu Lab H2S.</p>
+                </div>
+
+                <div class="grid-3col">
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-box"></i></div>
+                        <h3>Build Volume &amp; Spatial Limits</h3>
+                        <p>Constrained to 256 &times; 256 &times; 256 mm. Larger mechanical assemblies must be segmented into interlocking sub-assemblies with alignment dowels or mortise-tenon joints.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-angle-up"></i></div>
+                        <h3>Overhang &amp; Support Rules</h3>
+                        <p>Features cantilevering beyond 45&deg;&ndash;50&deg; from vertical require sacrificial support structures. The Low Poly Cat geometry was optimized to print support-free with max overhang angles &le;45&deg;.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-ruler-combined"></i></div>
+                        <h3>Dimensional Accuracy &amp; Tolerance</h3>
+                        <p>Yields XY dimensional tolerances of &plusmn;0.15 mm and Z-axis accuracy governed by the 0.20 mm discrete layer height. Minimum practical wall thickness is 0.8 mm (2 perimeter loops).</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-layer-group"></i></div>
+                        <h3>Anisotropy &amp; Layer Adhesion</h3>
+                        <p>Fused filament fabrication exhibits anisotropic tensile strength: parts are 30%&ndash;50% weaker along the Z-axis layer boundaries than along continuous XY toolpaths.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-temperature-high"></i></div>
+                        <h3>Thermal Constraints</h3>
+                        <p>Standard PLA softens and deforms above 55&deg;C&ndash;60&deg;C. For high-temperature mechanical components, engineering filaments like PETG, ABS, or PA-CF are required.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-gauge-high"></i></div>
+                        <h3>Print Time &amp; Scalability</h3>
+                        <p>CoreXY motion delivers accelerations up to 20,000 mm/s², reducing print time for the cat model to 49m 41s, but cycle times remain unsuitable for mass-volume production (>10k units).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Why the Object Cannot Be Made Subtractively -->
+        <section id="print-subtractive">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 04</div>
+                    <h2 class="section-title">4. Why the Object Cannot Be Made Subtractively</h2>
+                    <p class="section-subtitle">Geometric analysis contrasting Additive Manufacturing vs. Subtractive CNC Machining for the Low Poly Cat model.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-shapes"></i></div>
+                        <h3>Subtractive Machining Impediments</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Multi-Angled Re-entrant Undercuts:</strong> The Low Poly Cat features acute faceted undercuts beneath the jaw, chest, and arched tail that standard 3-axis CNC end mills cannot access without catastrophic tool collisions.</li>
+                            <li><strong>Tool Radius Limitations:</strong> The sharp geometric low-poly vertex junctions require zero-radius inside corners that circular rotary end mills physically cannot produce.</li>
+                            <li><strong>Excessive Material Waste:</strong> Machining the 70.65 cm³ cat from a solid rectangular stock billet (45 &times; 72 &times; 79 mm = 255.96 cm³) would generate over <strong>72% material scrap</strong> as chips.</li>
+                            <li><strong>Additive Advantage:</strong> 3D printing synthesized the model layer-by-layer bottom-up with <strong>0% waste</strong> (support-free) and zero specialized tooling dies.</li>
+                        </ul>
+                    </div>
+
+                    <div class="visual-figure">
+                        <div class="visual-img-container">
+                            <img src="week6-assets/manufacturing_3types.jpg" alt="Additive vs Subtractive vs Formative Manufacturing Comparison" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-industry"></i> Manufacturing Paradigm Comparison</div>
+                            <div class="visual-caption-desc">Visualizing material lifecycles: Additive (bottom-up addition with zero billet scrap), Subtractive (top-down material removal constrained by tool reach), and Formative (cavity molding).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. STL Definition -->
+        <section id="print-stl-def">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 05</div>
+                    <h2 class="section-title">5. STL Definition</h2>
+                    <p class="section-subtitle">The standard tessellation language: mathematical representation of 3D polygonal surface meshes.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-draw-polygon"></i></div>
+                        <h3>Standard Tessellation Language Fundamentals</h3>
+                        <p style="margin-bottom: 1rem;">
+                            <strong>STL (Standard Tessellation Language)</strong> is the universal standard file format in additive manufacturing. It approximates the continuous CAD NURBS surfaces of a solid 3D object using a mesh of planar triangular facets.
+                        </p>
+                        <p style="margin-bottom: 1rem;">
+                            Each triangular facet is uniquely defined by:
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><strong>3 Vertices:</strong> Spatial 3D Cartesian coordinates $(x_1, y_1, z_1)$, $(x_2, y_2, z_2)$, $(x_3, y_3, z_3)$.</li>
+                            <li><strong>1 Unit Normal Vector:</strong> A perpendicular unit vector $(n_x, n_y, n_z)$ pointing outward, defining the solid interior vs. external boundary.</li>
+                            <li><strong>Watertight 2-Manifold Condition:</strong> Every triangle edge must be shared by exactly two adjacent triangles, ensuring a fully enclosed leak-free volume.</li>
+                        </ul>
+                    </div>
+
+                    <div class="visual-figure">
+                        <div class="visual-img-container">
+                            <img src="week6-assets/stl_mesh_concept.jpg" alt="STL Triangular Mesh Tessellation Concept Diagram" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-draw-polygon"></i> STL Mesh Tessellation Principles</div>
+                            <div class="visual-caption-desc">Discretization of continuous NURBS CAD surfaces into triangular mesh approximations, showing how facet density dictates dimensional fidelity and geometric low-poly aesthetics.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Selected STL File -->
+        <section id="print-selected-stl">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 06</div>
+                    <h2 class="section-title">6. Selected STL File</h2>
+                    <p class="section-subtitle">Geometric metadata and selection rationale for the Low Poly Cat 3D model.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="card">
+                        <div class="card-icon-box"><i class="fas fa-cube"></i></div>
+                        <h3>Mesh Specifications &amp; Selection Rationale</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Actual Filename:</strong> <code>Ayesha_jumana (2).stl</code> (Sourced from Printables).</li>
+                            <li><strong>Triangular Facet Count:</strong> Exactly <strong>516 Triangles</strong> forming a watertight 2-manifold surface.</li>
+                            <li><strong>Bounding Dimensions:</strong> <strong>44.23 mm (W) &times; 71.63 mm (D) &times; 78.45 mm (H)</strong>.</li>
+                            <li><strong>Total Enclosed Volume:</strong> <strong>70,647.8 mm³ (70.65 cm³)</strong>.</li>
+                            <li><strong>Selection Reason:</strong> Sourced as an ideal benchmark for low-poly planar aesthetics, self-supporting overhangs (&le;45&deg;), and rapid CoreXY extrusion evaluation without requiring support removal.</li>
+                        </ul>
+                    </div>
+
+                    <div class="visual-figure">
+                        <div class="visual-img-container">
+                            <img src="week6-assets/slicer_prepare_model.png" alt="Bambu Studio Prepare Workspace showing Ayesha_jumana (2).stl mesh data and bounding box" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-laptop-code"></i> Evidence Screenshot: Bambu Studio Prepare Workspace</div>
+                            <div class="visual-caption-desc">Prepare workspace showing <code>Ayesha_jumana (2).stl</code> on the textured PEI plate, verifying bounding box dimensions (44.23 &times; 71.63 &times; 78.45 mm), 70,647.8 mm³ volume, and 516 triangular facets.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Slicer Settings -->
+        <section id="print-slicer-settings">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 07</div>
+                    <h2 class="section-title">7. Slicer Settings</h2>
+                    <p class="section-subtitle">Verified slicing parameters configured in Bambu Studio for the Low Poly Cat fabrication.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Actual Final Value</th>
+                                <th>Unit / Technical Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nozzle Temperature</strong></td>
+                                <td><span class="table-pill">220</span></td>
+                                <td>&deg;C (Standard PLA Basic thermal setpoint)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bed Temperature</strong></td>
+                                <td><span class="table-pill">55</span></td>
+                                <td>&deg;C (Textured PEI magnetic spring-steel build plate)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Layer Height</strong></td>
+                                <td><span class="table-pill">0.20</span></td>
+                                <td>mm (Standard layer resolution profile)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Infill Percentage</strong></td>
+                                <td><span class="table-pill">15</span></td>
+                                <td>% (Optimized lightweight ratio saving print time &amp; material)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Infill Pattern</strong></td>
+                                <td><strong>Gyroid / Grid</strong></td>
+                                <td>Optimized 3D infill pattern providing isotropic strength while reducing filament mass</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wall / Shell Count</strong></td>
+                                <td><span class="table-pill">2</span></td>
+                                <td>Walls (0.8 mm effective shell perimeter thickness)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Print Speed</strong></td>
+                                <td><span class="table-pill">150 &ndash; 250</span></td>
+                                <td>mm/s (Outer wall: 150 mm/s &bull; Infill: 250 mm/s)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Supports Strategy</strong></td>
+                                <td><strong>Tree Supports / Disabled</strong></td>
+                                <td>Organic tree supports evaluated for clean overhang release; model self-supports at &le;45&deg;</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adhesion Type</strong></td>
+                                <td><strong>Outer Brim / Skirt</strong></td>
+                                <td>Wide outer brim provides crucial first-layer stability and structural support on textured PEI bed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 1.75rem;">
+                    <div class="visual-figure">
+                        <div class="visual-img-container">
+                            <img src="week6-assets/slicer_preview_layers.png" alt="Bambu Studio Preview Workspace showing 391 sliced layers and 49m41s time estimation" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-chart-pie"></i> Evidence Screenshot: Slicing Preview &amp; G-Code Simulation</div>
+                            <div class="visual-caption-desc">Bambu Studio preview tab confirming 391 discrete layers (0.20 mm standard layer height), total printing time of 49m 41s, filament consumption of 8.28m (25.08g PLA Basic), and monotonic solid shell layers.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Print Time & Material Weight -->
+        <section id="print-time-weight">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 08</div>
+                    <h2 class="section-title">8. Print Time &amp; Material Weight</h2>
+                    <p class="section-subtitle">Empirical comparison between Bambu Studio CAM software estimates and actual recorded laboratory telemetry.</p>
+                </div>
+
+                <div class="tech-table-wrapper">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th>Fabrication Metric</th>
+                                <th>Slicer Estimated Value</th>
+                                <th>Actual Recorded Result</th>
+                                <th>Observations &amp; Variance Analysis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Total Print Time</strong></td>
+                                <td><span class="table-pill">49m 41s</span></td>
+                                <td><span class="table-pill">50m 15s</span></td>
+                                <td>+34s variance due to automated bed leveling calibration, vibration frequency sweep, and nozzle purge line.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Active Model Print Time</strong></td>
+                                <td><span class="table-pill">44m 16s</span></td>
+                                <td><span class="table-pill">44m 25s</span></td>
+                                <td>Near-perfect correlation to Bambu Studio CoreXY acceleration toolpath model.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Material Weight</strong></td>
+                                <td><span class="table-pill">25.08 g</span></td>
+                                <td><span class="table-pill">25.15 g</span></td>
+                                <td>+0.07g variance attributable to initial nozzle prime wipe tower and purge line extrusion.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Filament Length</strong></td>
+                                <td><span class="table-pill">8.28 m</span></td>
+                                <td><span class="table-pill">8.30 m</span></td>
+                                <td>Consistent volumetric extrusion across all 391 discrete horizontal layers.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Video Showcase Embedded -->
+                <div class="video-container-card" style="margin-top: 2rem;">
+                    <div class="video-wrapper">
+                        <video controls playsinline preload="metadata" poster="week6-assets/slicer_preview_layers.png">
+                            <source src="week6-assets/Screen Recording 2026-10-04 204956.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-caption">
+                        <div class="visual-caption-title"><i class="fas fa-play-circle"></i> Slicer Workflow Video: Bambu Studio Simulation &amp; G-Code Analysis</div>
+                        <div class="visual-caption-desc">Screen recording documenting the Bambu Studio environment: 3D Low Poly Cat geometry inspection, slicing calculation, scrubbing through individual layer toolpaths, and evaluating perimeter speed and travel moves.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Final Result (Preserving Gap at Heading 9) -->
+        <section id="print-final-result">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 10 &bull; PHYSICAL RESULT</div>
+                    <h2 class="section-title">10. Final Result</h2>
+                    <p class="section-subtitle">Photographic inspection of the completed physical 3D printed Low Poly Cat prototype.</p>
+                </div>
+
+                <div class="grid-2col">
+                    <div class="visual-figure">
+                        <div class="visual-img-container" style="background: #08030b; padding: 1.5rem 0;">
+                            <img src="week6-assets/finished_low_poly_cat.png" alt="Finished 3D Printed Low Poly Cat Figure in White PLA on desk" style="max-height: 480px; object-fit: contain; margin: 0 auto;" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-award"></i> Evidence Photo 01: Finished 3D Printed Physical Prototype</div>
+                            <div class="visual-caption-desc">The final physical 3D-printed Low Poly Cat standing on the workbench in White PLA Basic. Exhibits sharp facet transitions, zero layer shifting, clean overhang bridges, and uniform inter-layer fusion across all 391 layers.</div>
+                        </div>
+                    </div>
+
+                    <div class="visual-figure">
+                        <div class="visual-img-container">
+                            <img src="week6-assets/ayesha_printer_operation.jpg" alt="Ayesha operating the Bambu Lab H2S touchscreen control panel" loading="lazy">
+                        </div>
+                        <div class="visual-caption">
+                            <div class="visual-caption-title"><i class="fas fa-hand-pointer"></i> Evidence Photo 02: On-Machine Interface &amp; Telemetry</div>
+                            <div class="visual-caption-desc">Ayesha interacting with the integrated touchscreen interface of the Bambu Lab H2S to verify bed leveling calibration, thermal setpoints (220&deg;C nozzle), and active print telemetry during execution.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authentic Engineering Insights & Troubleshooting Card -->
+                <div class="reflection-box" style="margin-top: 2rem; border-color: rgba(192, 38, 211, 0.4);">
+                    <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--color-text-ivory); margin-bottom: 1rem; text-transform: uppercase;">
+                        <i class="fas fa-lightbulb" style="color: var(--color-magenta); margin-right: 8px;"></i> Practical Challenges Faced &amp; Engineering Reflections
+                    </h3>
+                    <ul class="list-unstyled" style="gap: 1.1rem;">
+                        <li>
+                            <strong style="color: var(--color-magenta);"><i class="fas fa-draw-polygon"></i> 1. STL Mesh &amp; Triangle Count Verification:</strong>
+                            I learned to critically inspect the mesh's triangular facet count (516 triangles in this model) to verify whether the 3D body possesses sufficient resolution and geometric strength. Analyzing the triangle density ensures the model is watertight and preserves clean planar aesthetics without surface collapse.
+                        </li>
+                        <li>
+                            <strong style="color: var(--color-magenta);"><i class="fas fa-cubes-stacked"></i> 2. Infill Quantity &amp; Pattern Optimization (Gyroid vs. Grid):</strong>
+                            I discovered that we can significantly reduce infill quantity (down to 15%) without compromising structural stiffness by selecting optimized infill types like <strong>Gyroid</strong> or <strong>Grid</strong>. This drastically shortens print duration and conserves filament while maintaining high mechanical strength.
+                        </li>
+                        <li>
+                            <strong style="color: var(--color-magenta);"><i class="fas fa-layer-group"></i> 3. Outer Brims for Bed Adhesion &amp; Structural Stability:</strong>
+                            Adding an <strong>outer brim</strong> provides essential base surface contact and physical support to the structure, firmly anchoring the object to the build plate and preventing lifting or warping during high-speed CoreXY accelerations.
+                        </li>
+                        <li>
+                            <strong style="color: var(--color-magenta);"><i class="fas fa-tree"></i> 4. Tree Supports for Clean Overhang Balance:</strong>
+                            I learned how <strong>tree supports (organic branching supports)</strong> effectively balance overhangs and delicate cantilever features, providing targeted stability where needed while detaching effortlessly to yield a flawless surface outcome.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Source Files -->
+        <section id="print-downloads">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">PAGE 2 &bull; TOPIC 11 &bull; SOURCE ASSETS</div>
+                    <h2 class="section-title">11. Source Files</h2>
+                    <p class="section-subtitle">Direct downloadable CAD mesh and slicer project bundle for peer verification, academic review, and local 3D printer reproduction.</p>
+                </div>
+
+                <div class="downloads-grid">
+                    <div class="download-card">
+                        <div>
+                            <div class="download-header">
+                                <div class="download-icon"><i class="fas fa-file-code"></i></div>
+                                <div>
+                                    <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-ivory); text-transform: uppercase;">Low Poly Cat STL Model</h4>
+                                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-magenta);">Ayesha_jumana (2).stl &bull; 25.8 KB</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--color-text-secondary); font-size: 0.88rem; margin-top: 0.5rem;">
+                                Standard Tessellation Language (.stl) mesh containing the watertight 516-triangle geometric representation of the Low Poly Cat model.
+                            </p>
+                        </div>
+                        <a href="week6-assets/Ayesha_jumana (2).stl" download="Ayesha_jumana_Low_Poly_Cat.stl" class="download-btn">
+                            <i class="fas fa-download"></i> Download STL File
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div>
+                            <div class="download-header">
+                                <div class="download-icon"><i class="fas fa-box-archive"></i></div>
+                                <div>
+                                    <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text-ivory); text-transform: uppercase;">Bambu 3MF / Slicer Bundle</h4>
+                                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-magenta);">Low_Poly_Cat.3mf.zip &bull; 54.4 KB</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--color-text-secondary); font-size: 0.88rem; margin-top: 0.5rem;">
+                                Complete Bambu Studio 3MF manufacturing project package containing printer profile presets, 0.20 mm slicing layer configurations, and machine kinematics.
+                            </p>
+                        </div>
+                        <a href="week6-assets/Low_Poly_Cat.3mf.zip" download="Low_Poly_Cat_Bambu_Project.3mf.zip" class="download-btn">
+                            <i class="fas fa-download"></i> Download 3MF Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ==========================================================================
+       SECTION F — REFERENCES & CREDITS
+       ========================================================================== -->
+    <section id="references-section" style="background: rgba(14, 4, 18, 0.95);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-book-bookmark"></i> SECTION F &bull; ACADEMIC INTEGRITY</div>
+                <h2 class="section-title">References &amp; Credits</h2>
+                <p class="section-subtitle">Documenting external tools, open-source models, software packages, and laboratory facilities utilized throughout Week 06.</p>
+            </div>
+
+            <div class="references-grid">
+                <div class="ref-card">
+                    <div class="ref-title">Bambu Studio Slicing Software</div>
+                    <div class="ref-desc">Official open-source CAM slicing software developed by Bambu Lab for CoreXY toolpath generation.</div>
+                    <a href="https://bambulab.com/en/download/studio" target="_blank" rel="noopener noreferrer" class="ref-link">
+                        <i class="fas fa-external-link-alt"></i> bambulab.com/studio
+                    </a>
+                </div>
+
+                <div class="ref-card">
+                    <div class="ref-title">Low Poly Cat 3D Model</div>
+                    <div class="ref-desc">Open-source low-poly parametric mesh model sourced from the Printables 3D printing community.</div>
+                    <a href="https://www.printables.com/model" target="_blank" rel="noopener noreferrer" class="ref-link">
+                        <i class="fas fa-external-link-alt"></i> printables.com/model
+                    </a>
+                </div>
+
+                <div class="ref-card">
+                    <div class="ref-title">Convertio Vector Tool</div>
+                    <div class="ref-desc">Online conversion engine used to transform high-contrast raster graphics into DXF CAD vectors under lab time constraints.</div>
+                    <a href="https://convertio.co" target="_blank" rel="noopener noreferrer" class="ref-link">
+                        <i class="fas fa-external-link-alt"></i> convertio.co
+                    </a>
+                </div>
+
+                <div class="ref-card">
+                    <div class="ref-title">RDWorks V8 CAM Software</div>
+                    <div class="ref-desc">Laser CAD/CAM software developed by Ruida Technology for CO₂ laser toolpath and layer control.</div>
+                    <a href="http://www.rd-acs.com" target="_blank" rel="noopener noreferrer" class="ref-link">
+                        <i class="fas fa-external-link-alt"></i> rd-acs.com (Ruida)
+                    </a>
+                </div>
+
+                <div class="ref-card">
+                    <div class="ref-title">FORGE DFab Innovation Lab</div>
+                    <div class="ref-desc">Digital Fabrication Laboratory facility and equipment infrastructure (1490 CO₂ Laser &amp; Bambu Lab H2S platform).</div>
+                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-magenta);">FORGE HW Junction Lab #2</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-nav-links">
+                <a href="index.html#home">Portfolio Home</a>
+                <a href="index.html#protosem">ProtoSem Journey</a>
+                <a href="#page-1-laser">Page 1: Laser Cutting</a>
+                <a href="#page-2-3d">Page 2: 3D Printing</a>
+                <a href="#laser-downloads">Laser Downloads</a>
+                <a href="#print-downloads">3D Downloads</a>
+                <a href="#references-section">References &amp; Credits</a>
+            </div>
+            <p>&copy; 2026 Ayesha Jumana S &bull; Electrical &amp; Electronics Engineering &bull; ProtoSem Innovation Trainee &bull; Week 06 Assessment</p>
+        </div>
+    </footer>
+
+</body>
+</html>

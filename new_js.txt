@@ -1,0 +1,190 @@
+            // 9. Render Experience Timeline (Redesign)
+            const timelineContainer = document.getElementById('interactive-timeline-container');
+            const expModalOverlay = document.getElementById('experience-modal-overlay');
+            const expModalClose = document.getElementById('exp-modal-close');
+            
+            // Modal Elements
+            const modalOrg = document.getElementById('modal-org');
+            const modalProgram = document.getElementById('modal-program');
+            const modalPosition = document.getElementById('modal-position');
+            const modalDate = document.getElementById('modal-date');
+            const modalStatus = document.getElementById('modal-status');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalSkills = document.getElementById('modal-skills');
+            const modalSkillsContainer = document.getElementById('modal-skills-container');
+            const modalGallery = document.getElementById('modal-gallery');
+            
+            // Lightbox Elements
+            const lightboxOverlay = document.getElementById('lightbox-modal');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            
+            let currentGalleryImages = [];
+            let currentLightboxIndex = 0;
+
+            portfolioContent.experiences.forEach((exp) => {
+                const item = document.createElement('div');
+                item.className = 'interactive-timeline-item';
+                
+                // Truncate description for preview (first sentence or first bullet point)
+                const previewText = exp.description && exp.description.length > 0 ? exp.description[0] : "";
+                
+                item.innerHTML = `
+                    <div class="timeline-node"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">${exp.date}</div>
+                        <div class="timeline-position">${exp.position}</div>
+                        <div class="timeline-org">${exp.organization}</div>
+                        <div class="timeline-preview">${previewText}</div>
+                        <div class="view-exp-cta">
+                            EXPLORE EXPERIENCE 
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                `;
+
+                item.addEventListener('click', () => {
+                    openExperienceModal(exp);
+                });
+
+                timelineContainer.appendChild(item);
+            });
+            
+            // Modal Logic
+            function openExperienceModal(exp) {
+                // Populate text
+                modalOrg.textContent = exp.organization;
+                modalPosition.textContent = exp.position;
+                modalDate.textContent = exp.date;
+                
+                if (exp.program) {
+                    modalProgram.style.display = 'block';
+                    modalProgram.textContent = exp.program;
+                } else {
+                    modalProgram.style.display = 'none';
+                }
+                
+                if (exp.status) {
+                    modalStatus.style.display = 'inline-block';
+                    modalStatus.textContent = exp.status;
+                } else {
+                    modalStatus.style.display = 'none';
+                }
+                
+                // Populate Description
+                let descHTML = '<ul>';
+                exp.description.forEach(point => {
+                    descHTML += `<li>${point}</li>`;
+                });
+                descHTML += '</ul>';
+                modalDesc.innerHTML = descHTML;
+                
+                // Populate Skills
+                if (exp.skills && exp.skills.length > 0) {
+                    modalSkillsContainer.style.display = 'block';
+                    modalSkills.innerHTML = '';
+                    exp.skills.forEach(skill => {
+                        const span = document.createElement('span');
+                        span.className = 'skill-tag';
+                        span.textContent = skill;
+                        modalSkills.appendChild(span);
+                    });
+                } else {
+                    modalSkillsContainer.style.display = 'none';
+                }
+                
+                // Populate Gallery
+                modalGallery.innerHTML = '';
+                currentGalleryImages = exp.images || [];
+                
+                if (currentGalleryImages.length > 0) {
+                    modalGallery.style.display = 'grid';
+                    currentGalleryImages.forEach((img, index) => {
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.innerHTML = `
+                            <img src="${img.src}" alt="${img.title || 'Experience moment'}" loading="lazy">
+                            <div class="gallery-item-overlay">
+                                <div class="gallery-item-title">${img.title || 'View Document'}</div>
+                            </div>
+                        `;
+                        galleryItem.addEventListener('click', () => openLightbox(index));
+                        modalGallery.appendChild(galleryItem);
+                    });
+                } else {
+                    modalGallery.style.display = 'block';
+                    modalGallery.innerHTML = `
+                        <div class="gallery-empty">
+                            <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            <span>MORE MOMENTS COMING SOON</span>
+                        </div>
+                    `;
+                }
+
+                // Show modal
+                expModalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeExperienceModal() {
+                expModalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            expModalClose.addEventListener('click', closeExperienceModal);
+            expModalOverlay.addEventListener('click', (e) => {
+                if (e.target === expModalOverlay) closeExperienceModal();
+            });
+            
+            // Lightbox Logic
+            function openLightbox(index) {
+                currentLightboxIndex = index;
+                updateLightboxImage();
+                lightboxOverlay.classList.add('active');
+            }
+            
+            function closeLightbox() {
+                lightboxOverlay.classList.remove('active');
+            }
+            
+            function updateLightboxImage() {
+                if (!currentGalleryImages[currentLightboxIndex]) return;
+                lightboxImg.src = currentGalleryImages[currentLightboxIndex].src;
+                lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentGalleryImages.length}`;
+            }
+            
+            function nextLightboxImg() {
+                currentLightboxIndex = (currentLightboxIndex + 1) % currentGalleryImages.length;
+                updateLightboxImage();
+            }
+            
+            function prevLightboxImg() {
+                currentLightboxIndex = (currentLightboxIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+                updateLightboxImage();
+            }
+            
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxNext.addEventListener('click', nextLightboxImg);
+            lightboxPrev.addEventListener('click', prevLightboxImg);
+            
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target === lightboxOverlay) closeLightbox();
+            });
+            
+            // Global Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (lightboxOverlay.classList.contains('active')) {
+                        closeLightbox();
+                    } else if (expModalOverlay.classList.contains('active')) {
+                        closeExperienceModal();
+                    }
+                } else if (e.key === 'ArrowRight' && lightboxOverlay.classList.contains('active')) {
+                    nextLightboxImg();
+                } else if (e.key === 'ArrowLeft' && lightboxOverlay.classList.contains('active')) {
+                    prevLightboxImg();
+                }
+            });
